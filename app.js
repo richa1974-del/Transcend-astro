@@ -155,6 +155,21 @@ document.addEventListener('DOMContentLoaded', () => {
     window.requestAnimationFrame(step);
   }
 
+  // --- Scroll Reveal Animation Observer ---
+  const reveals = document.querySelectorAll('.scroll-reveal');
+  if (reveals.length > 0) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(r => revealObserver.observe(r));
+  }
+
   // --- 5. PORTFOLIO FILTERS ---
   const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
   const portfolioItems = document.querySelectorAll('.portfolio-item');
