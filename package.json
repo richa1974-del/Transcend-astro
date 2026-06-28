@@ -1,0 +1,12 @@
+{
+  "name": "transcend-astro",
+  "version": "1.0.0",
+  "description": "Transcend Astro Consultant Website",
+  "main": "app.js",
+  "scripts": {
+    "start": "powershell -ExecutionPolicy Bypass -File server.ps1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

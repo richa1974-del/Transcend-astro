@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>Our Transformations & Astro-Aligned Portfolio | Transcend Consultant</title>
+  <meta name="description" content="Explore our luxury design portfolio featuring astro-aligned residences, bedrooms, kitchens, and commercial offices by Richa Agarwal.">
+  <meta name="keywords" content="astro interior design portfolio, richa agarwal gallery, before after home design, vastu design gallery">
+  <meta name="author" content="Richa Agarwal">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Cosmic Background Starry Overlay -->
+  <div class="cosmic-bg">
+    <div class="stars"></div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header id="main-header">
+    <div class="nav-container">
+      <a href="index.html#home" class="logo-wrap" id="brand-logo" aria-label="Transcend Consultant home">
+        <img src="assets/logo.png" alt="Transcend Consultant Logo" class="logo-img">
+        <div class="logo-text-group">
+          <span class="logo-title">TRANSCEND</span>
+          <span class="logo-sub">Consultant</span>
+        </div>
+      </a>
+      
+      <!-- Hamburger Menu for Mobile -->
+      <button class="mobile-menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav id="navbar-links">
+        <ul>
+          <li><a href="index.html#home" class="nav-link" id="nav-item-home">Home</a></li>
+          <li><a href="index.html#about" class="nav-link" id="nav-item-about">About</a></li>
+          <li><a href="index.html#services" class="nav-link" id="nav-item-services">Services</a></li>
+          <li><a href="index.html#packages" class="nav-link" id="nav-item-packages">Packages</a></li>
+          <li><a href="gallery.html" class="nav-link active-link" id="nav-item-gallery">Gallery</a></li>
+          <li><a href="index.html#testimonials" class="nav-link" id="nav-item-testimonials">Testimonials</a></li>
+          <li><a href="blog.html" class="nav-link" id="nav-item-blog">Blog</a></li>
+          <li><a href="index.html#contact" class="nav-link" id="nav-item-contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html#contact" class="btn-gold" id="header-cta">Book Consultation</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Gallery Main Content -->
+  <main class="package-detail-container">
+    <a href="index.html#home" class="back-link-btn" id="back-home-link">← Back to Home</a>
+    
+    <section id="gallery-portfolio" class="gallery-section" style="padding: 0; margin-top: 1rem;">
+      <div class="section-header">
+        <span class="section-subtitle">Visual Proof</span>
+        <h1 class="section-title">Our Transformations</h1>
+      </div>
+      
+      <!-- Interactive Before & After Slider -->
+      <div class="slider-showcase">
+        <div class="slider-container" id="before-after-slider">
+          <img class="slider-img before-img" src="assets/room_after.png" alt="Luxury room after astrological alignment">
+          <img class="slider-img after-img" src="assets/room_before.png" alt="Room before alignment" id="after-slider-img">
+          
+          <!-- Handle & Button -->
+          <div class="slider-handle" id="slider-drag-handle">
+            <div class="slider-button"></div>
+          </div>
+          
+          <div class="slider-label before-label">Before: Stagnant Layout</div>
+          <div class="slider-label after-label">After: Cosmic Harmony</div>
+        </div>
+      </div>
+
+      <!-- Portfolio Category Filters -->
+      <div class="gallery-filters" id="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="living-rooms">Living Rooms</button>
+        <button class="filter-btn" data-filter="bedrooms">Bedrooms</button>
+        <button class="filter-btn" data-filter="kitchens">Kitchens</button>
+        <button class="filter-btn" data-filter="luxury-residences">Residences</button>
+        <button class="filter-btn" data-filter="commercial-spaces">Commercial</button>
+        <button class="filter-btn" data-filter="astro-projects">Astro-aligned</button>
+      </div>
+
+      <!-- Portfolio Image Grid -->
+      <div class="portfolio-grid" id="portfolio-container">
+        <!-- Item 1 -->
+        <div class="portfolio-item" data-category="living-rooms luxury-residences astro-projects" data-id="1">
+          <img src="assets/room_after.png" alt="Gold & Navy Aligned Living Room">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">Living Room | Residence</span>
+            <h3 class="portfolio-title">Celestial Solarium</h3>
+            <span class="portfolio-link">View Alignment Details ✦</span>
+          </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="portfolio-item" data-category="bedrooms luxury-residences astro-projects" data-id="2">
+          <img src="assets/gallery_bedroom.png" alt="Luxury Master Bedroom">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">Bedroom | Residence</span>
+            <h3 class="portfolio-title">Luna Sanctuary</h3>
+            <span class="portfolio-link">View Alignment Details ✦</span>
+          </div>
+        </div>
+        <!-- Item 3 -->
+        <div class="portfolio-item" data-category="kitchens luxury-residences" data-id="3">
+          <img src="assets/gallery_kitchen.png" alt="Marble & Navy Kitchen">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">Kitchen | Residence</span>
+            <h3 class="portfolio-title">Agni Hearth</h3>
+            <span class="portfolio-link">View Alignment Details ✦</span>
+          </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="portfolio-item" data-category="commercial-spaces astro-projects" data-id="4">
+          <img src="assets/gallery_office.png" alt="Wood & Gold Home Office">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">Commercial | Office</span>
+            <h3 class="portfolio-title">Jupiter Study</h3>
+            <span class="portfolio-link">View Alignment Details ✦</span>
+          </div>
+        </div>
+        <!-- Item 5 -->
+        <div class="portfolio-item" data-category="living-rooms luxury-residences" data-id="5">
+          <img src="assets/room_after.png" alt="High-end Residence Living area">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">Living Room | Residence</span>
+            <h3 class="portfolio-title">Solar Reception Room</h3>
+            <span class="portfolio-link">View Alignment Details ✦</span>
+          </div>
+        </div>
+        <!-- Item 6 -->
+        <div class="portfolio-item" data-category="bedrooms astro-projects" data-id="6">
+          <img src="assets/gallery_bedroom.png" alt="Cozy Astrological Bedroom">
+          <div class="portfolio-overlay">
+            <span class="portfolio-category">Bedroom | Astro-aligned</span>
+            <h3 class="portfolio-title">Mercurial Chamber</h3>
+            <span class="portfolio-link">View Alignment Details ✦</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Lightbox Modal -->
+    <div class="lightbox-modal" id="project-lightbox">
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="close-lightbox" aria-label="Close modal">&times;</button>
+        
+        <div class="lightbox-img-wrap">
+          <img src="assets/room_after.png" alt="Selected Project Image" id="lightbox-image">
+        </div>
+        
+        <div class="lightbox-details">
+          <span class="lightbox-category" id="lightbox-category-txt">Living Room</span>
+          <h3 class="lightbox-title" id="lightbox-title-txt">Celestial Solarium</h3>
+          <p class="lightbox-desc" id="lightbox-desc-txt">A modern, open-concept space featuring ivory marble flooring and deep navy walls to anchor chaotic energy. Brass accents and round lighting shapes invite planetary abundance.</p>
+          
+          <div class="lightbox-astro-details">
+            <h4 class="lightbox-astro-title">Cosmic Alignment Highlights</h4>
+            <p class="lightbox-astro-text" id="lightbox-astro-txt">Oriented to face Northeast. The primary blue shade invokes the grounding energy of Saturn, while gold accessories align with Jupiter to invite wealth, wisdom, and professional expansion.</p>
+            <div id="lightbox-element-badge">
+              <span class="element-badge water">Water Element</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand" id="footer-logo-wrap">
+        <div class="footer-logo-group">
+          <img src="assets/logo.png" alt="Transcend Consultant Logo" class="footer-logo-img">
+          <div>
+            <span class="logo-title">TRANSCEND</span>
+            <span class="logo-sub">Consultant</span>
+          </div>
+        </div>
+        <p class="footer-tagline">"Where Astrology Meets Luxury Living"<br>Pioneering Astro Interior Design with 25+ years of excellence.</p>
+      </div>
+      
+      <div>
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links" id="footer-navigation">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#packages">Packages</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="index.html#testimonials">Testimonials</a></li>
+          <li><a href="index.html#contact" style="grid-column: span 2;">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="footer-title">Connect With Us</h4>
+        <p style="font-size: 0.85rem; color: var(--c-text-muted);">Follow our design journey and get interior inspiration.</p>
+        <div class="social-icons" id="footer-socials">
+          <a href="https://instagram.com" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+            </svg>
+          </a>
+          <!-- WhatsApp Link -->
+          <a href="https://wa.me/917838048195?text=Hello%20Transcend%20Consultant%2C%20I%20would%20like%20to%20book%20an%20Astro%20Interior%20Consultation." target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp" style="color: #25D366;">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.437.002 9.861-4.416 9.863-9.848.001-2.63-1.019-5.101-2.874-6.958C16.402 1.982 13.93 1.95 12.012 1.95c-5.438 0-9.863 4.414-9.865 9.847-.001 1.562.41 3.09 1.189 4.453l-.993 3.629 3.714-.975zm11.367-7.651c-.139-.232-.51-.372-1.066-.651-.556-.279-3.285-1.622-3.795-1.807-.51-.186-.88-.279-1.25.279-.371.558-1.437 1.808-1.761 2.18-.324.372-.649.418-1.205.139-.556-.278-2.348-.865-4.473-2.761-1.653-1.475-2.768-3.298-3.092-3.856-.324-.558-.035-.86.243-1.138.25-.251.556-.651.834-.976.278-.326.37-.558.556-.93.186-.372.093-.698-.046-.977-.14-.279-1.25-3.018-1.714-4.133-.453-1.087-.912-.94-1.25-.958-.323-.017-.695-.02-1.066-.02-.37 0-.973.139-1.482.697-.509.558-1.946 1.906-1.946 4.647 0 2.741 1.993 5.39 2.271 5.762.278.372 3.922 5.99 9.504 8.393 1.328.571 2.364.912 3.172 1.17.132.042.855.37 1.385.292.593-.088 1.821-.745 2.077-1.465.257-.72.257-1.339.18-1.464z"/>
+            </svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.524 3.545 12 3.545 12 3.545s-7.525 0-9.388.51a3.003 3.003 0 0 0-2.11 2.108C0 8.029 0 12 0 12s0 3.972.502 5.837a3.003 3.003 0 0 0 2.11 2.108c1.863.51 9.388.51 9.388.51s7.524 0 9.388-.51a3.002 3.002 0 0 0 2.11-2.108c.502-1.865.502-5.837.502-5.837s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <span>&copy; 2026 Transcend Consultant. All Rights Reserved.</span>
+      <span>Pioneering Astro Interior Design</span>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp FAB (visible on all pages) -->
+  <a href="https://wa.me/917838048195?text=Hello%20Transcend%20Consultant%2C%20I%20would%20like%20to%20book%20an%20Astro%20Interior%20Consultation." target="_blank" rel="noopener" class="whatsapp-fab" id="whatsapp-fab" aria-label="Chat on WhatsApp">
+    <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.437.002 9.861-4.416 9.863-9.848.001-2.63-1.019-5.101-2.874-6.958C16.402 1.982 13.93 1.95 12.012 1.95c-5.438 0-9.863 4.414-9.865 9.847-.001 1.562.41 3.09 1.189 4.453l-.993 3.629 3.714-.975zm11.367-7.651c-.139-.232-.51-.372-1.066-.651-.556-.279-3.285-1.622-3.795-1.807-.51-.186-.88-.279-1.25.279-.371.558-1.437 1.808-1.761 2.18-.324.372-.649.418-1.205.139-.556-.278-2.348-.865-4.473-2.761-1.653-1.475-2.768-3.298-3.092-3.856-.324-.558-.035-.86.243-1.138.25-.251.556-.651.834-.976.278-.326.37-.558.556-.93.186-.372.093-.698-.046-.977-.14-.279-1.25-3.018-1.714-4.133-.453-1.087-.912-.94-1.25-.958-.323-.017-.695-.02-1.066-.02-.37 0-.973.139-1.482.697-.509.558-1.946 1.906-1.946 4.647 0 2.741 1.993 5.39 2.271 5.762.278.372 3.922 5.99 9.504 8.393 1.328.571 2.364.912 3.172 1.17.132.042.855.37 1.385.292.593-.088 1.821-.745 2.077-1.465.257-.72.257-1.339.18-1.464z"/>
+    </svg>
+    <span class="fab-tooltip">Chat with us</span>
+  </a>
+
+  <!-- Mobile Sticky CTA Bar -->
+  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
+    <a href="index.html#contact" class="mobile-sticky-btn mobile-sticky-book">Book Consultation</a>
+    <a href="https://wa.me/917838048195?text=Hello%20Transcend%20Consultant%2C%20I%20would%20like%20to%20book%20an%20Astro%20Interior%20Consultation." target="_blank" rel="noopener" class="mobile-sticky-btn mobile-sticky-whatsapp">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+
+  <!-- Interactive Search & Category Filter -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- 1. PORTFOLIO FILTERING ---
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active class from all buttons
+          filterButtons.forEach(b => b.classList.remove('active'));
+          // Add active class to clicked button
+          btn.classList.add('active');
+
+          const filter = btn.getAttribute('data-filter');
+
+          portfolioItems.forEach(item => {
+            const categories = item.getAttribute('data-category').split(' ');
+            if (filter === 'all' || categories.includes(filter)) {
+              item.style.display = 'block';
+              setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+              }, 50);
+            } else {
+              item.style.opacity = '0';
+              item.style.transform = 'scale(0.9)';
+              setTimeout(() => {
+                item.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // --- 2. BEFORE & AFTER SLIDER DRAGGING ---
+      const slider = document.getElementById('before-after-slider');
+      const afterImg = document.getElementById('after-slider-img');
+      const handle = document.getElementById('slider-drag-handle');
+
+      if (slider && afterImg && handle) {
+        let isDragging = false;
+
+        function updateSlider(clientX) {
+          const rect = slider.getBoundingClientRect();
+          const offsetX = clientX - rect.left;
+          let percentage = (offsetX / rect.width) * 100;
+
+          // Bounds checking
+          if (percentage < 0) percentage = 0;
+          if (percentage > 100) percentage = 100;
+
+          // Move handle
+          handle.style.left = `${percentage}%`;
+          // Clip top image (afterImg is on top, clip right half)
+          // To reveal more "before" (afterImg), increase percentage.
+          // In standard slide, we clip the after-image's left or right.
+          // Since afterImg is the before image (room_before.png), let's clip it from left or right.
+          // If handle is at 60%, the before image (afterImg) should take 60% width, and the after image takes 40%.
+          // Let's set afterImg clip-path: polygon(0 0, percentage% 0, percentage% 100%, 0 100%)
+          afterImg.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+        }
+
+        // Mouse Events
+        handle.addEventListener('mousedown', () => { isDragging = true; });
+        window.addEventListener('mouseup', () => { isDragging = false; });
+        window.addEventListener('mousemove', (e) => {
+          if (!isDragging) return;
+          updateSlider(e.clientX);
+        });
+
+        // Touch Events
+        handle.addEventListener('touchstart', () => { isDragging = true; });
+        window.addEventListener('touchend', () => { isDragging = false; });
+        window.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          updateSlider(e.touches[0].clientX);
+        });
+
+        // Click on slider container
+        slider.addEventListener('click', (e) => {
+          if (e.target === handle || handle.contains(e.target)) return;
+          updateSlider(e.clientX);
+        });
+      }
+
+      // --- 3. PROJECT LIGHTBOX MODAL ---
+      const lightbox = document.getElementById('project-lightbox');
+      const lightboxImg = document.getElementById('lightbox-image');
+      const lightboxCategory = document.getElementById('lightbox-category-txt');
+      const lightboxTitle = document.getElementById('lightbox-title-txt');
+      const lightboxDesc = document.getElementById('lightbox-desc-txt');
+      const lightboxAstro = document.getElementById('lightbox-astro-txt');
+      const lightboxElement = document.getElementById('lightbox-element-badge');
+      const closeLightbox = document.getElementById('close-lightbox');
+
+      const projectDatabase = {
+        '1': {
+          title: 'Celestial Solarium',
+          category: 'Living Room | Residence',
+          image: 'assets/room_after.png',
+          desc: 'A masterfully aligned living space featuring soft champagne beige marble flooring and custom ivory furnishings. Hand-carved brass accents and circular geometric installations draw positive energy.',
+          astro: 'Designed in accordance with the Northeast entrance flow. Accent colors highlight muted gold tones for Jupiter alignment to invite wealth, wisdom, and professional expansion.',
+          element: 'Water Element',
+          elementClass: 'water'
+        },
+        '2': {
+          title: 'Luna Sanctuary',
+          category: 'Bedroom | Residence',
+          image: 'assets/gallery_bedroom.png',
+          desc: 'An elegant, peaceful master bedroom utilizing desaturated sage green wall details, linen textiles, and raw oak woodwork to promote deep sleep.',
+          astro: 'Aligned to the Southwest direction to stabilize Earth energy. Subtle copper trims and natural jade ornaments anchor planetary peace and emotional stability.',
+          element: 'Earth Element',
+          elementClass: 'earth'
+        },
+        '3': {
+          title: 'Agni Hearth',
+          category: 'Kitchen | Residence',
+          image: 'assets/gallery_kitchen.png',
+          desc: 'A premium kitchen design showcasing high-grade white quartz countertops, hidden storage panels, and natural terracotta accent tiles.',
+          astro: 'Positioned in the Southeast Agni quadrant. Balanced metal hardware and red floral arrangements ensure pure prana flow and health vitality.',
+          element: 'Fire Element',
+          elementClass: 'fire'
+        },
+        '4': {
+          title: 'Jupiter Study',
+          category: 'Commercial | Office',
+          image: 'assets/gallery_office.png',
+          desc: 'An executive home office with built-in dark walnut shelving, premium leather task seating, and large windows inviting morning sunlight.',
+          astro: 'Oriented to the North sector for maximum career growth. Green aventurine desk details stimulate intellectual clarity and Saturn grounding.',
+          element: 'Air Element',
+          elementClass: 'air'
+        },
+        '5': {
+          title: 'Solar Reception Room',
+          category: 'Living Room | Residence',
+          image: 'assets/room_after.png',
+          desc: 'A majestic double-height living room featuring ivory marble walls, minimalist design, and custom brass light fixtures.',
+          astro: 'Aligned to the East direction to channel Sun vitality. Golden hour views and bronze decor elements invite success and respect.',
+          element: 'Fire Element',
+          elementClass: 'fire'
+        },
+        '6': {
+          title: 'Mercurial Chamber',
+          category: 'Bedroom | Astro-aligned',
+          image: 'assets/gallery_bedroom.png',
+          desc: 'A clean guest room styled with soft grey linens, floating shelves, and live indoor greenery for a refreshing look.',
+          astro: 'Aligned to the North direction to promote communication and business focus. Emerald details invoke Mercury\'s healing presence.',
+          element: 'Earth Element',
+          elementClass: 'earth'
+        }
+      };
+
+      if (lightbox && closeLightbox) {
+        portfolioItems.forEach(item => {
+          item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = item.getAttribute('data-id');
+            const data = projectDatabase[id];
+
+            if (data) {
+              lightboxImg.src = data.image;
+              lightboxImg.alt = data.title;
+              lightboxCategory.innerText = data.category;
+              lightboxTitle.innerText = data.title;
+              lightboxDesc.innerText = data.desc;
+              lightboxAstro.innerText = data.astro;
+              lightboxElement.innerHTML = `<span class="element-badge ${data.elementClass}">${data.element}</span>`;
+
+              lightbox.classList.add('active');
+              document.body.style.overflow = 'hidden';
+            }
+          });
+        });
+
+        closeLightbox.addEventListener('click', () => {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
