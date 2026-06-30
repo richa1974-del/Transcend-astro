@@ -38,6 +38,13 @@ try {
                 ".jpg"  { "image/jpeg" }
                 ".jpeg" { "image/jpeg" }
                 ".svg"  { "image/svg+xml" }
+                ".pdf"  { "application/pdf" }
+                ".webp" { "image/webp" }
+                ".gif"  { "image/gif" }
+                ".ico"  { "image/x-icon" }
+                ".json" { "application/json" }
+                ".xml"  { "application/xml" }
+                ".txt"  { "text/plain" }
                 default { "application/octet-stream" }
             }
             

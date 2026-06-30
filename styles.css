@@ -4982,3 +4982,475 @@ main {
   }
 }
 
+/* =============================================
+   PREMIUM UPGRADE STYLES — V3
+   ============================================= */
+
+/* ---- HERO KEN BURNS SLIDESHOW ---- */
+.hero-slideshow-container {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.8s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.hero-slide.hero-slide-active {
+  opacity: 1;
+  animation: kenBurnsZoom 8s ease-in-out forwards;
+}
+
+@keyframes kenBurnsZoom {
+  0% { transform: scale(1.0); }
+  100% { transform: scale(1.12); }
+}
+
+/* ---- PORTFOLIO PREMIUM CARD ADDITIONS ---- */
+.portfolio-planet {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-accent-light);
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-philosophy {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 0.25rem;
+  line-height: 1.4;
+}
+
+.portfolio-view-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  border: 1px solid var(--c-accent);
+  padding: 0.4rem 1rem;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.portfolio-item:hover .portfolio-view-btn {
+  background: var(--c-accent);
+  color: #FFFFFF;
+}
+
+/* ---- PORTFOLIO LIGHTBOX MODAL ---- */
+.portfolio-lightbox {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-lightbox.active {
+  display: flex;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(15, 15, 15, 0.92);
+  backdrop-filter: blur(12px);
+}
+
+.lightbox-body {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  width: 92%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+  animation: lightboxSlideIn 0.4s var(--transition-lux);
+}
+
+@keyframes lightboxSlideIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-primary);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.lightbox-close-btn:hover {
+  background: var(--c-accent);
+  color: #FFFFFF;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-primary);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.lightbox-nav:hover {
+  background: var(--c-accent);
+  color: #FFFFFF;
+}
+
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+
+.lightbox-image-wrap {
+  width: 100%;
+  max-height: 65vh;
+  overflow: hidden;
+}
+
+.lightbox-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lightbox-details-panel {
+  padding: 2rem;
+}
+
+.lightbox-planet-tag {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.lightbox-project-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--c-text-primary);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.lightbox-project-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--c-text-secondary);
+  line-height: 1.7;
+}
+
+/* ---- BEFORE & AFTER ROOM TABS ---- */
+.ba-tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.ba-tab {
+  background: transparent;
+  border: 1px solid var(--c-accent-border);
+  padding: 0.6rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-primary);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ba-tab:hover,
+.ba-tab.active {
+  border-color: var(--c-accent);
+  background: var(--c-accent);
+  color: #FFFFFF;
+}
+
+/* ---- SAMPLE REPORT PREMIUM MOCKUP ---- */
+.report-mockup-card {
+  position: relative;
+  perspective: 1000px;
+}
+
+.report-mockup-inner {
+  background: #FFFFFF;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
+  transition: transform 0.6s var(--transition-lux), box-shadow 0.6s var(--transition-lux);
+}
+
+.report-mockup-card:hover .report-mockup-inner {
+  transform: rotateY(-3deg) rotateX(2deg);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+}
+
+.report-cover-visual {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+
+.report-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--transition-lux);
+}
+
+.report-mockup-card:hover .report-cover-img {
+  transform: scale(1.03);
+}
+
+.report-cover-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 1.5rem;
+}
+
+.report-cover-badge {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: var(--c-accent);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 3px;
+}
+
+.report-cover-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-accent-light);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.report-cover-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: #FFFFFF;
+  font-weight: 500;
+  margin: 0;
+}
+
+.report-mockup-shadow {
+  height: 12px;
+  margin: 0 2rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.06), transparent);
+  border-radius: 0 0 50% 50%;
+}
+
+/* Report Content Side */
+.report-headline {
+  text-align: left;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.report-description {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--c-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.report-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.report-features-list li {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--c-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.feature-check {
+  color: var(--c-accent);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.report-cta-group {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.report-download-btn {
+  padding: 1rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.report-consult-btn {
+  padding: 1rem 2rem;
+  border: 1px solid var(--c-text-primary);
+  color: var(--c-text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.report-consult-btn:hover {
+  background: var(--c-text-primary);
+  color: var(--c-bg-primary);
+}
+
+/* ---- DOWNLOAD STATISTICS GRID ---- */
+.report-stats-grid {
+  max-width: 1200px;
+  margin: 5rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.report-stat-item {
+  text-align: center;
+  padding: 2rem 1rem;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 8px;
+  background: #FFFFFF;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.report-stat-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+}
+
+.report-stat-icon {
+  margin-bottom: 1rem;
+}
+
+.report-stat-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--c-text-primary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.report-stat-desc {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--c-text-secondary);
+  line-height: 1.5;
+}
+
+/* ---- RESPONSIVE OVERRIDES FOR NEW COMPONENTS ---- */
+@media (max-width: 991px) {
+  .report-headline { font-size: 2.2rem; }
+  .report-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .lightbox-body { width: 96%; max-height: 92vh; }
+  .lightbox-nav { display: none; }
+}
+
+@media (max-width: 768px) {
+  .ba-tabs-container { gap: 0.5rem; }
+  .ba-tab { padding: 0.4rem 1rem; font-size: 0.7rem; }
+  .report-stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .report-headline { font-size: 1.8rem; }
+  .lightbox-details-panel { padding: 1.5rem; }
+  .lightbox-project-title { font-size: 1.4rem; }
+}
+
+@media (max-width: 480px) {
+  .report-stats-grid { grid-template-columns: 1fr; }
+  .report-cta-group { flex-direction: column; }
+  .report-download-btn, .report-consult-btn { width: 100%; justify-content: center; }
+}
+
+

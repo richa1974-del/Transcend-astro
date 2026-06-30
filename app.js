@@ -447,4 +447,155 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- 12. HERO KEN BURNS SLIDESHOW ---
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  if (heroSlides.length > 1) {
+    let currentSlide = 0;
+    const slideInterval = 6000;
+
+    setInterval(() => {
+      heroSlides[currentSlide].classList.remove('hero-slide-active');
+      currentSlide = (currentSlide + 1) % heroSlides.length;
+      // Reset animation by forcing reflow
+      const nextSlide = heroSlides[currentSlide];
+      nextSlide.style.animation = 'none';
+      nextSlide.offsetHeight; // trigger reflow
+      nextSlide.style.animation = '';
+      nextSlide.classList.add('hero-slide-active');
+    }, slideInterval);
+  }
+
+  // --- 13. BEFORE & AFTER TAB SWITCHING ---
+  const baTabs = document.querySelectorAll('.ba-tab');
+  const baBeforeImg = document.querySelector('.before-img');
+  const baAfterImg = document.querySelector('.after-img');
+  const baHandle = document.getElementById('slider-drag-handle');
+
+  if (baTabs.length > 0 && baBeforeImg && baAfterImg) {
+    baTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        baTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const beforeSrc = tab.getAttribute('data-before');
+        const afterSrc = tab.getAttribute('data-after');
+
+        baBeforeImg.src = beforeSrc;
+        baAfterImg.src = afterSrc;
+
+        // Reset slider handle to 50%
+        if (baHandle) {
+          baHandle.style.left = '50%';
+          baBeforeImg.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
+        }
+      });
+    });
+  }
+
+  // --- 14. PORTFOLIO LIGHTBOX ---
+  const lightbox = document.getElementById('portfolio-lightbox');
+  const lightboxImg = document.getElementById('lightbox-main-img');
+  const lightboxPlanet = document.getElementById('lightbox-planet');
+  const lightboxTitle = document.getElementById('lightbox-title');
+  const lightboxDesc = document.getElementById('lightbox-desc');
+  const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+  const lightboxBackdrop = document.querySelector('.lightbox-backdrop');
+  const portfolioCards = document.querySelectorAll('.portfolio-item[data-id]');
+
+  // Project database for lightbox details
+  const projectDB = {
+    '1': { planet: '☽ Moon Influence', title: 'Celestial Living Room', desc: 'A masterfully aligned living space in GK-2, New Delhi featuring champagne beige marble flooring, custom ivory furnishings, and hand-carved brass accents drawing positive lunar energy.', img: 'assets/portfolio_apartment_living.jpg' },
+    '2': { planet: '♀ Venus Influence', title: 'Luna Sanctuary Suite', desc: 'An elegant master bedroom utilizing desaturated sage green wall details, linen textiles, and raw oak woodwork to promote deep rest and planetary harmony.', img: 'assets/portfolio_apartment_bedroom.jpg' },
+    '3': { planet: '♃ Jupiter Influence', title: 'Abundance Dining Hall', desc: 'A sophisticated dining area with crystal chandeliers and natural wood accents, aligned with Jupiter energies to foster nourishment, abundance, and family prosperity.', img: 'assets/portfolio_apartment_dining.jpg' },
+    '4': { planet: '☉ Sun Influence', title: 'The Lalit — Chandigarh', desc: 'Luxury hospitality interior for The Lalit hotel, channeling solar vitality through golden accents, warm lighting, and spacious layouts that invite success and prestige.', img: 'assets/portfolio_hotel_lalit.jpg' },
+    '5': { planet: '♄ Saturn Influence', title: 'Grounded Lounge Retreat', desc: 'A premium apartment lounge with plush furnishings and art installations. Saturn grounding through deep earth tones and structured geometric arrangements.', img: 'assets/portfolio_apartment_lounge.jpg' },
+    '6': { planet: '☽ Moon Influence', title: 'Club 7 Spa — Ahmedabad', desc: 'A tranquil wellness spa designed with lunar healing principles. Soft ambient lighting, natural stone, and water elements create a restorative sanctuary.', img: 'assets/portfolio_spa_club7.jpg' },
+    '7': { planet: '☿ Mercury Influence', title: 'Executive Command Suite', desc: 'An executive MD cabin with premium leather seating and walnut finishes. Mercury alignment channels intellectual clarity for decisive leadership.', img: 'assets/portfolio_office_md.jpg' },
+    '8': { planet: '♃ Jupiter Influence', title: 'Grand Foyer Welcome', desc: 'A grand foyer entrance with marble and brass detailing. Jupiter influence at the threshold invites cosmic abundance and creates powerful first impressions.', img: 'assets/portfolio_apartment_foyer.jpg' },
+    '9': { planet: '☿ Mercury Influence', title: 'Strategic Boardroom', desc: 'A modern conference room with professional lighting and clean design. Communication flow optimized through Vastu principles for productive meetings.', img: 'assets/portfolio_office_conference.jpg' },
+    '10': { planet: '☉ Sun Influence', title: 'Marriott — Design Concept', desc: 'Interior design visualization for Marriott hotel properties, incorporating solar vitality through warm palettes and grand spatial proportions.', img: 'assets/portfolio_hotel_marriott.jpg' },
+    '11': { planet: '☿ Mercury Influence', title: "Scholar's Study", desc: 'An elegant home study with built-in bookshelves and ambient lighting. Directional alignment promotes intellectual growth and focused learning.', img: 'assets/portfolio_apartment_study.jpg' },
+    '12': { planet: '♄ Saturn Influence', title: 'Professional Practice Suite', desc: 'A professional office space with modern furnishing and natural light. Saturn discipline grounds the workspace for sustained productivity and success.', img: 'assets/portfolio_office_neeraj.jpg' }
+  };
+
+  let currentLightboxId = null;
+  const projectIds = Object.keys(projectDB);
+
+  function openLightbox(id) {
+    const data = projectDB[id];
+    if (!data || !lightbox) return;
+
+    currentLightboxId = id;
+    lightboxImg.src = data.img;
+    lightboxImg.alt = data.title;
+    if (lightboxPlanet) lightboxPlanet.textContent = data.planet;
+    if (lightboxTitle) lightboxTitle.textContent = data.title;
+    if (lightboxDesc) lightboxDesc.textContent = data.desc;
+
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightboxFn() {
+    if (lightbox) {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      currentLightboxId = null;
+    }
+  }
+
+  function navigateLightbox(direction) {
+    if (!currentLightboxId) return;
+    const idx = projectIds.indexOf(currentLightboxId);
+    let newIdx = idx + direction;
+    if (newIdx < 0) newIdx = projectIds.length - 1;
+    if (newIdx >= projectIds.length) newIdx = 0;
+    openLightbox(projectIds[newIdx]);
+  }
+
+  // Attach portfolio card click events
+  if (portfolioCards.length > 0 && lightbox) {
+    portfolioCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.getAttribute('data-id');
+        openLightbox(id);
+      });
+      card.style.cursor = 'pointer';
+    });
+  }
+
+  if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightboxFn);
+  if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightboxFn);
+  if (lightboxPrev) lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+  if (lightboxNext) lightboxNext.addEventListener('click', () => navigateLightbox(1));
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox || !lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightboxFn();
+    if (e.key === 'ArrowLeft') navigateLightbox(-1);
+    if (e.key === 'ArrowRight') navigateLightbox(1);
+  });
+
+  // Mobile swipe support for lightbox
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (lightbox) {
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 60) {
+        if (diff > 0) navigateLightbox(1);  // swipe left = next
+        else navigateLightbox(-1);           // swipe right = prev
+      }
+    }, { passive: true });
+  }
+
 });

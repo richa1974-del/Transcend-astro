@@ -143,11 +143,13 @@
       
       <!-- Homepage Hero Section -->
       <section id="hero" class="hero-wrapper">
-        <!-- Cinematic Background Video with Image Fallback -->
-        <div class="hero-bg-video-container">
-          <video autoplay muted loop playsinline class="hero-video-bg" poster="assets/hero_light_luxury.png">
-            <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c054773d1c3e079d5e305e99479b4d37&profile_id=165&oauth2_token_id=57447761" type="video/mp4">
-          </video>
+        <!-- Ken Burns Slideshow Background -->
+        <div class="hero-slideshow-container">
+          <div class="hero-slide hero-slide-active" style="background-image: url('assets/hero_slide_1.jpg')"></div>
+          <div class="hero-slide" style="background-image: url('assets/hero_slide_2.jpg')"></div>
+          <div class="hero-slide" style="background-image: url('assets/hero_slide_3.jpg')"></div>
+          <div class="hero-slide" style="background-image: url('assets/hero_slide_4.jpg')"></div>
+          <div class="hero-slide" style="background-image: url('assets/hero_slide_5.jpg')"></div>
           <div class="hero-bg-overlay"></div>
         </div>
         
@@ -402,93 +404,186 @@
           <button class="portfolio-filter-btn" data-filter="residential">Residential</button>
           <button class="portfolio-filter-btn" data-filter="hospitality">Hospitality</button>
           <button class="portfolio-filter-btn" data-filter="corporate">Corporate</button>
-          <button class="portfolio-filter-btn" data-filter="luxury-homes">Luxury Homes</button>
         </div>
 
-        <!-- Masonry Grid -->
+        <!-- Portfolio Grid -->
         <div class="portfolio-masonry-grid">
           <!-- Item 1 -->
-          <div class="portfolio-item show-item" data-category="residential luxury-homes">
-            <img src="assets/proposed_living.jpg" alt="Astro-Aligned Luxury Living Lounge">
+          <div class="portfolio-item show-item" data-category="residential" data-id="1">
+            <img src="assets/portfolio_apartment_living.jpg" alt="Luxury Apartment Living Room with gold accents and marble flooring" loading="lazy">
             <div class="portfolio-overlay">
               <div class="portfolio-info">
-                <h4>Vastu Aligned Living Lounge</h4>
-                <p>New Delhi, India — Residential Villa</p>
+                <span class="portfolio-planet">☽ Moon Influence</span>
+                <h4>Celestial Living Room</h4>
+                <p class="portfolio-philosophy">Where lunar tranquility meets contemporary luxury</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
               </div>
             </div>
           </div>
           <!-- Item 2 -->
-          <div class="portfolio-item show-item" data-category="residential">
-            <img src="assets/proposed_bedroom.jpg" alt="Lunar Calibrated Master Suite">
+          <div class="portfolio-item show-item" data-category="residential" data-id="2">
+            <img src="assets/portfolio_apartment_bedroom.jpg" alt="Elegant master bedroom with earthy tones and ambient lighting" loading="lazy">
             <div class="portfolio-overlay">
               <div class="portfolio-info">
-                <h4>Lunar Calibrated Bedroom</h4>
-                <p>Gurugram, India — Penthouse</p>
+                <span class="portfolio-planet">♀ Venus Influence</span>
+                <h4>Luna Sanctuary Suite</h4>
+                <p class="portfolio-philosophy">Harmonizing rest with planetary serenity</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
               </div>
             </div>
           </div>
           <!-- Item 3 -->
-          <div class="portfolio-item show-item" data-category="corporate">
-            <img src="assets/proposed_entry.jpg" alt="Mercury Directional Study">
+          <div class="portfolio-item show-item" data-category="residential" data-id="3">
+            <img src="assets/portfolio_apartment_dining.jpg" alt="Sophisticated dining area with crystal chandelier and wood accents" loading="lazy">
             <div class="portfolio-overlay">
               <div class="portfolio-info">
-                <h4>Executive Work Suite</h4>
-                <p>Mumbai, India — Corporate HQ Office</p>
+                <span class="portfolio-planet">♃ Jupiter Influence</span>
+                <h4>Abundance Dining Hall</h4>
+                <p class="portfolio-philosophy">Aligning nourishment with cosmic prosperity</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
               </div>
             </div>
           </div>
           <!-- Item 4 -->
-          <div class="portfolio-item show-item" data-category="hospitality">
-            <img src="assets/proposed_guest.jpg" alt="Elemental Balanced Lounge Hub">
+          <div class="portfolio-item show-item" data-category="hospitality" data-id="4">
+            <img src="assets/portfolio_hotel_lalit.jpg" alt="The Lalit Chandigarh luxury hotel interior design" loading="lazy">
             <div class="portfolio-overlay">
               <div class="portfolio-info">
-                <h4>Vedic Wellness Lounge</h4>
-                <p>Goa, India — Boutique Resort</p>
+                <span class="portfolio-planet">☉ Sun Influence</span>
+                <h4>The Lalit — Chandigarh</h4>
+                <p class="portfolio-philosophy">Radiant hospitality through solar alignment</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
               </div>
             </div>
           </div>
           <!-- Item 5 -->
-          <div class="portfolio-item show-item" data-category="residential">
-            <img src="assets/proposed_kitchen.jpg" alt="Agni Oriented Culinary Kitchen">
+          <div class="portfolio-item show-item" data-category="residential" data-id="5">
+            <img src="assets/portfolio_apartment_lounge.jpg" alt="Premium lounge area with plush furnishings and art installations" loading="lazy">
             <div class="portfolio-overlay">
               <div class="portfolio-info">
-                <h4>Agni-Aligned Kitchen</h4>
-                <p>Jaipur, India — Heritage Mansion</p>
+                <span class="portfolio-planet">♄ Saturn Influence</span>
+                <h4>Grounded Lounge Retreat</h4>
+                <p class="portfolio-philosophy">Anchoring stability through earth elements</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
               </div>
             </div>
           </div>
           <!-- Item 6 -->
-          <div class="portfolio-item show-item" data-category="luxury-homes">
-            <img src="assets/proposed_kids.jpg" alt="Horoscope Based Design Layout">
+          <div class="portfolio-item show-item" data-category="hospitality" data-id="6">
+            <img src="assets/portfolio_spa_club7.jpg" alt="Club 7 Spa Ahmedabad luxury wellness interior" loading="lazy">
             <div class="portfolio-overlay">
               <div class="portfolio-info">
-                <h4>Astrologically Mapped Estate</h4>
-                <p>New Delhi, India — Farmhouse</p>
+                <span class="portfolio-planet">☽ Moon Influence</span>
+                <h4>Club 7 Spa — Ahmedabad</h4>
+                <p class="portfolio-philosophy">Lunar healing through spatial mindfulness</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 7 -->
+          <div class="portfolio-item show-item" data-category="corporate" data-id="7">
+            <img src="assets/portfolio_office_md.jpg" alt="Executive MD cabin with premium leather and walnut finishes" loading="lazy">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-planet">☿ Mercury Influence</span>
+                <h4>Executive Command Suite</h4>
+                <p class="portfolio-philosophy">Channeling intellectual clarity for leadership</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 8 -->
+          <div class="portfolio-item show-item" data-category="residential" data-id="8">
+            <img src="assets/portfolio_apartment_foyer.jpg" alt="Grand foyer entrance with marble and brass detailing" loading="lazy">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-planet">♃ Jupiter Influence</span>
+                <h4>Grand Foyer Welcome</h4>
+                <p class="portfolio-philosophy">First impressions aligned with cosmic abundance</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 9 -->
+          <div class="portfolio-item show-item" data-category="corporate" data-id="9">
+            <img src="assets/portfolio_office_conference.jpg" alt="Modern conference room with professional lighting and clean design" loading="lazy">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-planet">☿ Mercury Influence</span>
+                <h4>Strategic Boardroom</h4>
+                <p class="portfolio-philosophy">Communication flow optimized through Vastu</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 10 -->
+          <div class="portfolio-item show-item" data-category="hospitality" data-id="10">
+            <img src="assets/portfolio_hotel_marriott.jpg" alt="Marriott hotel mockup interior design visualization" loading="lazy">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-planet">☉ Sun Influence</span>
+                <h4>Marriott — Design Concept</h4>
+                <p class="portfolio-philosophy">Solar vitality in hospitality architecture</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 11 -->
+          <div class="portfolio-item show-item" data-category="residential" data-id="11">
+            <img src="assets/portfolio_apartment_study.jpg" alt="Elegant home study with built-in bookshelves and ambient lighting" loading="lazy">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-planet">☿ Mercury Influence</span>
+                <h4>Scholar's Study</h4>
+                <p class="portfolio-philosophy">Intellectual growth through directional alignment</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
+              </div>
+            </div>
+          </div>
+          <!-- Item 12 -->
+          <div class="portfolio-item show-item" data-category="corporate" data-id="12">
+            <img src="assets/portfolio_office_neeraj.jpg" alt="Professional office space with modern furnishing and natural light" loading="lazy">
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <span class="portfolio-planet">♄ Saturn Influence</span>
+                <h4>Professional Practice Suite</h4>
+                <p class="portfolio-philosophy">Grounding professional spaces with Saturn discipline</p>
+                <span class="portfolio-view-btn">View Details ✦</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+
       <!-- Before & After Comparison Slider -->
       <section id="before-after" class="before-after-section">
         <div class="section-header">
           <span class="section-subtitle">Visual Proof</span>
           <h2 class="section-title">The Impact of Alignment</h2>
-          <p class="section-desc">Drag the interactive slider to compare a stagnant, layout-obstructed space (Before) to a balanced, luxurious, aligned environment (After).</p>
+          <p class="section-desc">Drag the interactive slider to compare spaces before and after cosmic alignment.</p>
+        </div>
+
+        <!-- Room Tabs -->
+        <div class="ba-tabs-container">
+          <button class="ba-tab active" data-before="assets/before_living.jpg" data-after="assets/after_living.jpg" data-room="Living Room">Living Room</button>
+          <button class="ba-tab" data-before="assets/before_bedroom.jpg" data-after="assets/after_bedroom.jpg" data-room="Master Bedroom">Master Bedroom</button>
+          <button class="ba-tab" data-before="assets/before_kitchen.jpg" data-after="assets/after_kitchen.jpg" data-room="Kitchen">Kitchen</button>
+          <button class="ba-tab" data-before="assets/before_entrance.jpg" data-after="assets/after_entrance.jpg" data-room="Entrance">Entrance</button>
+          <button class="ba-tab" data-before="assets/before_drawing.jpg" data-after="assets/after_drawing.jpg" data-room="Drawing Room">Drawing Room</button>
         </div>
 
         <div class="slider-showcase">
           <div class="slider-container" id="before-after-slider">
-            <img class="slider-img after-img" src="assets/room_after.png" alt="Aligned Space (After)">
-            <img class="slider-img before-img" src="assets/room_before.png" alt="Stagnant Space (Before)">
+            <img class="slider-img after-img" src="assets/after_living.jpg" alt="Aligned Space (After)">
+            <img class="slider-img before-img" src="assets/before_living.jpg" alt="Original Space (Before)">
             
             <div class="slider-handle" id="slider-drag-handle">
               <div class="slider-button"></div>
             </div>
             
-            <div class="slider-label before-label">Before: Obstructed Layout</div>
-            <div class="slider-label after-label">After: Cosmic Harmony</div>
+            <div class="slider-label before-label">BEFORE</div>
+            <div class="slider-label after-label">AFTER</div>
           </div>
         </div>
       </section>
@@ -525,45 +620,88 @@
         </div>
       </section>
 
-      <!-- Sample Astro Interior Report -->
-      <section id="sample-report" class="sample-report-section scroll-reveal" style="background-color: var(--c-bg-secondary); padding: 8rem 2rem; border-top: 1px solid var(--c-accent-border); border-bottom: 1px solid var(--c-accent-border);">
-        <div class="sample-report-container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+      <!-- Sample Astro Interior Report — Premium Layout -->
+      <section id="sample-report" class="sample-report-section scroll-reveal">
+        <div class="sample-report-container">
+          <!-- Left Side: Report Mockup -->
+          <div class="sample-report-preview">
+            <div class="report-mockup-card">
+              <div class="report-mockup-inner">
+                <div class="report-cover-visual">
+                  <img src="assets/portfolio_apartment_living.jpg" alt="Transcend Astro Sample Report Cover" class="report-cover-img" loading="lazy">
+                  <div class="report-cover-overlay">
+                    <div class="report-cover-badge">PDF REPORT</div>
+                    <div class="report-cover-text">
+                      <span class="report-cover-label">TRANSCEND ASTRO</span>
+                      <h4 class="report-cover-title">Sample Consultation Report</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="report-mockup-shadow"></div>
+            </div>
+          </div>
+
+          <!-- Right Side: Content -->
           <div class="sample-report-content">
-            <span class="section-subtitle">Tangible Deliverables</span>
-            <h2 class="section-title" style="text-align: left; font-size: 2.75rem; margin-bottom: 1.5rem;">Sample Astro Interior Report</h2>
-            <p class="section-desc" style="text-align: left; margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">
-              Explore a real consultation report to understand the depth of our personalized recommendations.
+            <span class="section-subtitle">Your Deliverable</span>
+            <h2 class="section-title report-headline">Experience the Future of Astro Interior Design</h2>
+            <p class="report-description">
+              Discover how astrology, interior design, and spatial psychology come together to create homes that promote prosperity, harmony, wellness, and success.
             </p>
-            <p class="section-desc" style="text-align: left; margin-bottom: 2.5rem; font-size: 1rem; color: var(--c-text-secondary); line-height: 1.8;">
-              Every consultation culminates in a highly detailed, bespoke workbook. This comprehensive document maps out color coding, zoning boundaries, layout recommendations, and material guides matching your natal placements.
-            </p>
-            <div class="report-cta-group" style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-              <a href="assets/Anshul_and_Rajan_House_Report.pptx" download="Anshul_and_Rajan_House_Report.pptx" class="btn-gold" style="padding: 1rem 2rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+
+            <ul class="report-features-list">
+              <li><span class="feature-check">✔</span> Personalized Horoscope Analysis</li>
+              <li><span class="feature-check">✔</span> Room-by-Room Recommendations</li>
+              <li><span class="feature-check">✔</span> Colour &amp; Material Strategy</li>
+              <li><span class="feature-check">✔</span> Planetary Interior Corrections</li>
+              <li><span class="feature-check">✔</span> Lifestyle Enhancement Suggestions</li>
+              <li><span class="feature-check">✔</span> Luxury Interior Concepts</li>
+            </ul>
+
+            <div class="report-cta-group">
+              <a href="assets/Transcend_Astro_Sample_Report.pdf" download="Transcend Astro Sample Report.pdf" class="btn-gold report-download-btn">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
                 </svg>
-                Download Report
+                Download Sample Report
               </a>
-              <a href="assets/Anshul_and_Rajan_House_Report.pptx" target="_blank" class="btn-outline" style="padding: 1rem 2rem; border: 1px solid var(--c-text-primary); color: var(--c-text-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; background: transparent; transition: all 0.3s;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                  <circle cx="12" cy="12" r="3"/>
-                </svg>
-                View Sample Report
+              <a href="#contact" class="btn-outline report-consult-btn">
+                Book Consultation
               </a>
             </div>
           </div>
-          <div class="sample-report-preview">
-            <div class="report-preview-card" style="background: #FFFFFF; border: 1px solid var(--c-accent-border); border-radius: 8px; padding: 2rem; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.04); position: relative; overflow: hidden;">
-              <div class="report-cover-wrapper" style="position: relative; border-radius: 4px; overflow: hidden; border: 1px solid var(--c-accent-border); aspect-ratio: 4/3; background: var(--c-bg-primary); display: flex; align-items: center; justify-content: center;">
-                <img src="assets/proposed_living.jpg" alt="Anshul and Rajan House Report Preview" class="report-preview-img" style="width: 100%; height: 100%; object-fit: cover;">
-                <div class="preview-badge" style="position: absolute; top: 1rem; right: 1rem; background: var(--c-accent); color: var(--c-text-light); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.3rem 0.8rem; border-radius: 4px;">Sample Blueprint</div>
-                <div class="preview-report-title" style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0)); padding: 2.5rem 1.5rem 1.5rem; text-align: left;">
-                  <span style="font-family: var(--font-body); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c-accent); display: block; margin-bottom: 0.25rem;">CASE STUDY REPORT</span>
-                  <h4 style="font-family: var(--font-heading); font-size: 1.4rem; color: #FFFFFF; font-weight: 500; margin: 0;">Anshul & Rajan House Report</h4>
-                </div>
-              </div>
+        </div>
+
+        <!-- Download Statistics -->
+        <div class="report-stats-grid">
+          <div class="report-stat-item">
+            <div class="report-stat-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </div>
+            <h4 class="report-stat-title">Premium Presentation</h4>
+            <p class="report-stat-desc">Professionally designed layouts</p>
+          </div>
+          <div class="report-stat-item">
+            <div class="report-stat-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h4 class="report-stat-title">Easy to Understand</h4>
+            <p class="report-stat-desc">Clear, actionable guidance</p>
+          </div>
+          <div class="report-stat-item">
+            <div class="report-stat-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h4 class="report-stat-title">Professional Recommendations</h4>
+            <p class="report-stat-desc">Expert-level astrological insights</p>
+          </div>
+          <div class="report-stat-item">
+            <div class="report-stat-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <h4 class="report-stat-title">Luxury Interior Concepts</h4>
+            <p class="report-stat-desc">Curated high-end design visions</p>
           </div>
         </div>
       </section>
@@ -1186,6 +1324,28 @@
   </div>
   
   <a href="#contact" class="floating-book-consult-btn-desktop" id="floating-book-consult-btn-desktop">Book Consultation</a>
+
+  <!-- Portfolio Lightbox Modal -->
+  <div class="portfolio-lightbox" id="portfolio-lightbox">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-body">
+      <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Close lightbox">&times;</button>
+      <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous project">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next project">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
+      <div class="lightbox-image-wrap">
+        <img src="" alt="" id="lightbox-main-img" class="lightbox-main-img">
+      </div>
+      <div class="lightbox-details-panel">
+        <span class="lightbox-planet-tag" id="lightbox-planet"></span>
+        <h3 class="lightbox-project-title" id="lightbox-title"></h3>
+        <p class="lightbox-project-desc" id="lightbox-desc"></p>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="app.js"></script>
