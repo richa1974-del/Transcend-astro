@@ -3827,119 +3827,343 @@ main {
   border-top: 1px solid var(--c-accent-border);
 }
 
-.timeline-container {
+/* Interactive Process Component Layout */
+.process-showcase-container {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.timeline-step {
   display: flex;
   flex-direction: column;
+  gap: 3.5rem;
 }
 
-.step-card {
-  background: #FFFFFF;
-  border: 1px solid var(--c-accent-border);
-  border-radius: 12px; /* Redesigned premium large radius! */
-  padding: 2.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+/* 1. Dynamic Progress Ribbon */
+.process-ribbon-wrapper {
   position: relative;
-  overflow: hidden;
-  transition: transform 0.4s var(--transition-lux), border-color 0.4s var(--transition-lux), box-shadow 0.4s var(--transition-lux);
+  width: 100%;
+  padding: 1.5rem 0 3.5rem;
+  overflow-x: auto;
 }
 
-.step-card::before {
+/* Hide scrollbar on progress ribbon for desktop */
+.process-ribbon-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.process-ribbon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  min-width: 650px;
+  padding: 0 1rem;
+}
+
+/* Ribbon Connection Line */
+.process-ribbon::before {
   content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  background-color: var(--c-accent-border);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Ribbon Progress Indicator Fills */
+.process-ribbon-progress {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 2px;
+  background-color: var(--c-accent);
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 0%;
+  transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.process-node {
+  position: relative;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  background-color: #FFFFFF;
+  border: 2px solid var(--c-accent-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--c-text-secondary);
+  cursor: pointer;
+  transition: all 0.4s var(--transition-lux);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.process-node:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+  transform: scale(1.08);
+}
+
+.process-node.active {
+  background-color: var(--c-accent);
+  border-color: var(--c-accent);
+  color: #FFFFFF;
+  box-shadow: 0 0 0 6px var(--c-accent-light), 0 10px 25px rgba(200, 161, 90, 0.2);
+}
+
+/* Label below node */
+.process-node-label {
+  position: absolute;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--c-text-secondary);
+  white-space: nowrap;
+  transition: color 0.4s var(--transition-lux);
+}
+
+.process-node.active .process-node-label {
+  color: var(--c-accent);
+}
+
+/* 2. Interactive Split Slide Panels */
+.process-slide-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+}
+
+.process-slide {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background: var(--c-accent);
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
   opacity: 0;
-  transition: opacity 0.4s var(--transition-lux);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s var(--transition-lux), visibility 0.5s;
 }
 
-.timeline-step:hover .step-card {
-  transform: translateY(-5px);
-  border-color: var(--c-accent);
-  box-shadow: 0 20px 40px rgba(200, 161, 90, 0.05);
-}
-
-.timeline-step:hover .step-card::before {
+.process-slide.active {
+  position: relative;
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
-.step-card-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.step-card-meta {
+/* Left side vector visualizer panel */
+.process-visualizer {
+  background-color: #FFFFFF;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 12px;
+  padding: 3rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.015);
+  position: relative;
 }
 
-.step-card-num {
+.process-visualizer svg {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  max-height: 280px;
+}
+
+/* Right side details card */
+.process-details-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.process-details-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.process-details-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.process-details-num {
   font-family: var(--font-heading);
-  font-size: 2.2rem;
+  font-size: 2.8rem;
   color: var(--c-accent);
   font-weight: 300;
   line-height: 1;
 }
 
-.step-card-badge {
+.process-details-badge {
   font-family: var(--font-body);
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--c-accent);
   background-color: var(--c-accent-light);
-  padding: 0.2rem 0.5rem;
-  border-radius: 3px;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
 }
 
-.step-card-title {
+.process-details-title {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: 2.2rem;
   font-weight: 500;
   color: var(--c-text-primary);
   margin: 0;
 }
 
-.step-card-body {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+.process-details-tagline {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--c-text-primary);
+  line-height: 1.4;
+  margin-top: 0.5rem;
 }
 
-.step-card-desc {
+.process-details-desc {
   font-family: var(--font-body);
-  font-size: 0.85rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.7;
   color: var(--c-text-secondary);
   margin: 0;
 }
 
-.step-card-details {
+.process-details-block {
   display: flex;
   flex-direction: column;
+  gap: 0.8rem;
+}
+
+.process-block-title {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.process-block-title svg {
+  width: 14px;
+  height: 14px;
+  color: var(--c-accent);
+}
+
+.process-details-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.process-chip {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--c-text-secondary);
+  background-color: #FFFFFF;
+  border: 1px solid var(--c-accent-border);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
   gap: 0.4rem;
 }
 
-.step-detail-tag {
+.process-outcome-text {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.92rem;
   font-weight: 500;
   color: var(--c-text-primary);
+  margin: 0;
+}
+
+/* 3. Slider Controls Navigation */
+.process-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.process-control-btn {
+  background: none;
+  border: 1px solid var(--c-accent-border);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-primary);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.process-control-btn:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+  background-color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.process-control-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+  background-color: transparent;
+  border-color: var(--c-accent-border);
+  color: var(--c-text-primary);
+}
+
+/* Responsive Overrides for split-panel slideshow */
+@media (max-width: 991px) {
+  .process-slide {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .process-slide-wrapper {
+    min-height: auto;
+  }
+  .process-visualizer {
+    padding: 2.2rem;
+  }
+  .process-visualizer svg {
+    max-height: 200px;
+  }
+  .process-details-title {
+    font-size: 1.8rem;
+  }
 }
 
 /* 8. PORTFOLIO MASONRY SECTION */

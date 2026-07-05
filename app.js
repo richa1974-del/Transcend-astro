@@ -987,6 +987,95 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // --- 17.5 INTERACTIVE PROCESS JOURNEY SLIDER ---
+  const processNodes = document.querySelectorAll('.process-node');
+  const processSlides = document.querySelectorAll('.process-slide');
+  const processProgressBar = document.getElementById('process-progress-bar');
+  const prevBtn = document.getElementById('process-prev-btn');
+  const nextBtn = document.getElementById('process-next-btn');
+
+  if (processNodes.length > 0 && processSlides.length > 0) {
+    let currentStep = 1;
+    const totalSteps = processNodes.length;
+
+    // Helper to calculate ribbon progress line width percentage
+    const updateProgressBar = (step) => {
+      const percentage = ((step - 1) / (totalSteps - 1)) * 100;
+      if (processProgressBar) {
+        processProgressBar.style.width = `${percentage}%`;
+      }
+    };
+
+    const goToStep = (step) => {
+      if (step < 1 || step > totalSteps) return;
+
+      currentStep = step;
+
+      // Update Ribbon Node Classes
+      processNodes.forEach(node => {
+        const nodeStep = parseInt(node.getAttribute('data-step'));
+        if (nodeStep === currentStep) {
+          node.classList.add('active');
+        } else {
+          node.classList.remove('active');
+        }
+      });
+
+      // Update Slides Content & Active classes
+      processSlides.forEach(slide => {
+        slide.classList.remove('active');
+      });
+
+      const activeSlide = document.getElementById(`process-slide-${currentStep}`);
+      if (activeSlide) {
+        activeSlide.classList.add('active');
+
+        // GSAP entry animation for active slide details
+        if (window.gsap) {
+          window.gsap.fromTo(activeSlide.querySelectorAll('.process-visualizer, .process-details-header, .process-details-desc, .process-details-block'), 
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out', overwrite: 'auto' }
+          );
+        }
+      }
+
+      // Update Progress Ribbon
+      updateProgressBar(currentStep);
+
+      // Disable/Enable control buttons
+      if (prevBtn) prevBtn.disabled = currentStep === 1;
+      if (nextBtn) nextBtn.disabled = currentStep === totalSteps;
+    };
+
+    // Bind Node Clicks
+    processNodes.forEach(node => {
+      node.addEventListener('click', () => {
+        const targetStep = parseInt(node.getAttribute('data-step'));
+        goToStep(targetStep);
+      });
+    });
+
+    // Bind Button Clicks
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentStep > 1) {
+          goToStep(currentStep - 1);
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        if (currentStep < totalSteps) {
+          goToStep(currentStep + 1);
+        }
+      });
+    }
+
+    // Initialize progress ribbon state on load
+    updateProgressBar(currentStep);
+  }
+
   // --- 18. LAZY IMAGE REVEAL ---
   const lazyImages = document.querySelectorAll('img[loading="lazy"]');
   if (lazyImages.length > 0) {

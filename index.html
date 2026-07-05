@@ -530,105 +530,274 @@
           <p class="section-desc">Five deliberate, structured steps to align your space with your cosmic blueprint.</p>
         </div>
         
-        <div class="timeline-container">
-          <!-- Step 1 -->
-          <div class="timeline-step">
-            <div class="step-card">
-              <div class="step-card-header">
-                <div class="step-card-meta">
-                  <span class="step-card-num">01</span>
-                  <span class="step-card-badge">Phase 1</span>
-                </div>
-                <h3 class="step-card-title">Strategic Consultation</h3>
+        <div class="process-showcase-container">
+          <!-- 1. Progress Ribbon Indicators -->
+          <div class="process-ribbon-wrapper">
+            <div class="process-ribbon" id="process-ribbon">
+              <div class="process-ribbon-progress" id="process-progress-bar"></div>
+              
+              <div class="process-node active" data-step="1">
+                01
+                <span class="process-node-label">Consultation</span>
               </div>
-              <div class="step-card-body">
-                <p class="step-card-desc">A comprehensive initial session mapping out your spatial concerns, lifestyle priorities, and design preferences.</p>
-                <div class="step-card-details">
-                  <span class="step-detail-tag">✦ Spatial Goal Mapping</span>
-                  <span class="step-detail-tag">✦ Brief Alignment Setup</span>
-                </div>
+              <div class="process-node" data-step="2">
+                02
+                <span class="process-node-label">Astro-Mapping</span>
               </div>
-            </div>
-          </div>
-          
-          <!-- Step 2 -->
-          <div class="timeline-step">
-            <div class="step-card">
-              <div class="step-card-header">
-                <div class="step-card-meta">
-                  <span class="step-card-num">02</span>
-                  <span class="step-card-badge">Phase 2</span>
-                </div>
-                <h3 class="step-card-title">Astro-Natal Mapping</h3>
+              <div class="process-node" data-step="3">
+                03
+                <span class="process-node-label">Energy Audit</span>
               </div>
-              <div class="step-card-body">
-                <p class="step-card-desc">We analyze birth charts of primary occupants to decode elemental dynamics, active planetary cycles, and energetic friction points.</p>
-                <div class="step-card-details">
-                  <span class="step-detail-tag">✦ Birth Chart Casting</span>
-                  <span class="step-detail-tag">✦ Elemental Calibration</span>
-                </div>
+              <div class="process-node" data-step="4">
+                04
+                <span class="process-node-label">Design Recs</span>
+              </div>
+              <div class="process-node" data-step="5">
+                05
+                <span class="process-node-label">Blueprint</span>
               </div>
             </div>
           </div>
 
-          <!-- Step 3 -->
-          <div class="timeline-step">
-            <div class="step-card">
-              <div class="step-card-header">
-                <div class="step-card-meta">
-                  <span class="step-card-num">03</span>
-                  <span class="step-card-badge">Phase 3</span>
-                </div>
-                <h3 class="step-card-title">Spatial Energy Auditing</h3>
+          <!-- 2. Slider Split-Column Panels -->
+          <div class="process-slide-wrapper">
+            
+            <!-- Slide 1 -->
+            <div class="process-slide active" id="process-slide-1">
+              <div class="process-visualizer">
+                <!-- SVG diagram 1: Consultation Compass alignment -->
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="100" cy="100" r="80" stroke="var(--c-accent-border)" stroke-width="1"/>
+                  <circle cx="100" cy="100" r="50" stroke="var(--c-accent-border)" stroke-width="1" stroke-dasharray="4,4"/>
+                  <!-- Rotating alignment dial -->
+                  <line x1="100" y1="20" x2="100" y2="180" stroke="var(--c-accent)" stroke-width="1.5"/>
+                  <line x1="20" y1="100" x2="180" y2="100" stroke="var(--c-accent-border)" stroke-width="1"/>
+                  <polygon points="100,15 95,35 105,35" fill="var(--c-accent)"/>
+                  <polygon points="100,185 95,165 105,165" fill="var(--c-accent-border)"/>
+                  <!-- Astrological alignment dots -->
+                  <circle cx="100" cy="100" r="8" fill="var(--c-accent)" opacity="0.8"/>
+                  <text x="94" y="55" fill="var(--c-text-primary)" font-family="var(--font-heading)" font-size="10" letter-spacing="1">N</text>
+                  <text x="94" y="155" fill="var(--c-text-secondary)" font-family="var(--font-heading)" font-size="10" letter-spacing="1">S</text>
+                </svg>
               </div>
-              <div class="step-card-body">
-                <p class="step-card-desc">A thorough review of your structural layout, exposure direction, material balances, and energy flow coordinates.</p>
-                <div class="step-card-details">
-                  <span class="step-detail-tag">✦ Layout Grid Audits</span>
-                  <span class="step-detail-tag">✦ Energy Field Plotting</span>
+              <div class="process-details-card">
+                <div class="process-details-header">
+                  <div class="process-details-meta">
+                    <span class="process-details-num">01</span>
+                    <span class="process-details-badge">Phase 1</span>
+                  </div>
+                  <h3 class="process-details-title">Strategic Consultation</h3>
+                  <p class="process-details-tagline">Aligning spatial concerns, lifestyle priorities, and design preferences.</p>
+                </div>
+                <p class="process-details-desc">A comprehensive initial session mapping out your current spatial challenges, structural issues, and individual aesthetic goals.</p>
+                <div class="process-details-block">
+                  <h4 class="process-block-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Key Focus Areas
+                  </h4>
+                  <div class="process-details-chips">
+                    <span class="process-chip">✓ Lifestyle Assessment</span>
+                    <span class="process-chip">✓ Structural Goal Mapping</span>
+                    <span class="process-chip">✓ Brief Alignment Setup</span>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <!-- Slide 2 -->
+            <div class="process-slide" id="process-slide-2">
+              <div class="process-visualizer">
+                <!-- SVG diagram 2: Astrological birth chart casting -->
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Outer zodiac circle -->
+                  <circle cx="100" cy="100" r="75" stroke="var(--c-accent-border)" stroke-width="1.5"/>
+                  <circle cx="100" cy="100" r="45" stroke="var(--c-accent-border)" stroke-width="1" stroke-dasharray="3,3"/>
+                  <!-- Geometric natal chart lines -->
+                  <polygon points="100,25 165,135 35,135" stroke="var(--c-accent)" stroke-width="1" opacity="0.6"/>
+                  <polygon points="100,175 165,65 35,65" stroke="var(--c-accent-border)" stroke-width="1" opacity="0.6"/>
+                  <!-- Core natal points -->
+                  <circle cx="100" cy="25" r="4" fill="var(--c-accent)"/>
+                  <circle cx="165" cy="135" r="4" fill="var(--c-accent)"/>
+                  <circle cx="35" cy="135" r="4" fill="var(--c-accent)"/>
+                  <circle cx="100" cy="100" r="5" fill="var(--c-text-primary)"/>
+                  <!-- Diagonal lines connecting sectors -->
+                  <line x1="100" y1="25" x2="100" y2="175" stroke="var(--c-accent-border)" stroke-dasharray="5,5"/>
+                  <line x1="35" y1="65" x2="165" y2="135" stroke="var(--c-accent-border)" stroke-dasharray="5,5"/>
+                </svg>
+              </div>
+              <div class="process-details-card">
+                <div class="process-details-header">
+                  <div class="process-details-meta">
+                    <span class="process-details-num">02</span>
+                    <span class="process-details-badge">Phase 2</span>
+                  </div>
+                  <h3 class="process-details-title">Astro-Natal Mapping</h3>
+                  <p class="process-details-tagline">Decoding occupant birth charts and planetary cycles.</p>
+                </div>
+                <p class="process-details-desc">We analyze birth charts of primary occupants to map out the astrological alignments, current planetary periods (dasha), and individual energetic requirements.</p>
+                <div class="process-details-block">
+                  <h4 class="process-block-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Key Focus Areas
+                  </h4>
+                  <div class="process-details-chips">
+                    <span class="process-chip">✓ Birth Chart Casting</span>
+                    <span class="process-chip">✓ Dasha Cycle Audits</span>
+                    <span class="process-chip">✓ Elemental Calibration</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="process-slide" id="process-slide-3">
+              <div class="process-visualizer">
+                <!-- SVG diagram 3: Architectural floor plan grid layout -->
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Floor plan grid lines -->
+                  <rect x="30" y="30" width="140" height="140" stroke="var(--c-accent-border)" stroke-width="1.5"/>
+                  <line x1="76" y1="30" x2="76" y2="170" stroke="var(--c-accent-border)" stroke-width="0.8"/>
+                  <line x1="124" y1="30" x2="124" y2="170" stroke="var(--c-accent-border)" stroke-width="0.8"/>
+                  <line x1="30" y1="76" x2="170" y2="76" stroke="var(--c-accent-border)" stroke-width="0.8"/>
+                  <line x1="30" y1="124" x2="170" y2="124" stroke="var(--c-accent-border)" stroke-width="0.8"/>
+                  <!-- Core block overlays -->
+                  <rect x="35" y="35" width="36" height="36" fill="var(--c-accent-light)" stroke="var(--c-accent)" stroke-width="1" opacity="0.7"/>
+                  <circle cx="148" cy="148" r="10" fill="var(--c-accent-light)" stroke="var(--c-accent)" stroke-width="1" opacity="0.7"/>
+                  <!-- Center point (Brahmasthan) -->
+                  <rect x="94" y="94" width="12" height="12" stroke="var(--c-accent)" stroke-width="1" fill="#FFFFFF"/>
+                  <circle cx="100" cy="100" r="2" fill="var(--c-accent)"/>
+                  <text x="83" y="120" fill="var(--c-text-secondary)" font-family="var(--font-body)" font-size="8">Brahmasthan</text>
+                </svg>
+              </div>
+              <div class="process-details-card">
+                <div class="process-details-header">
+                  <div class="process-details-meta">
+                    <span class="process-details-num">03</span>
+                    <span class="process-details-badge">Phase 3</span>
+                  </div>
+                  <h3 class="process-details-title">Spatial Energy Auditing</h3>
+                  <p class="process-details-tagline">Analyzing directional axes, layout blocks, and grid alignment.</p>
+                </div>
+                <p class="process-details-desc">A deep-dive assessment of the building's physical layout. We measure entrance doors, directional coordinate balances, room locations, and layout circulation patterns.</p>
+                <div class="process-details-block">
+                  <h4 class="process-block-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Key Focus Areas
+                  </h4>
+                  <div class="process-details-chips">
+                    <span class="process-chip">✓ Entrance Portal Auditing</span>
+                    <span class="process-chip">✓ Grid Layout Mapping</span>
+                    <span class="process-chip">✓ Directional Axis Plottings</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="process-slide" id="process-slide-4">
+              <div class="process-visualizer">
+                <!-- SVG diagram 4: Color palettes & finishes design -->
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Color circle sectors -->
+                  <circle cx="100" cy="100" r="70" stroke="var(--c-accent-border)" stroke-width="1"/>
+                  <path d="M100 30 A 70 70 0 0 1 170 100 L 140 100 A 40 40 0 0 0 100 60 Z" fill="var(--c-accent-light)" stroke="var(--c-accent)" stroke-width="0.8"/>
+                  <path d="M170 100 A 70 70 0 0 1 100 170 L 100 140 A 40 40 0 0 0 140 100 Z" fill="#EADEC9" stroke="var(--c-accent)" stroke-width="0.8"/>
+                  <path d="M100 170 A 70 70 0 0 1 30 100 L 60 100 A 40 40 0 0 0 100 140 Z" fill="#FAF8F4" stroke="var(--c-accent-border)" stroke-width="0.8"/>
+                  <path d="M30 100 A 70 70 0 0 1 100 30 L 100 60 A 40 40 0 0 0 60 100 Z" fill="#FFFFFF" stroke="var(--c-accent-border)" stroke-width="0.8"/>
+                  <!-- Core balancing dots -->
+                  <circle cx="100" cy="100" r="20" stroke="var(--c-accent-border)" stroke-width="1" fill="#FFFFFF"/>
+                  <circle cx="100" cy="100" r="6" fill="var(--c-accent)"/>
+                </svg>
+              </div>
+              <div class="process-details-card">
+                <div class="process-details-header">
+                  <div class="process-details-meta">
+                    <span class="process-details-num">04</span>
+                    <span class="process-details-badge">Phase 4</span>
+                  </div>
+                  <h3 class="process-details-title">Design Recommendations</h3>
+                  <p class="process-details-tagline">Formulating color formulas, layout changes, and finish guides.</p>
+                </div>
+                <p class="process-details-desc">We translate astrological requirements and spatial audits into luxury design recommendations (color systems, wood/metal elements, lighting layouts, furniture orientations).</p>
+                <div class="process-details-block">
+                  <h4 class="process-block-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Key Focus Areas
+                  </h4>
+                  <div class="process-details-chips">
+                    <span class="process-chip">✓ Materials & Textures Sourcing</span>
+                    <span class="process-chip">✓ Palette Color Strategy</span>
+                    <span class="process-chip">✓ Spatial Layout Swaps</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="process-slide" id="process-slide-5">
+              <div class="process-visualizer">
+                <!-- SVG diagram 5: Final Report Envelope & Seal -->
+                <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Envelope backing sheet -->
+                  <rect x="40" y="50" width="120" height="90" rx="4" stroke="var(--c-accent-border)" stroke-width="1.5" fill="#FFFFFF"/>
+                  <!-- Opened letter flaps -->
+                  <path d="M40 50 L100 95 L160 50" stroke="var(--c-accent-border)" stroke-width="1.5" fill="#FAF8F4"/>
+                  <!-- Closing seal logo -->
+                  <circle cx="100" cy="95" r="14" fill="var(--c-accent)" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <path d="M100 87 L100 103 M92 95 L108 95" stroke="#FFFFFF" stroke-width="1.5"/>
+                  <!-- Radiant sparks -->
+                  <line x1="60" y1="120" x2="80" y2="120" stroke="var(--c-accent-border)" stroke-width="1" stroke-dasharray="2,2"/>
+                  <line x1="120" y1="120" x2="140" y2="120" stroke="var(--c-accent-border)" stroke-width="1" stroke-dasharray="2,2"/>
+                </svg>
+              </div>
+              <div class="process-details-card">
+                <div class="process-details-header">
+                  <div class="process-details-meta">
+                    <span class="process-details-num">05</span>
+                    <span class="process-details-badge">Phase 5</span>
+                  </div>
+                  <h3 class="process-details-title">Implementation Blueprint</h3>
+                  <p class="process-details-tagline">Delivery of actionable spatial alignment reports.</p>
+                </div>
+                <p class="process-details-desc">You receive a detailed room-by-room PDF blueprint compiling precise furniture coordinates, element distributions, and alignment actions for execution at your own pace.</p>
+                <div class="process-details-block">
+                  <h4 class="process-block-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Key Focus Areas
+                  </h4>
+                  <div class="process-details-chips">
+                    <span class="process-chip">✓ Spatial Blueprint PDF</span>
+                    <span class="process-chip">✓ Actionable Coordinates</span>
+                    <span class="process-chip">✓ Implementation Guidance</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Step 4 -->
-          <div class="timeline-step">
-            <div class="step-card">
-              <div class="step-card-header">
-                <div class="step-card-meta">
-                  <span class="step-card-num">04</span>
-                  <span class="step-card-badge">Phase 4</span>
-                </div>
-                <h3 class="step-card-title">Design Recommendations</h3>
-              </div>
-              <div class="step-card-body">
-                <p class="step-card-desc">We translate astrological mapping into clear interior specifications (colors, layouts, materials) integrated seamlessly into luxury aesthetics.</p>
-                <div class="step-card-details">
-                  <span class="step-detail-tag">✦ Palette Sourcing</span>
-                  <span class="step-detail-tag">✦ Floorplan Blueprinting</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 5 -->
-          <div class="timeline-step">
-            <div class="step-card">
-              <div class="step-card-header">
-                <div class="step-card-meta">
-                  <span class="step-card-num">05</span>
-                  <span class="step-card-badge">Phase 5</span>
-                </div>
-                <h3 class="step-card-title">Implementation Blueprint</h3>
-              </div>
-              <div class="step-card-body">
-                <p class="step-card-desc">You receive a detailed room-by-room PDF report containing actionable, non-destructive alignment recommendations to execute at your own pace.</p>
-                <div class="step-card-details">
-                  <span class="step-detail-tag">✦ Blueprint PDF Delivery</span>
-                  <span class="step-detail-tag">✦ Direct Sourcing Rules</span>
-                </div>
-              </div>
-            </div>
+          <!-- 3. Navigation controls buttons -->
+          <div class="process-controls">
+            <button class="process-control-btn" id="process-prev-btn" aria-label="Previous step" disabled>
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+              </svg>
+            </button>
+            <button class="process-control-btn" id="process-next-btn" aria-label="Next step">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
           </div>
         </div>
       </section>
@@ -1615,9 +1784,9 @@
   </div>
 
   <!-- Floating WhatsApp FAB -->
-  <a href="https://wa.me/917838048195?text=Hello%20Transcend%20Consultant%2C%20I%20would%20like%20to%20book%20an%20Astro%20Interior%20Consultation." target="_blank" rel="noopener" class="whatsapp-fab" id="whatsapp-fab" aria-label="Chat on WhatsApp">
-    <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.437.002 9.861-4.416 9.863-9.848.001-2.63-1.019-5.101-2.874-6.958C16.402 1.982 13.93 1.95 12.012 1.95c-5.438 0-9.863 4.414-9.865 9.847-.001 1.562.41 3.09 1.189 4.453l-.993 3.629 3.714-.975zm11.367-7.651c-.139-.232-.51-.372-1.066-.651-.556-.279-3.285-1.622-3.795-1.807-.51-.186-.88-.279-1.25.279-.371.558-1.437 1.808-1.761 2.18-.324.372-.649.418-1.205.139-.556-.278-2.348-.865-4.473-2.761-1.653-1.475-2.768-3.298-3.092-3.856-.324-.558-.035-.86.243-1.138.25-.251.556-.651.834-.976.278-.326.37-.558.556-.93.186-.372.093-.698-.046-.977-.14-.279-1.25-3.018-1.714-4.133-.453-1.087-.912-.94-1.25-.958-.323-.017-.695-.02-1.066-.02-.37 0-.973.139-1.482.697-.509.558-1.946 1.906-1.946 4.647 0 2.741 1.993 5.39 2.271 5.762.278.372 3.922 5.99 9.504 8.393 1.328.571 2.364.912 3.172 1.17.132.042.855.37 1.385.292.593-.088 1.821-.745 2.077-1.465.257-.72.257-1.339.18-1.464z"/>
+  <a href="https://wa.me/917838048195?text=Hello%20AstroInterior%2C%20I%20would%20like%20to%20book%20an%20Astro%20Interior%20Consultation." target="_blank" rel="noopener" class="whatsapp-fab" id="whatsapp-fab" aria-label="Chat on WhatsApp">
+    <svg width="28" height="28" fill="currentColor" viewBox="0 0 16 16" class="bi bi-whatsapp">
+      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
     </svg>
     <span class="fab-tooltip">Chat with us</span>
   </a>
@@ -1625,8 +1794,10 @@
   <!-- Mobile Sticky CTA Bar & Floating Book CTA -->
   <div class="mobile-sticky-cta" id="mobile-sticky-cta">
     <a href="#contact" class="mobile-sticky-btn mobile-sticky-book">Book Consultation</a>
-    <a href="https://wa.me/917838048195?text=Hello%20Transcend%20Consultant%2C%20I%20would%20like%20to%20book%20an%20Astro%20Interior%20Consultation." target="_blank" rel="noopener" class="mobile-sticky-btn mobile-sticky-whatsapp">
-      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.437.002 9.861-4.416 9.863-9.848.001-2.63-1.019-5.101-2.874-6.958C16.402 1.982 13.93 1.95 12.012 1.95c-5.438 0-9.863 4.414-9.865 9.847-.001 1.562.41 3.09 1.189 4.453l-.993 3.629 3.714-.975zm11.367-7.651c-.139-.232-.51-.372-1.066-.651-.556-.279-3.285-1.622-3.795-1.807-.51-.186-.88-.279-1.25.279-.371.558-1.437 1.808-1.761 2.18-.324.372-.649.418-1.205.139-.556-.278-2.348-.865-4.473-2.761-1.653-1.475-2.768-3.298-3.092-3.856-.324-.558-.035-.86.243-1.138.25-.251.556-.651.834-.976.278-.326.37-.558.556-.93.186-.372.093-.698-.046-.977-.14-.279-1.25-3.018-1.714-4.133-.453-1.087-.912-.94-1.25-.958-.323-.017-.695-.02-1.066-.02-.37 0-.973.139-1.482.697-.509.558-1.946 1.906-1.946 4.647 0 2.741 1.993 5.39 2.271 5.762.278.372 3.922 5.99 9.504 8.393 1.328.571 2.364.912 3.172 1.17.132.042.855.37 1.385.292.593-.088 1.821-.745 2.077-1.465.257-.72.257-1.339.18-1.464z"/></svg>
+    <a href="https://wa.me/917838048195?text=Hello%20AstroInterior%2C%20I%20would%20like%20to%20book%20an%20Astro%20Interior%20Consultation." target="_blank" rel="noopener" class="mobile-sticky-btn mobile-sticky-whatsapp">
+      <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="bi bi-whatsapp">
+        <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+      </svg>
       WhatsApp
     </a>
   </div>
