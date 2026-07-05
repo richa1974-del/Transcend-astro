@@ -987,6 +987,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // --- 17.2 MOBILE STICKY BOTTOM NAV AUTO-HIDE ---
+  const mobileStickyBar = document.getElementById('mobile-sticky-cta');
+  if (mobileStickyBar) {
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      // Scroll down: hide; Scroll up: show
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        mobileStickyBar.classList.add('hidden');
+      } else {
+        mobileStickyBar.classList.remove('hidden');
+      }
+      lastScrollY = currentScrollY;
+    }, { passive: true });
+
+    // Highlight active link based on scroll viewport positioning
+    const navLinks = mobileStickyBar.querySelectorAll('.mobile-sticky-link');
+    const sections = document.querySelectorAll('section[id], header[id]');
+    
+    window.addEventListener('scroll', () => {
+      let currentSectionId = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        const height = sec.offsetHeight;
+        if (window.scrollY >= top && window.scrollY < top + height) {
+          currentSectionId = sec.getAttribute('id');
+        }
+      });
+
+      if (currentSectionId) {
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && href.includes(currentSectionId)) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    }, { passive: true });
+  }
+
   // --- 17.5 INTERACTIVE PROCESS JOURNEY SLIDER ---
   const processNodes = document.querySelectorAll('.process-node');
   const processSlides = document.querySelectorAll('.process-slide');

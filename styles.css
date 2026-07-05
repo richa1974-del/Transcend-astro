@@ -5340,10 +5340,62 @@ main {
     grid-template-columns: 1fr;
   }
   body {
-    padding-bottom: 60px;
+    padding-bottom: 90px;
   }
   .mobile-sticky-cta {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(18, 19, 22, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(200, 161, 90, 0.25);
+    border-radius: 30px;
+    padding: 0.6rem 1.2rem;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 380px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    z-index: 999;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s;
+  }
+  .mobile-sticky-cta.hidden {
+    transform: translate(-50%, 150%);
+    opacity: 0;
+  }
+  .mobile-sticky-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s;
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 500;
+  }
+  .mobile-sticky-link:hover,
+  .mobile-sticky-link.active {
+    color: var(--c-accent);
+  }
+  .mobile-sticky-link svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+  }
+  .mobile-sticky-link:active svg {
+    transform: scale(0.9);
+  }
+  .mobile-drawer-close,
+  .lightbox-close-btn,
+  .faq-accordion-header,
+  .process-control-btn {
+    min-height: 48px;
+    min-width: 48px;
   }
 }
 
