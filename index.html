@@ -100,14 +100,26 @@
 </head>
 <body>
 
+  <!-- Premium Luxury Pre-loader -->
+  <div class="luxury-preloader" id="preloader">
+    <div class="preloader-content">
+      <div class="preloader-monogram">✦</div>
+      <div class="preloader-title">ASTROINTERIOR</div>
+      <div class="preloader-subtitle">Spatial Alignment Advisory</div>
+      <div class="preloader-bar">
+        <div class="preloader-progress" id="preloader-progress"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Header & Navigation -->
   <header id="main-header">
     <div class="nav-container">
-      <a href="#hero" class="logo-wrap" id="brand-logo" aria-label="Transcend Consultant home">
-        <img src="assets/logo.png" alt="Transcend Consultant Logo" class="logo-img">
+      <a href="#hero" class="logo-wrap" id="brand-logo" aria-label="AstroInterior home">
+        <img src="assets/logo.png" alt="AstroInterior Logo" class="logo-img">
         <div class="logo-text-group">
-          <span class="logo-title">TRANSCEND</span>
-          <span class="logo-sub">Consultant</span>
+          <span class="logo-title" style="letter-spacing: 0.15em;">ASTROINTERIOR</span>
+          <span class="logo-sub">Spatial Advisory</span>
         </div>
       </a>
       
@@ -1046,58 +1058,58 @@
             <form id="astro-contact-form" class="premium-form">
               <div class="form-row">
                 <div class="form-group">
+                  <input type="text" id="frm-name" name="name" required placeholder=" ">
                   <label for="frm-name">Full Name *</label>
-                  <input type="text" id="frm-name" name="name" required placeholder="Enter your name">
                 </div>
                 <div class="form-group">
+                  <input type="tel" id="frm-phone" name="phone" required placeholder=" ">
                   <label for="frm-phone">Mobile Number *</label>
-                  <input type="tel" id="frm-phone" name="phone" required placeholder="+91 98200 98200">
                 </div>
               </div>
               
               <div class="form-row">
                 <div class="form-group">
+                  <input type="email" id="frm-email" name="email" required placeholder=" ">
                   <label for="frm-email">Email Address *</label>
-                  <input type="email" id="frm-email" name="email" required placeholder="your@email.com">
                 </div>
                 <div class="form-group">
+                  <input type="text" id="frm-city" name="city" required placeholder=" ">
                   <label for="frm-city">City *</label>
-                  <input type="text" id="frm-city" name="city" required placeholder="e.g. New Delhi">
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="frm-property-type">Property Type *</label>
                   <select id="frm-property-type" name="property_type" required>
-                    <option value="" disabled selected>Select property type</option>
+                    <option value="" disabled selected hidden></option>
                     <option value="Residential Villa">Residential Villa</option>
                     <option value="Apartment / Penthouse">Apartment / Penthouse</option>
                     <option value="Corporate Office">Corporate Office</option>
                     <option value="Hospitality / Resort">Hospitality / Resort</option>
                     <option value="Other">Other Space</option>
                   </select>
+                  <label for="frm-property-type">Property Type *</label>
                 </div>
                 <div class="form-group">
-                  <label for="frm-package">Consultation Type *</label>
                   <select id="frm-package" name="package" required>
-                    <option value="" disabled selected>Select consultation type</option>
+                    <option value="" disabled selected hidden></option>
                     <option value="Kickstarter">Essential Consultation – ₹2,500</option>
                     <option value="Astro Interior Report">Premium Astro-Interior Report – ₹11,000</option>
                     <option value="Signature Astro + Vastu">Elite Signature Consultation – ₹25,000</option>
                     <option value="Custom Consultation">General Consultation (Custom Quote)</option>
                   </select>
+                  <label for="frm-package">Consultation Type *</label>
                 </div>
               </div>
 
               <div class="form-group">
+                <input type="date" id="frm-date" name="preferred_date" required placeholder=" ">
                 <label for="frm-date">Preferred Date *</label>
-                <input type="date" id="frm-date" name="preferred_date" required>
               </div>
 
               <div class="form-group">
+                <textarea id="frm-message" name="message" rows="4" placeholder=" "></textarea>
                 <label for="frm-message">Describe your space & goals</label>
-                <textarea id="frm-message" name="message" rows="4" placeholder="Briefly describe your property and any specific focus area (e.g. health, relationships, career, sleeping patterns)..."></textarea>
               </div>
 
               <button type="submit" class="btn-gold btn-submit-full" id="submit-form-btn">

@@ -4,6 +4,66 @@
  */
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- 0. LUXURY PRELOADER PROGRESS & ANIMATION ---
+  const preloader = document.getElementById('preloader');
+  const progress = document.getElementById('preloader-progress');
+  
+  let progressWidth = 0;
+  const preloaderInterval = setInterval(() => {
+    if (progressWidth < 80) {
+      progressWidth += Math.random() * 10;
+      if (progress) progress.style.width = `${progressWidth}%`;
+    }
+  }, 80);
+
+  window.addEventListener('load', () => {
+    clearInterval(preloaderInterval);
+    if (progress) progress.style.width = '100%';
+    
+    setTimeout(() => {
+      if (preloader) {
+        preloader.classList.add('fade-out');
+      }
+      triggerHeroAnimations();
+    }, 400);
+  });
+
+  function triggerHeroAnimations() {
+    if (window.gsap) {
+      const gsap = window.gsap;
+      
+      // Reveal header
+      gsap.fromTo('#main-header', 
+        { y: -30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: 'power4.out', delay: 0.1 }
+      );
+      
+      // Staggered hero text reveals
+      gsap.fromTo('.hero-anim',
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, ease: 'power4.out', stagger: 0.15, delay: 0.3 }
+      );
+      
+      // Stats item reveals
+      gsap.fromTo('.trust-stat-card',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.1, delay: 0.8 }
+      );
+    } else {
+      // Fallback
+      const anims = document.querySelectorAll('.hero-anim');
+      anims.forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+      const headerEl = document.getElementById('main-header');
+      if (headerEl) {
+        headerEl.style.opacity = '1';
+        headerEl.style.transform = 'translateY(0)';
+      }
+    }
+  }
+
   // --- 1. HEADER SCROLL & STICKY BEHAVIOR ---
   const header = document.getElementById('main-header');
   
@@ -26,15 +86,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (menuToggle && navbarLinks) {
     menuToggle.addEventListener('click', () => {
-      navbarLinks.classList.toggle('active');
       const isOpen = navbarLinks.classList.contains('active');
-      menuToggle.setAttribute('aria-expanded', isOpen);
+      
+      if (!isOpen) {
+        navbarLinks.classList.add('active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        menuToggle.classList.add('menu-open');
+        
+        if (window.gsap) {
+          window.gsap.fromTo(navbarLinks.querySelectorAll('li'),
+            { opacity: 0, x: 30 },
+            { opacity: 1, x: 0, duration: 0.4, stagger: 0.08, ease: 'power3.out', delay: 0.15 }
+          );
+        }
+      } else {
+        navbarLinks.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.classList.remove('menu-open');
+      }
     });
 
     navbarLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navbarLinks.classList.remove('active');
         menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.classList.remove('menu-open');
       });
     });
   }
@@ -879,14 +955,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 16. MAGNETIC BUTTONS ---
-  const magneticBtns = document.querySelectorAll('.btn-gold-hero, .btn-outline-hero, #header-cta');
+  const magneticBtns = document.querySelectorAll('.btn-gold, .btn-outline, .btn-gold-hero, .btn-outline-hero, #header-cta, .report-download-btn, .report-consult-btn, .founder-cta-link');
   if (window.innerWidth > 1024) {
     magneticBtns.forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
       });
       btn.addEventListener('mouseleave', () => {
         btn.style.transform = 'translate(0, 0)';
