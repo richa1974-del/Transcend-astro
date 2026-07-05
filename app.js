@@ -955,7 +955,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- 16. MAGNETIC BUTTONS ---
-  const magneticBtns = document.querySelectorAll('.btn-gold, .btn-outline, .btn-gold-hero, .btn-outline-hero, #header-cta, .report-download-btn, .report-consult-btn, .founder-cta-link');
+  const magneticBtns = document.querySelectorAll('.btn-gold, .btn-outline, .btn-gold-hero, .btn-outline-hero, #header-cta, .report-download-btn, .report-consult-btn, .founder-cta-link, .service-adv-cta-btn');
   if (window.innerWidth > 1024) {
     magneticBtns.forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
