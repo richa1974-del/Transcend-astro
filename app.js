@@ -1,6 +1,6 @@
 /**
- * Transcend Consultant V2 — Main Application Script
- * Premium Astro-Interior Consultancy SPA
+ * Transcend Consultant V3 — Premium Application Script
+ * GSAP-powered animations, magnetic buttons, custom cursor, premium interactions
  */
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -8,13 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.getElementById('main-header');
   
   if (header) {
+    let lastScroll = 0;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
+      const currentScroll = window.scrollY;
+      if (currentScroll > 50) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
-    });
+      lastScroll = currentScroll;
+    }, { passive: true });
   }
 
   // --- 2. MOBILE NAVIGATION TOGGLE ---
@@ -28,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
       menuToggle.setAttribute('aria-expanded', isOpen);
     });
 
-    // Close mobile menu on nav link click
     navbarLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navbarLinks.classList.remove('active');
@@ -40,27 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 3. SPA ROUTER WITH ANCHOR SMOOTH SCROLL ---
   const pageViews = document.querySelectorAll('.page-view');
   const navLinks = document.querySelectorAll('.nav-link');
-  
-  // Maps route hashes to views
-  const routeMap = {
-    '#home': 'page-home',
-    '#about': 'page-home',
-    '#services': 'page-home',
-    '#portfolio': 'page-home',
-    '#process': 'page-home',
-    '#packages': 'page-home',
-    '#testimonials': 'page-home',
-    '#contact': 'page-home',
-    '#onboarding': 'page-onboarding',
-  };
 
   function navigateTo(hash) {
     if (!hash || hash === '#') hash = '#home';
     
-    // Default to page-home for all section anchors, or page-onboarding
     const pageId = hash === '#onboarding' ? 'page-onboarding' : 'page-home';
     
-    // Toggle page views
     pageViews.forEach(view => {
       view.classList.remove('active-route', 'fade-in-route');
     });
@@ -68,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
       targetPage.classList.add('active-route');
-      // Trigger fade-in transition
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           targetPage.classList.add('fade-in-route');
@@ -76,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
     
-    // Update navigation active highlight links
     navLinks.forEach(link => {
       link.classList.remove('active-link');
       const linkHash = link.getAttribute('href');
@@ -85,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     
-    // Section scroll handling
     if (pageId === 'page-home') {
       if (hash === '#home') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -102,15 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Handle hash changes
   window.addEventListener('hashchange', () => {
     navigateTo(window.location.hash);
   });
 
-  // Initial routing on page load
   navigateTo(window.location.hash || '#home');
 
-  // Handle local link clicks
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       const hash = anchor.getAttribute('href');
@@ -121,7 +102,223 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 4. ANIMATED STATISTICS COUNTERS ---
+  // --- 4. GSAP ANIMATIONS ---
+  function initGSAP() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+      // Retry after a short delay if GSAP hasn't loaded yet
+      setTimeout(initGSAP, 200);
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero entrance animations
+    const heroAnims = document.querySelectorAll('.hero-anim');
+    if (heroAnims.length > 0) {
+      gsap.fromTo(heroAnims, 
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 1, stagger: 0.15, ease: 'power3.out', delay: 0.3 }
+      );
+    }
+
+    // Section headers - fade up on scroll
+    gsap.utils.toArray('.section-header').forEach(header => {
+      gsap.fromTo(header,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 85%',
+            once: true
+          }
+        }
+      );
+    });
+
+    // Benefit cards - staggered reveal
+    gsap.utils.toArray('.benefit-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 60, scale: 0.95 },
+        {
+          opacity: 1, y: 0, scale: 1, duration: 0.7,
+          delay: i * 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 88%',
+            once: true
+          }
+        }
+      );
+    });
+
+    // Services detail cards
+    gsap.utils.toArray('.services-detail-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, x: i % 2 === 0 ? -40 : 40 },
+        {
+          opacity: 1, x: 0, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: card, start: 'top 85%', once: true }
+        }
+      );
+    });
+
+    // Portfolio items - clip-path wipe reveal
+    gsap.utils.toArray('.portfolio-item').forEach((item, i) => {
+      gsap.fromTo(item,
+        { opacity: 0, y: 30, scale: 0.96 },
+        {
+          opacity: 1, y: 0, scale: 1, duration: 0.6,
+          delay: (i % 3) * 0.1,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: item, start: 'top 90%', once: true }
+        }
+      );
+    });
+
+    // Timeline steps - stagger from left
+    gsap.utils.toArray('.timeline-step').forEach((step, i) => {
+      gsap.fromTo(step,
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1, x: 0, duration: 0.7,
+          delay: i * 0.15,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: step, start: 'top 85%', once: true }
+        }
+      );
+    });
+
+    // Package cards - scale up reveal
+    gsap.utils.toArray('.package-pricing-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 50, scale: 0.92 },
+        {
+          opacity: 1, y: 0, scale: 1, duration: 0.7,
+          delay: i * 0.12,
+          ease: 'back.out(1.2)',
+          scrollTrigger: { trigger: card, start: 'top 85%', once: true }
+        }
+      );
+    });
+
+    // Testimonial cards
+    gsap.utils.toArray('.testimonial-lux-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 0.8,
+          delay: i * 0.2,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: card, start: 'top 85%', once: true }
+        }
+      );
+    });
+
+    // Founder section parallax
+    const founderImg = document.querySelector('.founder-visual-wrap img');
+    if (founderImg) {
+      gsap.to(founderImg, {
+        y: -40,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.founder-section',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        }
+      });
+    }
+
+    // Discover section parallax
+    const discoverImg = document.querySelector('.discover-img');
+    if (discoverImg) {
+      gsap.to(discoverImg, {
+        y: -30, scale: 1.05,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.discover-section',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 2
+        }
+      });
+    }
+
+    // FAQ items
+    gsap.utils.toArray('.faq-item').forEach((item, i) => {
+      gsap.fromTo(item,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1, y: 0, duration: 0.5,
+          delay: i * 0.08,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: item, start: 'top 90%', once: true }
+        }
+      );
+    });
+
+    // Trust section stat cards
+    gsap.utils.toArray('.trust-stat-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1, y: 0, duration: 0.6,
+          delay: i * 0.12,
+          ease: 'power2.out',
+          scrollTrigger: { trigger: card, start: 'top 88%', once: true }
+        }
+      );
+    });
+
+    // Scroll reveal sections (editorial, sample report)
+    gsap.utils.toArray('.scroll-reveal').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 80%', once: true }
+        }
+      );
+    });
+
+    // Before/After section
+    const baSection = document.querySelector('.before-after-section');
+    if (baSection) {
+      gsap.fromTo(baSection.querySelector('.slider-showcase'),
+        { opacity: 0, scale: 0.95 },
+        {
+          opacity: 1, scale: 1, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: baSection, start: 'top 75%', once: true }
+        }
+      );
+    }
+
+    // Contact section
+    const contactSection = document.querySelector('.contact-split-section');
+    if (contactSection) {
+      gsap.fromTo(contactSection.querySelector('.contact-split-visual'),
+        { opacity: 0, x: -40 },
+        {
+          opacity: 1, x: 0, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: contactSection, start: 'top 80%', once: true }
+        }
+      );
+      gsap.fromTo(contactSection.querySelector('.contact-split-form-wrap'),
+        { opacity: 0, x: 40 },
+        {
+          opacity: 1, x: 0, duration: 0.8, ease: 'power2.out',
+          scrollTrigger: { trigger: contactSection, start: 'top 80%', once: true }
+        }
+      );
+    }
+  }
+
+  // Initialize GSAP after a short delay to ensure scripts are loaded
+  setTimeout(initGSAP, 100);
+
+  // --- 5. ANIMATED STATISTICS COUNTERS ---
   const stats = document.querySelectorAll('.stat-number');
   if (stats.length > 0) {
     const observer = new IntersectionObserver((entries) => {
@@ -130,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const target = entry.target;
           const endVal = parseInt(target.getAttribute('data-target'), 10);
           if (!isNaN(endVal)) {
-            animateCount(target, 0, endVal, 1500);
+            animateCount(target, 0, endVal, 1800);
           }
           observer.unobserve(target);
         }
@@ -142,11 +339,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function animateCount(el, start, end, duration) {
     let startTimestamp = null;
+    const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const rawProgress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const progress = easeOutQuart(rawProgress);
       el.innerText = Math.floor(progress * (end - start) + start);
-      if (progress < 1) {
+      if (rawProgress < 1) {
         window.requestAnimationFrame(step);
       } else {
         el.innerText = end + "+";
@@ -155,22 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.requestAnimationFrame(step);
   }
 
-  // --- Scroll Reveal Animation Observer ---
-  const reveals = document.querySelectorAll('.scroll-reveal');
-  if (reveals.length > 0) {
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    reveals.forEach(r => revealObserver.observe(r));
-  }
-
-  // --- 5. PORTFOLIO FILTERS ---
+  // --- 6. PORTFOLIO FILTERS ---
   const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
   const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -185,52 +369,100 @@ document.addEventListener('DOMContentLoaded', () => {
           const categories = item.getAttribute('data-category').split(' ');
           if (filter === 'all' || categories.includes(filter)) {
             item.classList.add('show-item');
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            requestAnimationFrame(() => {
+              item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            });
           } else {
-            item.classList.remove('show-item');
+            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            setTimeout(() => item.classList.remove('show-item'), 300);
           }
         });
       });
     });
   }
 
-  // --- 6. BEFORE & AFTER IMAGE COMPARISON SLIDER ---
+  // --- 7. PREMIUM BEFORE & AFTER SLIDER ---
   const slider = document.getElementById('before-after-slider');
   const handle = document.getElementById('slider-drag-handle');
   const beforeImg = document.querySelector('.before-img');
 
   if (slider && handle && beforeImg) {
     let isDragging = false;
+    let currentPercentage = 50;
+
+    slider.setAttribute('tabindex', '0');
 
     function moveSlider(clientX) {
       const rect = slider.getBoundingClientRect();
       let pos = (clientX - rect.left) / rect.width;
-      if (pos < 0) pos = 0;
-      if (pos > 1) pos = 1;
+      pos = Math.max(0.02, Math.min(0.98, pos));
       
-      const percentage = pos * 100;
-      handle.style.left = `${percentage}%`;
-      beforeImg.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+      currentPercentage = pos * 100;
+      handle.style.left = `${currentPercentage}%`;
+      beforeImg.style.clipPath = `polygon(0 0, ${currentPercentage}% 0, ${currentPercentage}% 100%, 0 100%)`;
     }
 
-    handle.addEventListener('mousedown', () => isDragging = true);
-    window.addEventListener('mouseup', () => isDragging = false);
+    // Mouse events
+    slider.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      slider.classList.add('slider-active');
+      moveSlider(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      slider.classList.remove('slider-active');
+    });
+
     window.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
       moveSlider(e.clientX);
     });
 
-    // Touch events for mobile responsiveness
-    handle.addEventListener('touchstart', () => isDragging = true);
-    window.addEventListener('touchend', () => isDragging = false);
+    // Touch events
+    slider.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      slider.classList.add('slider-active');
+      if (e.touches.length > 0) {
+        moveSlider(e.touches[0].clientX);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      isDragging = false;
+      slider.classList.remove('slider-active');
+    });
+
     window.addEventListener('touchmove', (e) => {
       if (!isDragging) return;
       if (e.touches.length > 0) {
         moveSlider(e.touches[0].clientX);
       }
+    }, { passive: true });
+
+    // Keyboard accessibility
+    slider.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        currentPercentage = Math.max(2, currentPercentage - 2);
+        handle.style.left = `${currentPercentage}%`;
+        beforeImg.style.clipPath = `polygon(0 0, ${currentPercentage}% 0, ${currentPercentage}% 100%, 0 100%)`;
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        currentPercentage = Math.min(98, currentPercentage + 2);
+        handle.style.left = `${currentPercentage}%`;
+        beforeImg.style.clipPath = `polygon(0 0, ${currentPercentage}% 0, ${currentPercentage}% 100%, 0 100%)`;
+      }
     });
   }
 
-  // --- 7. FAQ ACCORDION ---
+  // --- 8. FAQ ACCORDION ---
   const faqHeaders = document.querySelectorAll('.faq-header');
   if (faqHeaders.length > 0) {
     faqHeaders.forEach(header => {
@@ -239,56 +471,81 @@ document.addEventListener('DOMContentLoaded', () => {
         const panel = item.querySelector('.faq-panel');
         const isActive = item.classList.contains('active');
         
-        // Close all other panels
         document.querySelectorAll('.faq-item').forEach(i => {
           i.classList.remove('active');
           const p = i.querySelector('.faq-panel');
           if (p) p.style.maxHeight = null;
+          const icon = i.querySelector('.faq-icon-indicator');
+          if (icon) icon.textContent = '+';
         });
 
         if (!isActive) {
           item.classList.add('active');
           panel.style.maxHeight = panel.scrollHeight + "px";
+          const icon = item.querySelector('.faq-icon-indicator');
+          if (icon) icon.textContent = '−';
         }
       });
     });
   }
 
-  // --- 8. CONTACT FORM SUBMISSION ---
+  // --- 9. CONTACT FORM SUBMISSION (with API call) ---
   const contactForm = document.getElementById('astro-contact-form');
-  const successModal = document.getElementById('form-success-modal');
-  const successModalClose = document.getElementById('success-modal-close');
+  const formSuccessInline = document.getElementById('form-success-inline');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      // Clear forms inputs or perform validations if necessary...
-      if (successModal) {
-        successModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+      const submitBtn = document.getElementById('submit-form-btn');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const btnLoader = submitBtn.querySelector('.btn-loader');
+      
+      // Show loading state
+      if (btnText) btnText.style.display = 'none';
+      if (btnLoader) btnLoader.style.display = 'inline-flex';
+      submitBtn.disabled = true;
+
+      // Gather form data
+      const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        // Try to POST to backend API
+        const response = await fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        // If successful, great. If not (no backend yet), still show success.
+      } catch (err) {
+        // Backend not available yet - graceful fallback
+        console.log('Backend not available, form data:', data);
       }
+
+      // Show inline success state
+      setTimeout(() => {
+        contactForm.style.display = 'none';
+        if (formSuccessInline) {
+          formSuccessInline.style.display = 'block';
+          formSuccessInline.style.opacity = '0';
+          formSuccessInline.style.transform = 'translateY(20px)';
+          requestAnimationFrame(() => {
+            formSuccessInline.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            formSuccessInline.style.opacity = '1';
+            formSuccessInline.style.transform = 'translateY(0)';
+          });
+        }
+      }, 800);
     });
   }
 
-  if (successModalClose) {
-    successModalClose.addEventListener('click', () => {
-      if (successModal) {
-        successModal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-      // Navigate to onboarding profile form
-      window.location.hash = '#onboarding';
-    });
-  }
-
-  // --- 9. PACKAGE BOOKING BUTTONS PRE-FILL ---
+  // --- 10. PACKAGE BOOKING BUTTONS PRE-FILL ---
   document.querySelectorAll('.book-package-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
       const packageName = btn.getAttribute('data-package');
       
-      // Navigate to contact form and pre-fill selection
       window.location.hash = '#contact';
       
       setTimeout(() => {
@@ -305,7 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 10. ONBOARDING QUESTIONNAIRE FORM ---
+  // --- 11. ONBOARDING QUESTIONNAIRE FORM ---
   const onboardingForm = document.getElementById('onboarding-form');
   const onboardingSuccess = document.getElementById('onboarding-success');
   const propertyTypeSelect = document.getElementById('ob-property-type');
@@ -323,7 +580,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Onboarding File Upload Zone drag-and-drop
+  // File Upload Zone
   const uploadZone = document.getElementById('ob-upload-zone');
   const fileInput = document.getElementById('ob-file-input');
   const previewGrid = document.getElementById('ob-upload-previews');
@@ -387,7 +644,6 @@ document.addEventListener('DOMContentLoaded', () => {
       item.querySelector('.upload-remove').addEventListener('click', (e) => {
         e.stopPropagation();
         item.remove();
-        // Remove from uploadedFiles array keeping index mapping intact
         uploadedFiles[index] = null;
       });
     }
@@ -395,56 +651,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Onboarding submission
   if (onboardingForm) {
-    onboardingForm.addEventListener('submit', (e) => {
+    onboardingForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      
+      // Try to POST to backend
+      const formData = new FormData(onboardingForm);
+      const data = Object.fromEntries(formData.entries());
+      
+      try {
+        await fetch('/api/leads/onboarding', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      } catch (err) {
+        console.log('Backend not available, onboarding data:', data);
+      }
+
       if (onboardingSuccess) {
         onboardingForm.style.display = 'none';
         onboardingSuccess.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
-  }
-
-  // --- 11. EXIT INTENT POPUP (DESKTOP) & MOBILE SCROLL POPUP (75%) ---
-  const exitModal = document.getElementById('exit-intent-modal');
-  const exitClose = document.getElementById('exit-close');
-  const leadMagnetForm = document.getElementById('exit-lead-magnet-form');
-
-  if (exitModal) {
-    // Desktop mouseleave exit-intent
-    document.addEventListener('mouseleave', (e) => {
-      if (window.innerWidth > 768 && e.clientY < 15 && !sessionStorage.getItem('exitIntentDismissed')) {
-        exitModal.classList.add('active');
-      }
-    });
-
-    // Mobile scroll-depth popup (triggers after 75% scroll)
-    let scrollTriggered = false;
-    window.addEventListener('scroll', () => {
-      if (window.innerWidth <= 768 && !scrollTriggered && !sessionStorage.getItem('exitIntentDismissed')) {
-        const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        if (scrollPercent > 0.75) {
-          scrollTriggered = true;
-          exitModal.classList.add('active');
-        }
-      }
-    });
-
-    if (exitClose) {
-      exitClose.addEventListener('click', () => {
-        exitModal.classList.remove('active');
-        sessionStorage.setItem('exitIntentDismissed', 'true');
-      });
-    }
-
-    if (leadMagnetForm) {
-      leadMagnetForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert("The Astro-Interior Vastu Checklist has been successfully sent to your email!");
-        exitModal.classList.remove('active');
-        sessionStorage.setItem('exitIntentDismissed', 'true');
-      });
-    }
   }
 
   // --- 12. HERO KEN BURNS SLIDESHOW ---
@@ -456,10 +685,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => {
       heroSlides[currentSlide].classList.remove('hero-slide-active');
       currentSlide = (currentSlide + 1) % heroSlides.length;
-      // Reset animation by forcing reflow
       const nextSlide = heroSlides[currentSlide];
       nextSlide.style.animation = 'none';
-      nextSlide.offsetHeight; // trigger reflow
+      nextSlide.offsetHeight;
       nextSlide.style.animation = '';
       nextSlide.classList.add('hero-slide-active');
     }, slideInterval);
@@ -480,10 +708,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const beforeSrc = tab.getAttribute('data-before');
         const afterSrc = tab.getAttribute('data-after');
 
-        baBeforeImg.src = beforeSrc;
-        baAfterImg.src = afterSrc;
+        // Fade transition
+        baBeforeImg.style.opacity = '0';
+        baAfterImg.style.opacity = '0';
+        
+        setTimeout(() => {
+          baBeforeImg.src = beforeSrc;
+          baAfterImg.src = afterSrc;
+          
+          baBeforeImg.onload = () => {
+            baBeforeImg.style.transition = 'opacity 0.5s ease';
+            baBeforeImg.style.opacity = '1';
+          };
+          baAfterImg.onload = () => {
+            baAfterImg.style.transition = 'opacity 0.5s ease';
+            baAfterImg.style.opacity = '1';
+          };
+        }, 200);
 
-        // Reset slider handle to 50%
         if (baHandle) {
           baHandle.style.left = '50%';
           baBeforeImg.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
@@ -504,7 +746,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxBackdrop = document.querySelector('.lightbox-backdrop');
   const portfolioCards = document.querySelectorAll('.portfolio-item[data-id]');
 
-  // Project database for lightbox details
   const projectDB = {
     '1': { planet: '☽ Moon Influence', title: 'Celestial Living Room', desc: 'A masterfully aligned living space in GK-2, New Delhi featuring champagne beige marble flooring, custom ivory furnishings, and hand-carved brass accents drawing positive lunar energy.', img: 'assets/portfolio_apartment_living.jpg' },
     '2': { planet: '♀ Venus Influence', title: 'Luna Sanctuary Suite', desc: 'An elegant master bedroom utilizing desaturated sage green wall details, linen textiles, and raw oak woodwork to promote deep rest and planetary harmony.', img: 'assets/portfolio_apartment_bedroom.jpg' },
@@ -530,9 +771,14 @@ document.addEventListener('DOMContentLoaded', () => {
     currentLightboxId = id;
     lightboxImg.src = data.img;
     lightboxImg.alt = data.title;
-    if (lightboxPlanet) lightboxPlanet.textContent = data.planet;
     if (lightboxTitle) lightboxTitle.textContent = data.title;
-    if (lightboxDesc) lightboxDesc.textContent = data.desc;
+
+    const currentIndex = projectIds.indexOf(id) + 1;
+    const totalCount = projectIds.length;
+    const currentEl = document.getElementById('lightbox-current-index');
+    const totalEl = document.getElementById('lightbox-total-count');
+    if (currentEl) currentEl.textContent = currentIndex;
+    if (totalEl) totalEl.textContent = totalCount;
 
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -555,7 +801,6 @@ document.addEventListener('DOMContentLoaded', () => {
     openLightbox(projectIds[newIdx]);
   }
 
-  // Attach portfolio card click events
   if (portfolioCards.length > 0 && lightbox) {
     portfolioCards.forEach(card => {
       card.addEventListener('click', () => {
@@ -571,7 +816,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (lightboxPrev) lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
   if (lightboxNext) lightboxNext.addEventListener('click', () => navigateLightbox(1));
 
-  // Keyboard navigation
   document.addEventListener('keydown', (e) => {
     if (!lightbox || !lightbox.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightboxFn();
@@ -579,23 +823,110 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'ArrowRight') navigateLightbox(1);
   });
 
-  // Mobile swipe support for lightbox
+  // Mobile swipe for lightbox
   let touchStartX = 0;
-  let touchEndX = 0;
-
   if (lightbox) {
     lightbox.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
     lightbox.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
+      const diff = touchStartX - e.changedTouches[0].screenX;
       if (Math.abs(diff) > 60) {
-        if (diff > 0) navigateLightbox(1);  // swipe left = next
-        else navigateLightbox(-1);           // swipe right = prev
+        navigateLightbox(diff > 0 ? 1 : -1);
       }
     }, { passive: true });
+  }
+
+  // --- 15. CUSTOM CURSOR (Desktop Only) ---
+  const cursorEl = document.getElementById('custom-cursor');
+  if (cursorEl && window.innerWidth > 1024) {
+    const dot = cursorEl.querySelector('.cursor-dot');
+    const ring = cursorEl.querySelector('.cursor-ring');
+    
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (dot) {
+        dot.style.left = mouseX + 'px';
+        dot.style.top = mouseY + 'px';
+      }
+    });
+
+    // Smooth ring follow
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      if (ring) {
+        ring.style.left = ringX + 'px';
+        ring.style.top = ringY + 'px';
+      }
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Grow on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .portfolio-item, .benefit-card, .package-pricing-card, input, textarea, select');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => cursorEl.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => cursorEl.classList.remove('cursor-hover'));
+    });
+
+    document.body.classList.add('custom-cursor-active');
+  }
+
+  // --- 16. MAGNETIC BUTTONS ---
+  const magneticBtns = document.querySelectorAll('.btn-gold-hero, .btn-outline-hero, #header-cta');
+  if (window.innerWidth > 1024) {
+    magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+        btn.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+        setTimeout(() => { btn.style.transition = ''; }, 400);
+      });
+    });
+  }
+
+  // --- 17. FLOATING SAMPLE REPORT BUTTON VISIBILITY ---
+  const sampleReportBtn = document.getElementById('floating-sample-report');
+  if (sampleReportBtn) {
+    let reportBtnVisible = false;
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600 && !reportBtnVisible) {
+        reportBtnVisible = true;
+        sampleReportBtn.classList.add('visible');
+      } else if (window.scrollY <= 600 && reportBtnVisible) {
+        reportBtnVisible = false;
+        sampleReportBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+  }
+
+  // --- 18. LAZY IMAGE REVEAL ---
+  const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+  if (lazyImages.length > 0) {
+    const imgObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('img-loaded');
+          imgObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    lazyImages.forEach(img => {
+      img.classList.add('img-lazy');
+      imgObserver.observe(img);
+    });
   }
 
 });

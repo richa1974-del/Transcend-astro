@@ -21,6 +21,10 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="styles.css">
 
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
   <!-- JSON-LD Local Business & FAQ Schema Markups -->
   <script type="application/ld+json">
   {
@@ -122,9 +126,7 @@
           <li><a href="#about" class="nav-link" id="nav-item-about">About</a></li>
           <li><a href="#services" class="nav-link" id="nav-item-services">Services</a></li>
           <li><a href="#portfolio" class="nav-link" id="nav-item-portfolio">Portfolio</a></li>
-          <li><a href="#process" class="nav-link" id="nav-item-process">Process</a></li>
           <li><a href="#packages" class="nav-link" id="nav-item-packages">Packages</a></li>
-          <li><a href="#testimonials" class="nav-link" id="nav-item-testimonials">Testimonials</a></li>
           <li><a href="#contact" class="nav-link" id="nav-item-contact">Contact</a></li>
         </ul>
       </nav>
@@ -410,146 +412,86 @@
         <div class="portfolio-masonry-grid">
           <!-- Item 1 -->
           <div class="portfolio-item show-item" data-category="residential" data-id="1">
-            <img src="assets/portfolio_apartment_living.jpg" alt="Luxury Apartment Living Room with gold accents and marble flooring" loading="lazy">
+            <img src="assets/portfolio_apartment_living.jpg" alt="Luxury Apartment Living Room" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">☽ Moon Influence</span>
-                <h4>Celestial Living Room</h4>
-                <p class="portfolio-philosophy">Where lunar tranquility meets contemporary luxury</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Celestial Living Room</h4>
             </div>
           </div>
           <!-- Item 2 -->
           <div class="portfolio-item show-item" data-category="residential" data-id="2">
-            <img src="assets/portfolio_apartment_bedroom.jpg" alt="Elegant master bedroom with earthy tones and ambient lighting" loading="lazy">
+            <img src="assets/portfolio_apartment_bedroom.jpg" alt="Elegant master bedroom" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">♀ Venus Influence</span>
-                <h4>Luna Sanctuary Suite</h4>
-                <p class="portfolio-philosophy">Harmonizing rest with planetary serenity</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Luna Sanctuary Suite</h4>
             </div>
           </div>
           <!-- Item 3 -->
           <div class="portfolio-item show-item" data-category="residential" data-id="3">
-            <img src="assets/portfolio_apartment_dining.jpg" alt="Sophisticated dining area with crystal chandelier and wood accents" loading="lazy">
+            <img src="assets/portfolio_apartment_dining.jpg" alt="Sophisticated dining area" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">♃ Jupiter Influence</span>
-                <h4>Abundance Dining Hall</h4>
-                <p class="portfolio-philosophy">Aligning nourishment with cosmic prosperity</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Abundance Dining Hall</h4>
             </div>
           </div>
           <!-- Item 4 -->
           <div class="portfolio-item show-item" data-category="hospitality" data-id="4">
-            <img src="assets/portfolio_hotel_lalit.jpg" alt="The Lalit Chandigarh luxury hotel interior design" loading="lazy">
+            <img src="assets/portfolio_hotel_lalit.jpg" alt="The Lalit Chandigarh luxury hotel" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">☉ Sun Influence</span>
-                <h4>The Lalit — Chandigarh</h4>
-                <p class="portfolio-philosophy">Radiant hospitality through solar alignment</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>The Lalit — Chandigarh</h4>
             </div>
           </div>
           <!-- Item 5 -->
           <div class="portfolio-item show-item" data-category="residential" data-id="5">
-            <img src="assets/portfolio_apartment_lounge.jpg" alt="Premium lounge area with plush furnishings and art installations" loading="lazy">
+            <img src="assets/portfolio_apartment_lounge.jpg" alt="Premium lounge area" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">♄ Saturn Influence</span>
-                <h4>Grounded Lounge Retreat</h4>
-                <p class="portfolio-philosophy">Anchoring stability through earth elements</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Grounded Lounge Retreat</h4>
             </div>
           </div>
           <!-- Item 6 -->
           <div class="portfolio-item show-item" data-category="hospitality" data-id="6">
-            <img src="assets/portfolio_spa_club7.jpg" alt="Club 7 Spa Ahmedabad luxury wellness interior" loading="lazy">
+            <img src="assets/portfolio_spa_club7.jpg" alt="Club 7 Spa Ahmedabad" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">☽ Moon Influence</span>
-                <h4>Club 7 Spa — Ahmedabad</h4>
-                <p class="portfolio-philosophy">Lunar healing through spatial mindfulness</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Club 7 Spa — Ahmedabad</h4>
             </div>
           </div>
           <!-- Item 7 -->
           <div class="portfolio-item show-item" data-category="corporate" data-id="7">
-            <img src="assets/portfolio_office_md.jpg" alt="Executive MD cabin with premium leather and walnut finishes" loading="lazy">
+            <img src="assets/portfolio_office_md.jpg" alt="Executive MD cabin" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">☿ Mercury Influence</span>
-                <h4>Executive Command Suite</h4>
-                <p class="portfolio-philosophy">Channeling intellectual clarity for leadership</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Executive Command Suite</h4>
             </div>
           </div>
           <!-- Item 8 -->
           <div class="portfolio-item show-item" data-category="residential" data-id="8">
-            <img src="assets/portfolio_apartment_foyer.jpg" alt="Grand foyer entrance with marble and brass detailing" loading="lazy">
+            <img src="assets/portfolio_apartment_foyer.jpg" alt="Grand foyer entrance" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">♃ Jupiter Influence</span>
-                <h4>Grand Foyer Welcome</h4>
-                <p class="portfolio-philosophy">First impressions aligned with cosmic abundance</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Grand Foyer Welcome</h4>
             </div>
           </div>
           <!-- Item 9 -->
           <div class="portfolio-item show-item" data-category="corporate" data-id="9">
-            <img src="assets/portfolio_office_conference.jpg" alt="Modern conference room with professional lighting and clean design" loading="lazy">
+            <img src="assets/portfolio_office_conference.jpg" alt="Modern conference room" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">☿ Mercury Influence</span>
-                <h4>Strategic Boardroom</h4>
-                <p class="portfolio-philosophy">Communication flow optimized through Vastu</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Strategic Boardroom</h4>
             </div>
           </div>
           <!-- Item 10 -->
           <div class="portfolio-item show-item" data-category="hospitality" data-id="10">
-            <img src="assets/portfolio_hotel_marriott.jpg" alt="Marriott hotel mockup interior design visualization" loading="lazy">
+            <img src="assets/portfolio_hotel_marriott.jpg" alt="Marriott hotel design concept" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">☉ Sun Influence</span>
-                <h4>Marriott — Design Concept</h4>
-                <p class="portfolio-philosophy">Solar vitality in hospitality architecture</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Marriott — Design Concept</h4>
             </div>
           </div>
           <!-- Item 11 -->
           <div class="portfolio-item show-item" data-category="residential" data-id="11">
-            <img src="assets/portfolio_apartment_study.jpg" alt="Elegant home study with built-in bookshelves and ambient lighting" loading="lazy">
+            <img src="assets/portfolio_apartment_study.jpg" alt="Elegant home study" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">☿ Mercury Influence</span>
-                <h4>Scholar's Study</h4>
-                <p class="portfolio-philosophy">Intellectual growth through directional alignment</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Scholar's Study</h4>
             </div>
           </div>
           <!-- Item 12 -->
           <div class="portfolio-item show-item" data-category="corporate" data-id="12">
-            <img src="assets/portfolio_office_neeraj.jpg" alt="Professional office space with modern furnishing and natural light" loading="lazy">
+            <img src="assets/portfolio_office_neeraj.jpg" alt="Professional office space" loading="lazy">
             <div class="portfolio-overlay">
-              <div class="portfolio-info">
-                <span class="portfolio-planet">♄ Saturn Influence</span>
-                <h4>Professional Practice Suite</h4>
-                <p class="portfolio-philosophy">Grounding professional spaces with Saturn discipline</p>
-                <span class="portfolio-view-btn">View Details ✦</span>
-              </div>
+              <h4>Professional Practice Suite</h4>
             </div>
           </div>
         </div>
@@ -579,7 +521,13 @@
             <img class="slider-img before-img" src="assets/before_living.jpg" alt="Original Space (Before)">
             
             <div class="slider-handle" id="slider-drag-handle">
-              <div class="slider-button"></div>
+              <div class="slider-button">
+                <div class="slider-grip">
+                  <span></span><span></span><span></span>
+                </div>
+                <svg class="slider-arrow slider-arrow-left" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                <svg class="slider-arrow slider-arrow-right" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 6 15 12 9 18"/></svg>
+              </div>
             </div>
             
             <div class="slider-label before-label">BEFORE</div>
@@ -1003,8 +951,26 @@
                 <textarea id="frm-message" name="message" rows="4" placeholder="Briefly describe your property and any specific focus area (e.g. health, relationships, career, sleeping patterns)..."></textarea>
               </div>
 
-              <button type="submit" class="btn-gold btn-submit-full" id="submit-form-btn">Book My Consultation</button>
+              <button type="submit" class="btn-gold btn-submit-full" id="submit-form-btn">
+                <span class="btn-text">Book My Consultation</span>
+                <span class="btn-loader" style="display:none;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-dasharray="31.4" stroke-dashoffset="10"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.8s" repeatCount="indefinite"/></circle></svg>
+                </span>
+              </button>
             </form>
+
+            <!-- Inline Success State -->
+            <div class="form-success-inline" id="form-success-inline" style="display: none;">
+              <div class="success-checkmark">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="11" stroke="var(--c-accent)" stroke-width="1.5" fill="var(--c-accent-glow)"/>
+                  <path d="M7 13l3 3 7-7" stroke="var(--c-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="check-path"/>
+                </svg>
+              </div>
+              <h3 class="success-title">Consultation Request Received ✦</h3>
+              <p class="success-desc">Thank you for reaching out. Our team will connect with you within 24 hours to begin your personalized Astro Interior journey.</p>
+              <a href="#onboarding" class="btn-gold" style="margin-top: 1.5rem;">Complete Your Profile</a>
+            </div>
           </div>
         </div>
       </section>
@@ -1275,35 +1241,23 @@
 
   </main>
 
-  <!-- Form Success Modal -->
-  <div class="success-modal-overlay" id="form-success-modal">
-    <div class="success-content">
-      <span style="color: var(--c-accent); font-size: 2.5rem; display: block; margin-bottom: 1rem;">✦</span>
-      <h3 style="font-family: var(--font-heading); color: var(--c-text-primary); font-size: 1.6rem; margin-bottom: 0.75rem;">REQUEST RECEIVED</h3>
-      <p style="color: var(--c-text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem;">
-        Your consultation request has been submitted. To customize your design report, please complete our onboarding questionnaire.
-      </p>
-      <button class="btn-gold" id="success-modal-close" style="width: 100%;">Proceed to Onboarding</button>
-    </div>
-  </div>
+  <!-- Floating Sample Report Button -->
+  <a href="assets/Transcend_Astro_Sample_Report.pdf" download="Transcend Astro Sample Report.pdf" class="floating-sample-report" id="floating-sample-report" aria-label="Download Sample Report">
+    <span class="sample-report-glow"></span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="16" y1="13" x2="8" y2="13"/>
+      <line x1="16" y1="17" x2="8" y2="17"/>
+      <polyline points="10 9 9 9 8 9"/>
+    </svg>
+    <span class="sample-report-text">Sample Report</span>
+  </a>
 
-  <!-- Exit Intent & Mobile Popup Modal -->
-  <div class="exit-modal-overlay" id="exit-intent-modal">
-    <div class="exit-card">
-      <button class="exit-close-btn" id="exit-close" aria-label="Close modal">&times;</button>
-      <span style="color: var(--c-accent); font-size: 2rem; display: block; margin-bottom: 0.5rem;">✦</span>
-      <h3 style="font-family: var(--font-heading); color: var(--c-text-primary); margin-bottom: 0.75rem; font-size: 1.5rem;">Harmonize Your Space</h3>
-      <p style="color: var(--c-text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem;">
-        Download our signature **Astro-Interior Vastu Checklist** to audit your home's energetic flow before you go.
-      </p>
-      
-      <form id="exit-lead-magnet-form">
-        <div class="form-group" style="margin-bottom: 1.2rem;">
-          <input type="email" required placeholder="Enter your email address..." style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid var(--c-accent-border); background: #FFFFFF; color: var(--c-text-primary); text-align: center;">
-        </div>
-        <button type="submit" class="btn-gold" style="width: 100%;">Send Me My Checklist</button>
-      </form>
-    </div>
+  <!-- Custom Cursor (Desktop) -->
+  <div class="custom-cursor" id="custom-cursor">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
   </div>
 
   <!-- Floating WhatsApp FAB -->
@@ -1340,12 +1294,14 @@
         <img src="" alt="" id="lightbox-main-img" class="lightbox-main-img">
       </div>
       <div class="lightbox-details-panel">
-        <span class="lightbox-planet-tag" id="lightbox-planet"></span>
         <h3 class="lightbox-project-title" id="lightbox-title"></h3>
-        <p class="lightbox-project-desc" id="lightbox-desc"></p>
+        <div class="lightbox-counter"><span id="lightbox-current-index">1</span> of <span id="lightbox-total-count">12</span></div>
       </div>
     </div>
   </div>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-transition-overlay" id="page-transition"></div>
 
   <!-- Scripts -->
   <script src="app.js"></script>

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Meta Tags -->
-  <title>Our Transformations & Astro-Aligned Portfolio | Transcend Consultant</title>
-  <meta name="description" content="Explore our luxury design portfolio featuring astro-aligned residences, bedrooms, kitchens, and commercial offices by Richa Agarwal.">
+  <title>Portfolio Gallery & Project Transformations | Transcend Consultant</title>
+  <meta name="description" content="Explore our luxury design portfolio featuring astro-aligned residences, bedrooms, kitchens, and corporate offices by Richa Agarwal.">
   <meta name="keywords" content="astro interior design portfolio, richa agarwal gallery, before after home design, vastu design gallery">
   <meta name="author" content="Richa Agarwal">
   
@@ -16,424 +16,667 @@
   <!-- Premium Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <style>
+    /* Custom Styling for Premium Gallery */
+    :root {
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+      --c-dark: #1E1E1E;
+      --c-gold: #C8A15A;
+      --c-gold-glow: rgba(200, 161, 90, 0.08);
+      --c-border: rgba(200, 161, 90, 0.15);
+    }
+
+    body {
+      background-color: #FAF8F4;
+      font-family: var(--font-body);
+      color: #333333;
+      overflow-x: hidden;
+    }
+
+    /* Hero Banner */
+    .gallery-hero {
+      padding: 10rem 2rem 5rem;
+      text-align: center;
+      background: linear-gradient(180deg, #1E1E1E 0%, #2A2A2A 100%);
+      color: #FFFFFF;
+      position: relative;
+    }
+
+    .gallery-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4rem;
+      background: linear-gradient(0deg, #FAF8F4 0%, transparent 100%);
+    }
+
+    .gallery-hero h1 {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      color: #FFFFFF;
+    }
+
+    .gallery-hero p {
+      font-size: 1.1rem;
+      color: #BDBDBD;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: -2rem auto 4rem;
+      position: relative;
+      z-index: 10;
+      flex-wrap: wrap;
+      max-width: 800px;
+      padding: 0 1rem;
+    }
+
+    .filter-btn {
+      padding: 0.8rem 1.8rem;
+      border: 1px solid var(--c-border);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-radius: 50px;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--c-dark);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    .filter-btn:hover {
+      border-color: var(--c-gold);
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      background: var(--c-dark);
+      color: #FFFFFF;
+      border-color: var(--c-dark);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    /* Gallery Grid */
+    .collections-grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem 8rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 2.5rem;
+    }
+
+    /* Collection Card */
+    .collection-card {
+      background: #FFFFFF;
+      border: 1px solid var(--c-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .collection-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(200, 161, 90, 0.1), 0 8px 16px rgba(0, 0, 0, 0.04);
+      border-color: rgba(200, 161, 90, 0.3);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      padding-top: 65%; /* 16:10 aspect ratio */
+      overflow: hidden;
+      background: #EAEAEA;
+    }
+
+    .card-img-wrap img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .collection-card:hover .card-img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem 1.5rem 1rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 100%);
+      pointer-events: none;
+    }
+
+    .card-count-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--c-dark);
+      letter-spacing: 0.02em;
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-category {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--c-gold);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--c-dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .card-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--c-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: auto;
+      transition: color 0.3s;
+    }
+
+    .collection-card:hover .card-link {
+      color: var(--c-gold);
+    }
+
+    .card-link::after {
+      content: '→';
+      transition: transform 0.3s;
+    }
+
+    .collection-card:hover .card-link::after {
+      transform: translateX(5px);
+    }
+
+    /* Back Home Button */
+    .back-home-header {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      z-index: 100;
+    }
+
+    .btn-back-home {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.6rem 1.2rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+
+    .btn-back-home:hover {
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateX(-3px);
+    }
+
+    /* Custom Lightbox Overhaul */
+    .gallery-lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 15, 15, 0.98);
+      z-index: 2000;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      flex-direction: column;
+    }
+
+    .gallery-lightbox.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      color: #FFFFFF;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .lightbox-topbar h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .lightbox-close-btn {
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      font-size: 2.2rem;
+      cursor: pointer;
+      padding: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .lightbox-close-btn:hover {
+      color: var(--c-gold);
+    }
+
+    .lightbox-main {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 2rem;
+    }
+
+    .lightbox-img-container {
+      max-width: 85%;
+      max-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .lightbox-img-container img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Lightbox Nav Buttons */
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 100;
+    }
+
+    .lb-nav:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: var(--c-gold);
+      color: var(--c-gold);
+    }
+
+    .lb-prev { left: 2.5rem; }
+    .lb-next { right: 2.5rem; }
+
+    /* Lightbox Bottom Info & Thumbnails */
+    .lightbox-bottom {
+      background: rgba(20, 20, 20, 0.85);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.5rem 2.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .lightbox-info {
+      text-align: center;
+      color: #BDBDBD;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .lightbox-thumbs-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      overflow-x: auto;
+      max-width: 800px;
+      margin: 0 auto;
+      padding-bottom: 5px;
+    }
+
+    .lightbox-thumb {
+      width: 60px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.4;
+      border: 1px solid transparent;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .lightbox-thumb.active {
+      opacity: 1;
+      border-color: var(--c-gold);
+      transform: scale(1.05);
+    }
+
+    /* Minimal Responsive Adaptations */
+    @media (max-width: 768px) {
+      .gallery-hero h1 { font-size: 2.4rem; }
+      .lb-nav { width: 44px; height: 44px; }
+      .lb-prev { left: 1rem; }
+      .lb-next { right: 1rem; }
+      .lightbox-topbar { padding: 1rem 1.5rem; }
+      .lightbox-bottom { padding: 1rem 1.5rem; }
+      .collections-grid { grid-template-columns: 1fr; padding: 0 1rem 5rem; }
+    }
+  </style>
 </head>
 <body>
-  <!-- Header & Navigation -->
-  <header id="main-header">
-    <div class="nav-container">
-      <a href="index.html#hero" class="logo-wrap" id="brand-logo" aria-label="Transcend Consultant home">
-        <img src="assets/logo.png" alt="Transcend Consultant Logo" class="logo-img">
-        <div class="logo-text-group">
-          <span class="logo-title">TRANSCEND</span>
-          <span class="logo-sub">Consultant</span>
-        </div>
-      </a>
-      
-      <!-- Hamburger Menu for Mobile -->
-      <button class="mobile-menu-toggle" id="menu-toggle" aria-expanded="false" aria-label="Toggle navigation menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
 
-      <nav id="navbar-links">
-        <ul>
-          <li><a href="index.html#hero" class="nav-link" id="nav-item-home">Home</a></li>
-          <li><a href="index.html#about" class="nav-link" id="nav-item-about">About</a></li>
-          <li><a href="index.html#services" class="nav-link" id="nav-item-services">Services</a></li>
-          <li><a href="index.html#portfolio" class="nav-link" id="nav-item-portfolio">Portfolio</a></li>
-          <li><a href="index.html#process" class="nav-link" id="nav-item-process">Process</a></li>
-          <li><a href="index.html#packages" class="nav-link" id="nav-item-packages">Packages</a></li>
-          <li><a href="index.html#testimonials" class="nav-link" id="nav-item-testimonials">Testimonials</a></li>
-          <li><a href="index.html#contact" class="nav-link" id="nav-item-contact">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="nav-actions">
-        <a href="index.html#contact" class="btn-gold" id="header-cta">Book Consultation</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Gallery Main Content -->
-  <main class="package-detail-container">
-    <a href="index.html#home" class="back-link-btn" id="back-home-link">← Back to Home</a>
-    
-    <section id="gallery-portfolio" class="gallery-section" style="padding: 0; margin-top: 1rem;">
-      <div class="section-header">
-        <span class="section-subtitle">Visual Proof</span>
-        <h1 class="section-title">Our Transformations</h1>
-      </div>
-      
-      <!-- Interactive Before & After Slider -->
-      <div class="slider-showcase">
-        <div class="slider-container" id="before-after-slider">
-          <img class="slider-img before-img" src="assets/room_after.png" alt="Luxury room after astrological alignment">
-          <img class="slider-img after-img" src="assets/room_before.png" alt="Room before alignment" id="after-slider-img">
-          
-          <!-- Handle & Button -->
-          <div class="slider-handle" id="slider-drag-handle">
-            <div class="slider-button"></div>
-          </div>
-          
-          <div class="slider-label before-label">Before: Stagnant Layout</div>
-          <div class="slider-label after-label">After: Cosmic Harmony</div>
-        </div>
-      </div>
-
-      <!-- Portfolio Category Filters -->
-      <div class="gallery-filters" id="portfolio-filters">
-        <button class="filter-btn active" data-filter="all">All Projects</button>
-        <button class="filter-btn" data-filter="living-rooms">Living Rooms</button>
-        <button class="filter-btn" data-filter="bedrooms">Bedrooms</button>
-        <button class="filter-btn" data-filter="kitchens">Kitchens</button>
-        <button class="filter-btn" data-filter="luxury-residences">Residences</button>
-        <button class="filter-btn" data-filter="commercial-spaces">Commercial</button>
-        <button class="filter-btn" data-filter="astro-projects">Astro-aligned</button>
-      </div>
-
-      <!-- Portfolio Image Grid -->
-      <div class="portfolio-grid" id="portfolio-container">
-        <!-- Item 1 -->
-        <div class="portfolio-item" data-category="living-rooms luxury-residences astro-projects" data-id="1">
-          <img src="assets/proposed_living.jpg" alt="Gold & Champagne Aligned Living Room">
-          <div class="portfolio-overlay">
-            <span class="portfolio-category">Living Room | Residence</span>
-            <h3 class="portfolio-title">Celestial Solarium</h3>
-            <span class="portfolio-link">View Alignment Details ✦</span>
-          </div>
-        </div>
-        <!-- Item 2 -->
-        <div class="portfolio-item" data-category="bedrooms luxury-residences astro-projects" data-id="2">
-          <img src="assets/proposed_bedroom.jpg" alt="Luxury Master Bedroom">
-          <div class="portfolio-overlay">
-            <span class="portfolio-category">Bedroom | Residence</span>
-            <h3 class="portfolio-title">Luna Sanctuary</h3>
-            <span class="portfolio-link">View Alignment Details ✦</span>
-          </div>
-        </div>
-        <!-- Item 3 -->
-        <div class="portfolio-item" data-category="kitchens luxury-residences" data-id="3">
-          <img src="assets/proposed_kitchen.jpg" alt="Marble & Gold Kitchen">
-          <div class="portfolio-overlay">
-            <span class="portfolio-category">Kitchen | Residence</span>
-            <h3 class="portfolio-title">Agni Hearth</h3>
-            <span class="portfolio-link">View Alignment Details ✦</span>
-          </div>
-        </div>
-        <!-- Item 4 -->
-        <div class="portfolio-item" data-category="commercial-spaces astro-projects" data-id="4">
-          <img src="assets/proposed_entry.jpg" alt="Wood & Gold Home Office">
-          <div class="portfolio-overlay">
-            <span class="portfolio-category">Commercial | Office</span>
-            <h3 class="portfolio-title">Jupiter Study</h3>
-            <span class="portfolio-link">View Alignment Details ✦</span>
-          </div>
-        </div>
-        <!-- Item 5 -->
-        <div class="portfolio-item" data-category="living-rooms luxury-residences" data-id="5">
-          <img src="assets/proposed_guest.jpg" alt="High-end Residence Living area">
-          <div class="portfolio-overlay">
-            <span class="portfolio-category">Living Room | Residence</span>
-            <h3 class="portfolio-title">Solar Reception Room</h3>
-            <span class="portfolio-link">View Alignment Details ✦</span>
-          </div>
-        </div>
-        <!-- Item 6 -->
-        <div class="portfolio-item" data-category="bedrooms astro-projects" data-id="6">
-          <img src="assets/proposed_kids.jpg" alt="Cozy Astrological Bedroom">
-          <div class="portfolio-overlay">
-            <span class="portfolio-category">Bedroom | Astro-aligned</span>
-            <h3 class="portfolio-title">Mercurial Chamber</h3>
-            <span class="portfolio-link">View Alignment Details ✦</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Project Lightbox Modal -->
-    <div class="lightbox-modal" id="project-lightbox">
-      <div class="lightbox-content">
-        <button class="lightbox-close" id="close-lightbox" aria-label="Close modal">&times;</button>
-        
-        <div class="lightbox-img-wrap">
-          <img src="assets/room_after.png" alt="Selected Project Image" id="lightbox-image">
-        </div>
-        
-        <div class="lightbox-details">
-          <span class="lightbox-category" id="lightbox-category-txt">Living Room</span>
-          <h3 class="lightbox-title" id="lightbox-title-txt">Celestial Solarium</h3>
-          <p class="lightbox-desc" id="lightbox-desc-txt">A modern, open-concept space featuring ivory marble flooring and deep navy walls to anchor chaotic energy. Brass accents and round lighting shapes invite planetary abundance.</p>
-          
-          <div class="lightbox-astro-details">
-            <h4 class="lightbox-astro-title">Cosmic Alignment Highlights</h4>
-            <p class="lightbox-astro-text" id="lightbox-astro-txt">Oriented to face Northeast. The primary blue shade invokes the grounding energy of Saturn, while gold accessories align with Jupiter to invite wealth, wisdom, and professional expansion.</p>
-            <div id="lightbox-element-badge">
-              <span class="element-badge water">Water Element</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="minimal-footer">
-    <div class="footer-grid-layout">
-      <div class="footer-brand-column">
-        <div class="footer-logo-wrap">
-          <img src="assets/logo.png" alt="Transcend Logo" class="footer-logo-img">
-          <span class="footer-brand-title">TRANSCEND</span>
-        </div>
-        <p class="footer-brand-desc">Merging Vedic geometry with luxury interior architectures to create healthy, aligned living environments.</p>
-      </div>
-      <div class="footer-links-column">
-        <h4>Quick Navigation</h4>
-        <ul>
-          <li><a href="index.html#hero">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="index.html#portfolio">Portfolio</a></li>
-          <li><a href="index.html#process">Process</a></li>
-          <li><a href="index.html#packages">Packages</a></li>
-          <li><a href="index.html#testimonials">Testimonials</a></li>
-          <li><a href="index.html#contact">Contact</a></li>
-          <li><a href="index.html#onboarding">Onboarding</a></li>
-          <li><a href="blog.html">Blog Hub</a></li>
-          <li><a href="gallery.html">Visual Gallery</a></li>
-        </ul>
-      </div>
-      <div class="footer-social-column">
-        <h4>Connect</h4>
-        <div class="footer-socials-grid">
-          <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://wa.me/917838048195" target="_blank" rel="noopener">WhatsApp</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom-line">
-      <span>&copy; 2026 Transcend Consultant. All Rights Reserved.</span>
-      <div class="footer-bottom-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Floating WhatsApp FAB (visible on all pages) -->
-  <a href="https://wa.me/917838048195?text=Hello%20Transcend%20Consultant%2C%20I%20would%20like%20to%20book%20an%20Astro%20Interior%20Consultation." target="_blank" rel="noopener" class="whatsapp-fab" id="whatsapp-fab" aria-label="Chat on WhatsApp">
-    <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.437.002 9.861-4.416 9.863-9.848.001-2.63-1.019-5.101-2.874-6.958C16.402 1.982 13.93 1.95 12.012 1.95c-5.438 0-9.863 4.414-9.865 9.847-.001 1.562.41 3.09 1.189 4.453l-.993 3.629 3.714-.975zm11.367-7.651c-.139-.232-.51-.372-1.066-.651-.556-.279-3.285-1.622-3.795-1.807-.51-.186-.88-.279-1.25.279-.371.558-1.437 1.808-1.761 2.18-.324.372-.649.418-1.205.139-.556-.278-2.348-.865-4.473-2.761-1.653-1.475-2.768-3.298-3.092-3.856-.324-.558-.035-.86.243-1.138.25-.251.556-.651.834-.976.278-.326.37-.558.556-.93.186-.372.093-.698-.046-.977-.14-.279-1.25-3.018-1.714-4.133-.453-1.087-.912-.94-1.25-.958-.323-.017-.695-.02-1.066-.02-.37 0-.973.139-1.482.697-.509.558-1.946 1.906-1.946 4.647 0 2.741 1.993 5.39 2.271 5.762.278.372 3.922 5.99 9.504 8.393 1.328.571 2.364.912 3.172 1.17.132.042.855.37 1.385.292.593-.088 1.821-.745 2.077-1.465.257-.72.257-1.339.18-1.464z"/>
-    </svg>
-    <span class="fab-tooltip">Chat with us</span>
-  </a>
-
-  <!-- Mobile Sticky CTA Bar -->
-  <div class="mobile-sticky-cta" id="mobile-sticky-cta">
-    <a href="index.html#contact" class="mobile-sticky-btn mobile-sticky-book">Book Consultation</a>
-    <a href="https://wa.me/917838048195?text=Hello%20Transcend%20Consultant%2C%20I%20would%20like%20to%20book%20an%20Astro%20Interior%20Consultation." target="_blank" rel="noopener" class="mobile-sticky-btn mobile-sticky-whatsapp">
-      <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.73-1.455L0 24z"/></svg>
-      WhatsApp
+  <!-- Back to Home -->
+  <div class="back-home-header">
+    <a href="index.html#portfolio" class="btn-back-home">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Home
     </a>
   </div>
 
-  <!-- Scripts -->
-  <script src="app.js"></script>
+  <!-- Hero Header -->
+  <header class="gallery-hero">
+    <h1 class="hero-anim">Our Transformations</h1>
+    <p class="hero-anim">Mergening Vedic geometry & directional orientation with bespoke luxury architecture to curate healthy, balanced, and prosperous spaces.</p>
+  </header>
 
-  <!-- Interactive Search & Category Filter -->
+  <!-- Category Filter Bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="residences">Residences</button>
+    <button class="filter-btn" data-filter="hospitality">Hospitality & Wellness</button>
+    <button class="filter-btn" data-filter="offices">Corporate Offices</button>
+  </div>
+
+  <!-- Collections Grid Layout -->
+  <main class="collections-grid" id="collections-container">
+    <!-- Dynamic Content Loaded by JS -->
+  </main>
+
+  <!-- Custom Lightbox Overlay -->
+  <div class="gallery-lightbox" id="gallery-lightbox">
+    <!-- Topbar -->
+    <div class="lightbox-topbar">
+      <h3 id="lb-title">Project Name</h3>
+      <button class="lightbox-close-btn" id="lb-close" aria-label="Close gallery">&times;</button>
+    </div>
+
+    <!-- Main View -->
+    <div class="lightbox-main">
+      <button class="lb-nav lb-prev" id="lb-prev" aria-label="Previous image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      
+      <div class="lightbox-img-container">
+        <img src="" alt="" id="lb-main-img">
+      </div>
+
+      <button class="lb-nav lb-next" id="lb-next" aria-label="Next image">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
+    </div>
+
+    <!-- Bottombar with Info & Thumbnails -->
+    <div class="lightbox-bottom">
+      <div class="lightbox-info">
+        Image <span id="lb-current-index">1</span> of <span id="lb-total-count">1</span>
+      </div>
+      <div class="lightbox-thumbs-container" id="lb-thumbs">
+        <!-- Thumbnail strip loaded dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Manifest Loading and Dynamic Rendering JS -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // --- 1. PORTFOLIO FILTERING ---
-      const filterButtons = document.querySelectorAll('.filter-btn');
-      const portfolioItems = document.querySelectorAll('.portfolio-item');
+      let activeCollection = null;
+      let activeImageIndex = 0;
+      let manifestData = [];
 
-      filterButtons.forEach(btn => {
+      // Fetch dynamic manifest from server
+      fetch('assets/gallery-manifest.json')
+        .then(res => res.json())
+        .then(data => {
+          manifestData = data;
+          renderCollections(data);
+          initGSAP();
+        })
+        .catch(err => {
+          console.error("Failed to load gallery manifest, falling back to static database representation", err);
+        });
+
+      // Render collections onto the DOM grid
+      const container = document.getElementById('collections-container');
+      
+      function renderCollections(collections) {
+        container.innerHTML = '';
+        collections.forEach(col => {
+          const card = document.createElement('div');
+          card.className = `collection-card`;
+          card.dataset.category = col.category;
+          card.dataset.id = col.id;
+          
+          let displayCategory = col.category === 'residences' ? 'Residence' : 
+                                col.category === 'hospitality' ? 'Hospitality & Wellness' : 'Corporate Office';
+
+          card.innerHTML = `
+            <div class="card-img-wrap">
+              <img src="${col.cover}" alt="${col.title}" loading="lazy">
+              <div class="card-overlay">
+                <span class="card-count-badge">${col.images.length} Images</span>
+              </div>
+            </div>
+            <div class="card-content">
+              <span class="card-category">${displayCategory}</span>
+              <h2 class="card-title">${col.title}</h2>
+              <span class="card-link">Explore Collection</span>
+            </div>
+          `;
+          
+          card.addEventListener('click', () => openLightbox(col.id));
+          container.appendChild(card);
+        });
+      }
+
+      // Filter handling
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          // Remove active class from all buttons
-          filterButtons.forEach(b => b.classList.remove('active'));
-          // Add active class to clicked button
+          filterBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-
           const filter = btn.getAttribute('data-filter');
 
-          portfolioItems.forEach(item => {
-            const categories = item.getAttribute('data-category').split(' ');
-            if (filter === 'all' || categories.includes(filter)) {
-              item.style.display = 'block';
-              setTimeout(() => {
-                item.style.opacity = '1';
-                item.style.transform = 'scale(1)';
-              }, 50);
+          const cards = document.querySelectorAll('.collection-card');
+          cards.forEach(card => {
+            if (filter === 'all' || card.dataset.category === filter) {
+              card.style.display = 'flex';
+              gsap.fromTo(card, {opacity: 0, scale: 0.95}, {opacity: 1, scale: 1, duration: 0.4});
             } else {
-              item.style.opacity = '0';
-              item.style.transform = 'scale(0.9)';
-              setTimeout(() => {
-                item.style.display = 'none';
-              }, 300);
+              card.style.display = 'none';
             }
           });
         });
       });
 
-      // --- 2. BEFORE & AFTER SLIDER DRAGGING ---
-      const slider = document.getElementById('before-after-slider');
-      const afterImg = document.getElementById('after-slider-img');
-      const handle = document.getElementById('slider-drag-handle');
+      // Lightbox Operations
+      const lightbox = document.getElementById('gallery-lightbox');
+      const mainImg = document.getElementById('lb-main-img');
+      const titleEl = document.getElementById('lb-title');
+      const currentIndexEl = document.getElementById('lb-current-index');
+      const totalCountEl = document.getElementById('lb-total-count');
+      const thumbsContainer = document.getElementById('lb-thumbs');
 
-      if (slider && afterImg && handle) {
-        let isDragging = false;
+      function openLightbox(collectionId) {
+        activeCollection = manifestData.find(c => c.id === collectionId);
+        if (!activeCollection) return;
 
-        function updateSlider(clientX) {
-          const rect = slider.getBoundingClientRect();
-          const offsetX = clientX - rect.left;
-          let percentage = (offsetX / rect.width) * 100;
-
-          // Bounds checking
-          if (percentage < 0) percentage = 0;
-          if (percentage > 100) percentage = 100;
-
-          // Move handle
-          handle.style.left = `${percentage}%`;
-          // Clip top image (afterImg is on top, clip right half)
-          // To reveal more "before" (afterImg), increase percentage.
-          // In standard slide, we clip the after-image's left or right.
-          // Since afterImg is the before image (room_before.png), let's clip it from left or right.
-          // If handle is at 60%, the before image (afterImg) should take 60% width, and the after image takes 40%.
-          // Let's set afterImg clip-path: polygon(0 0, percentage% 0, percentage% 100%, 0 100%)
-          afterImg.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
-        }
-
-        // Mouse Events
-        handle.addEventListener('mousedown', () => { isDragging = true; });
-        window.addEventListener('mouseup', () => { isDragging = false; });
-        window.addEventListener('mousemove', (e) => {
-          if (!isDragging) return;
-          updateSlider(e.clientX);
+        activeImageIndex = 0;
+        titleEl.textContent = activeCollection.title;
+        totalCountEl.textContent = activeCollection.images.length;
+        
+        // Build thumbnails
+        thumbsContainer.innerHTML = '';
+        activeCollection.images.forEach((imgSrc, idx) => {
+          const thumb = document.createElement('img');
+          thumb.src = imgSrc;
+          thumb.className = 'lightbox-thumb';
+          thumb.addEventListener('click', () => selectImage(idx));
+          thumbsContainer.appendChild(thumb);
         });
 
-        // Touch Events
-        handle.addEventListener('touchstart', () => { isDragging = true; });
-        window.addEventListener('touchend', () => { isDragging = false; });
-        window.addEventListener('touchmove', (e) => {
-          if (!isDragging) return;
-          updateSlider(e.touches[0].clientX);
-        });
+        selectImage(0);
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
 
-        // Click on slider container
-        slider.addEventListener('click', (e) => {
-          if (e.target === handle || handle.contains(e.target)) return;
-          updateSlider(e.clientX);
+      function selectImage(index) {
+        if (!activeCollection) return;
+        activeImageIndex = index;
+        
+        // Update main image with fade animation
+        gsap.to(mainImg, {opacity: 0, scale: 0.97, duration: 0.2, onComplete: () => {
+          mainImg.src = activeCollection.images[activeImageIndex];
+          mainImg.onload = () => {
+            gsap.to(mainImg, {opacity: 1, scale: 1, duration: 0.3});
+          };
+        }});
+
+        currentIndexEl.textContent = index + 1;
+
+        // Update thumbnails status
+        const thumbs = thumbsContainer.querySelectorAll('.lightbox-thumb');
+        thumbs.forEach((t, idx) => {
+          if (idx === index) {
+            t.classList.add('active');
+            t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          } else {
+            t.classList.remove('active');
+          }
         });
       }
 
-      // --- 3. PROJECT LIGHTBOX MODAL ---
-      const lightbox = document.getElementById('project-lightbox');
-      const lightboxImg = document.getElementById('lightbox-image');
-      const lightboxCategory = document.getElementById('lightbox-category-txt');
-      const lightboxTitle = document.getElementById('lightbox-title-txt');
-      const lightboxDesc = document.getElementById('lightbox-desc-txt');
-      const lightboxAstro = document.getElementById('lightbox-astro-txt');
-      const lightboxElement = document.getElementById('lightbox-element-badge');
-      const closeLightbox = document.getElementById('close-lightbox');
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
 
-      const projectDatabase = {
-        '1': {
-          title: 'Celestial Solarium',
-          category: 'Living Room | Residence',
-          image: 'assets/proposed_living.jpg',
-          desc: 'A masterfully aligned living space featuring soft champagne beige marble flooring and custom ivory furnishings. Hand-carved brass accents and circular geometric installations draw positive energy.',
-          astro: 'Designed in accordance with the Northeast entrance flow. Accent colors highlight muted gold tones for Jupiter alignment to invite wealth, wisdom, and professional expansion.',
-          element: 'Water Element',
-          elementClass: 'water'
-        },
-        '2': {
-          title: 'Luna Sanctuary',
-          category: 'Bedroom | Residence',
-          image: 'assets/proposed_bedroom.jpg',
-          desc: 'An elegant, peaceful master bedroom utilizing desaturated sage green wall details, linen textiles, and raw oak woodwork to promote deep sleep.',
-          astro: 'Aligned to the Southwest direction to stabilize Earth energy. Subtle copper trims and natural jade ornaments anchor planetary peace and emotional stability.',
-          element: 'Earth Element',
-          elementClass: 'earth'
-        },
-        '3': {
-          title: 'Agni Hearth',
-          category: 'Kitchen | Residence',
-          image: 'assets/proposed_kitchen.jpg',
-          desc: 'A premium kitchen design showcasing high-grade white quartz countertops, hidden storage panels, and natural terracotta accent tiles.',
-          astro: 'Positioned in the Southeast Agni quadrant. Balanced metal hardware and red floral arrangements ensure pure prana flow and health vitality.',
-          element: 'Fire Element',
-          elementClass: 'fire'
-        },
-        '4': {
-          title: 'Jupiter Study',
-          category: 'Commercial | Office',
-          image: 'assets/proposed_entry.jpg',
-          desc: 'An executive home office with built-in dark walnut shelving, premium leather task seating, and large windows inviting morning sunlight.',
-          astro: 'Oriented to the North sector for maximum career growth. Green aventurine desk details stimulate intellectual clarity and Saturn grounding.',
-          element: 'Air Element',
-          elementClass: 'air'
-        },
-        '5': {
-          title: 'Solar Reception Room',
-          category: 'Living Room | Residence',
-          image: 'assets/proposed_guest.jpg',
-          desc: 'A majestic double-height living room featuring ivory marble walls, minimalist design, and custom brass light fixtures.',
-          astro: 'Aligned to the East direction to channel Sun vitality. Golden hour views and bronze decor elements invite success and respect.',
-          element: 'Fire Element',
-          elementClass: 'fire'
-        },
-        '6': {
-          title: 'Mercurial Chamber',
-          category: 'Bedroom | Astro-aligned',
-          image: 'assets/proposed_kids.jpg',
-          desc: 'A clean guest room styled with soft grey linens, floating shelves, and live indoor greenery for a refreshing look.',
-          astro: 'Aligned to the North direction to promote communication and business focus. Emerald details invoke Mercury\'s healing presence.',
-          element: 'Earth Element',
-          elementClass: 'earth'
+      function prevImage() {
+        if (!activeCollection) return;
+        let newIdx = activeImageIndex - 1;
+        if (newIdx < 0) newIdx = activeCollection.images.length - 1;
+        selectImage(newIdx);
+      }
+
+      function nextImage() {
+        if (!activeCollection) return;
+        let newIdx = (activeImageIndex + 1) % activeCollection.images.length;
+        selectImage(newIdx);
+      }
+
+      document.getElementById('lb-close').addEventListener('click', closeLightbox);
+      document.getElementById('lb-prev').addEventListener('click', prevImage);
+      document.getElementById('lb-next').addEventListener('click', nextImage);
+
+      // Keyboard support
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'ArrowRight') nextImage();
+      });
+
+      // Swipe support
+      let touchStartX = 0;
+      lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+      lightbox.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) nextImage();
+          else prevImage();
         }
-      };
+      }, { passive: true });
 
-      if (lightbox && closeLightbox) {
-        portfolioItems.forEach(item => {
-          item.addEventListener('click', (e) => {
-            e.preventDefault();
-            const id = item.getAttribute('data-id');
-            const data = projectDatabase[id];
-
-            if (data) {
-              lightboxImg.src = data.image;
-              lightboxImg.alt = data.title;
-              lightboxCategory.innerText = data.category;
-              lightboxTitle.innerText = data.title;
-              lightboxDesc.innerText = data.desc;
-              lightboxAstro.innerText = data.astro;
-              lightboxElement.innerHTML = `<span class="element-badge ${data.elementClass}">${data.element}</span>`;
-
-              lightbox.classList.add('active');
-              document.body.style.overflow = 'hidden';
-            }
-          });
-        });
-
-        closeLightbox.addEventListener('click', () => {
-          lightbox.classList.remove('active');
-          document.body.style.overflow = '';
-        });
-
-        lightbox.addEventListener('click', (e) => {
-          if (e.target === lightbox) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-          }
-        });
+      // GSAP Entrance
+      function initGSAP() {
+        if (typeof gsap === 'undefined') return;
+        gsap.fromTo('.hero-anim', 
+          {opacity: 0, y: 30}, 
+          {opacity: 1, y: 0, duration: 0.8, stagger: 0.2, ease: 'power2.out'}
+        );
+        gsap.fromTo('.collection-card', 
+          {opacity: 0, y: 40}, 
+          {opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: 'power2.out', delay: 0.3}
+        );
       }
     });
   </script>
