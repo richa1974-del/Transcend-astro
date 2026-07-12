@@ -80,37 +80,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // --- 2. MOBILE NAVIGATION TOGGLE ---
+  // --- 2. MOBILE NAVIGATION TOGGLE (Full-screen overlay) ---
   const menuToggle = document.getElementById('menu-toggle');
   const navbarLinks = document.getElementById('navbar-links');
+  let menuScrollPos = 0;
+
+  function openMenu() {
+    menuScrollPos = window.scrollY;
+    navbarLinks.classList.add('active');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    menuToggle.classList.add('menu-open');
+    document.body.classList.add('menu-overlay-open');
+    document.body.style.top = `-${menuScrollPos}px`;
+    
+    if (window.gsap) {
+      window.gsap.fromTo(navbarLinks.querySelectorAll('li'),
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, ease: 'power3.out', delay: 0.1 }
+      );
+    }
+  }
+
+  function closeMenu() {
+    navbarLinks.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.classList.remove('menu-open');
+    document.body.classList.remove('menu-overlay-open');
+    document.body.style.top = '';
+    window.scrollTo(0, menuScrollPos);
+  }
 
   if (menuToggle && navbarLinks) {
     menuToggle.addEventListener('click', () => {
       const isOpen = navbarLinks.classList.contains('active');
-      
       if (!isOpen) {
-        navbarLinks.classList.add('active');
-        menuToggle.setAttribute('aria-expanded', 'true');
-        menuToggle.classList.add('menu-open');
-        
-        if (window.gsap) {
-          window.gsap.fromTo(navbarLinks.querySelectorAll('li'),
-            { opacity: 0, x: 30 },
-            { opacity: 1, x: 0, duration: 0.4, stagger: 0.08, ease: 'power3.out', delay: 0.15 }
-          );
-        }
+        openMenu();
       } else {
-        navbarLinks.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.classList.remove('menu-open');
+        closeMenu();
       }
     });
 
     navbarLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        navbarLinks.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.classList.remove('menu-open');
+        closeMenu();
       });
     });
   }
@@ -1135,5 +1147,74 @@ document.addEventListener('DOMContentLoaded', () => {
       imgObserver.observe(img);
     });
   }
+
+  // --- 19. SCROLL PROGRESS BAR ---
+  const scrollProgressBar = document.getElementById('scroll-progress-bar');
+  if (scrollProgressBar) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgressBar.style.width = `${scrollPercent}%`;
+    }, { passive: true });
+  }
+
+  // --- 20. BACK TO TOP BUTTON ---
+  const backToTopBtn = document.getElementById('back-to-top-btn');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // --- 21. SERVICE CARD MOBILE ACCORDION ---
+  const serviceToggleBtns = document.querySelectorAll('.service-adv-toggle-btn');
+  serviceToggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.service-adv-card');
+      if (!card) return;
+      
+      const isExpanded = card.classList.contains('expanded');
+      
+      // Close all other cards
+      document.querySelectorAll('.service-adv-card.expanded').forEach(other => {
+        if (other !== card) {
+          other.classList.remove('expanded');
+          const otherBtn = other.querySelector('.service-adv-toggle-btn');
+          if (otherBtn) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherBtn.innerHTML = 'View Details <span class="toggle-icon">▾</span>';
+          }
+        }
+      });
+      
+      // Toggle current card
+      if (isExpanded) {
+        card.classList.remove('expanded');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.innerHTML = 'View Details <span class="toggle-icon">▾</span>';
+      } else {
+        card.classList.add('expanded');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.innerHTML = 'Hide Details <span class="toggle-icon">▾</span>';
+        
+        // GSAP entry animation for revealed blocks
+        if (window.gsap) {
+          window.gsap.fromTo(card.querySelectorAll('.service-adv-block, .service-adv-footer'),
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.4, stagger: 0.08, ease: 'power2.out', delay: 0.1 }
+          );
+        }
+      }
+    });
+  });
 
 });

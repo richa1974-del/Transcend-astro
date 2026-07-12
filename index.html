@@ -9,6 +9,7 @@
   <meta name="description" content="India's premier Astro-Interior advisory. Combining 24+ years of luxury interior design and spatial planning with birth-chart astrological intelligence to design spaces that support wellness, relationships, and professional growth.">
   <meta name="keywords" content="astro interior design, vastu consultant, richa agarwal, luxury interior design, horoscope home design, astro vastu consultation, new delhi interior designer">
   <meta name="author" content="Richa Agarwal">
+  <meta name="theme-color" content="#121316">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logo.png">
@@ -100,6 +101,9 @@
 </head>
 <body>
 
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scroll-progress-bar" aria-hidden="true"></div>
+
   <!-- Premium Luxury Pre-loader -->
   <div class="luxury-preloader" id="preloader">
     <div class="preloader-content">
@@ -141,6 +145,7 @@
           <li><a href="#packages" class="nav-link" id="nav-item-packages">Packages</a></li>
           <li><a href="#contact" class="nav-link" id="nav-item-contact">Contact</a></li>
         </ul>
+        <a href="#contact" class="nav-overlay-cta" id="nav-overlay-cta">Book Consultation →</a>
       </nav>
 
       <div class="nav-actions">
@@ -340,6 +345,7 @@
               </div>
               <h3 class="service-adv-title">Residential Astro-Interiors</h3>
               <p class="service-adv-tagline">Create a home designed to support peace, prosperity, health, and personal growth.</p>
+              <button class="service-adv-toggle-btn" aria-expanded="false" aria-label="Show details for Residential Astro-Interiors">View Details <span class="toggle-icon">▾</span></button>
             </div>
             
             <div class="service-adv-block service-adv-challenges">
@@ -404,6 +410,7 @@
               </div>
               <h3 class="service-adv-title">Corporate & Workspaces</h3>
               <p class="service-adv-tagline">Unlock professional flow, leadership clarity, and strategic business growth.</p>
+              <button class="service-adv-toggle-btn" aria-expanded="false" aria-label="Show details for Corporate Workspaces">View Details <span class="toggle-icon">▾</span></button>
             </div>
             
             <div class="service-adv-block service-adv-challenges">
@@ -468,6 +475,7 @@
               </div>
               <h3 class="service-adv-title">Hospitality & Commercial</h3>
               <p class="service-adv-tagline">Elevate guest comfort, customer retention, and brand resonance.</p>
+              <button class="service-adv-toggle-btn" aria-expanded="false" aria-label="Show details for Hospitality and Commercial">View Details <span class="toggle-icon">▾</span></button>
             </div>
             
             <div class="service-adv-block service-adv-challenges">
@@ -1420,22 +1428,22 @@
             <form id="astro-contact-form" class="premium-form">
               <div class="form-row">
                 <div class="form-group">
-                  <input type="text" id="frm-name" name="name" required placeholder=" ">
+                  <input type="text" id="frm-name" name="name" required placeholder=" " autocomplete="name">
                   <label for="frm-name">Full Name *</label>
                 </div>
                 <div class="form-group">
-                  <input type="tel" id="frm-phone" name="phone" required placeholder=" ">
+                  <input type="tel" id="frm-phone" name="phone" required placeholder=" " autocomplete="tel" inputmode="tel">
                   <label for="frm-phone">Mobile Number *</label>
                 </div>
               </div>
               
               <div class="form-row">
                 <div class="form-group">
-                  <input type="email" id="frm-email" name="email" required placeholder=" ">
+                  <input type="email" id="frm-email" name="email" required placeholder=" " autocomplete="email" inputmode="email">
                   <label for="frm-email">Email Address *</label>
                 </div>
                 <div class="form-group">
-                  <input type="text" id="frm-city" name="city" required placeholder=" ">
+                  <input type="text" id="frm-city" name="city" required placeholder=" " autocomplete="address-level2">
                   <label for="frm-city">City *</label>
                 </div>
               </div>
@@ -1790,6 +1798,13 @@
     </svg>
     <span class="fab-tooltip">Chat with us</span>
   </a>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top-btn" id="back-to-top-btn" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
 
   <!-- Mobile Sticky Bottom Navigation Bar -->
   <div class="mobile-sticky-cta" id="mobile-sticky-cta">
