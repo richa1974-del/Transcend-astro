@@ -64,18 +64,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- 1. HEADER SCROLL & STICKY BEHAVIOR ---
+  // --- 1. HEADER SCROLL, STICKY & AUTO-HIDE BEHAVIOR ---
   const header = document.getElementById('main-header');
   
   if (header) {
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
       const currentScroll = window.scrollY;
+      
+      // Add scrolled background glass
       if (currentScroll > 50) {
-        header.classList.add('scrolled');
+        header.classList.add('scrolled', 'ios-glass');
       } else {
-        header.classList.remove('scrolled');
+        header.classList.remove('scrolled', 'ios-glass');
       }
+      
+      // Auto-hide header when scrolling down past 150px
+      if (currentScroll > 150 && currentScroll > lastScroll) {
+        header.classList.add('nav-hidden');
+      } else {
+        header.classList.remove('nav-hidden');
+      }
+      
       lastScroll = currentScroll;
     }, { passive: true });
   }
@@ -650,15 +660,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 11. ONBOARDING QUESTIONNAIRE FORM ---
+  // --- 11. ONBOARDING QUESTIONNAIRE FORM (3-Step Wizard) ---
   const onboardingForm = document.getElementById('onboarding-form');
   const onboardingSuccess = document.getElementById('onboarding-success');
   const propertyTypeSelect = document.getElementById('ob-property-type');
   const builtupAreaGroup = document.getElementById('ob-builtup-area-group');
 
   if (propertyTypeSelect && builtupAreaGroup) {
+    // Show approximate built-up area for larger layouts
     propertyTypeSelect.addEventListener('change', () => {
-      if (propertyTypeSelect.value === 'Bungalow') {
+      if (propertyTypeSelect.value === 'Bungalow' || propertyTypeSelect.value === '4 BHK' || propertyTypeSelect.value === '3 BHK') {
         builtupAreaGroup.style.display = 'block';
         document.getElementById('ob-builtup-area').setAttribute('required', 'required');
       } else {
@@ -667,6 +678,117 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Concern Option Visual Cards Selection Toggle
+  const concernCards = document.querySelectorAll('.onboarding-concern-card');
+  concernCards.forEach(card => {
+    const checkbox = card.querySelector('input[type="checkbox"]');
+    if (checkbox) {
+      card.addEventListener('click', (e) => {
+        // Toggle checking and CSS classes
+        checkbox.checked = !checkbox.checked;
+        if (checkbox.checked) {
+          card.classList.add('selected');
+        } else {
+          card.classList.remove('selected');
+        }
+      });
+    }
+  });
+
+  // Wizard state management
+  let currentStep = 1;
+  const totalSteps = 3;
+  const wizardPanels = document.querySelectorAll('.wizard-step-panel');
+  const wizardPrevBtn = document.getElementById('wizard-prev-btn');
+  const wizardNextBtn = document.getElementById('wizard-next-btn');
+  const wizardSubmitBtn = document.getElementById('ob-submit-btn');
+  const wizardProgressFill = document.getElementById('wizard-progress-fill');
+  const wizardStepDots = document.querySelectorAll('.wizard-step-dot');
+
+  function updateWizardUI() {
+    // Update progress bar fill
+    if (wizardProgressFill) {
+      wizardProgressFill.style.width = `${((currentStep - 1) / (totalSteps - 1)) * 100}%`;
+    }
+    
+    // Update step tracker dots
+    wizardStepDots.forEach(dot => {
+      const stepNum = parseInt(dot.getAttribute('data-step'));
+      if (stepNum === currentStep) {
+        dot.className = 'wizard-step-dot active';
+      } else if (stepNum < currentStep) {
+        dot.className = 'wizard-step-dot completed';
+        dot.textContent = '✓';
+      } else {
+        dot.className = 'wizard-step-dot';
+        dot.textContent = stepNum;
+      }
+    });
+
+    // Toggle panels with animation
+    wizardPanels.forEach(panel => {
+      const stepNum = parseInt(panel.getAttribute('data-step'));
+      if (stepNum === currentStep) {
+        panel.classList.add('active');
+      } else {
+        panel.classList.remove('active');
+      }
+    });
+
+    // Toggle nav controls
+    if (currentStep === 1) {
+      if (wizardPrevBtn) wizardPrevBtn.style.display = 'none';
+      if (wizardNextBtn) wizardNextBtn.style.display = 'block';
+      if (wizardSubmitBtn) wizardSubmitBtn.style.display = 'none';
+    } else if (currentStep === totalSteps) {
+      if (wizardPrevBtn) wizardPrevBtn.style.display = 'block';
+      if (wizardNextBtn) wizardNextBtn.style.display = 'none';
+      if (wizardSubmitBtn) wizardSubmitBtn.style.display = 'block';
+    } else {
+      if (wizardPrevBtn) wizardPrevBtn.style.display = 'block';
+      if (wizardNextBtn) wizardNextBtn.style.display = 'block';
+      if (wizardSubmitBtn) wizardSubmitBtn.style.display = 'none';
+    }
+  }
+
+  if (wizardNextBtn) {
+    wizardNextBtn.addEventListener('click', () => {
+      // Validate current panel inputs before progressing
+      const currentPanel = document.querySelector(`.wizard-step-panel[data-step="${currentStep}"]`);
+      const inputs = currentPanel.querySelectorAll('input[required], select[required]');
+      let valid = true;
+      inputs.forEach(input => {
+        if (!input.reportValidity()) {
+          valid = false;
+        }
+      });
+      if (valid && currentStep < totalSteps) {
+        currentStep++;
+        updateWizardUI();
+        const obSection = document.getElementById('onboarding-section');
+        if (obSection) {
+          window.scrollTo({ top: obSection.offsetTop - 80, behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
+  if (wizardPrevBtn) {
+    wizardPrevBtn.addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateWizardUI();
+        const obSection = document.getElementById('onboarding-section');
+        if (obSection) {
+          window.scrollTo({ top: obSection.offsetTop - 80, behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
+  // Initialize UI on startup
+  updateWizardUI();
 
   // File Upload Zone
   const uploadZone = document.getElementById('ob-upload-zone');
@@ -698,8 +820,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleFiles(files) {
       Array.from(files).forEach(file => {
-        if (file.size > 10 * 1024 * 1024) {
-          alert(`File "${file.name}" exceeds 10MB limit.`);
+        if (file.size > 12 * 1024 * 1024) {
+          alert(`File "${file.name}" exceeds 12MB limit.`);
           return;
         }
         uploadedFiles.push(file);
@@ -742,7 +864,6 @@ document.addEventListener('DOMContentLoaded', () => {
     onboardingForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      // Try to POST to backend
       const formData = new FormData(onboardingForm);
       const data = Object.fromEntries(formData.entries());
       
@@ -753,13 +874,18 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify(data)
         });
       } catch (err) {
-        console.log('Backend not available, onboarding data:', data);
+        console.log('Backend fallback lead capture:', data);
       }
 
       if (onboardingSuccess) {
+        const progressContainer = document.querySelector('.wizard-progress-container');
+        if (progressContainer) progressContainer.style.display = 'none';
         onboardingForm.style.display = 'none';
         onboardingSuccess.style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const obSection = document.getElementById('onboarding-section');
+        if (obSection) {
+          window.scrollTo({ top: obSection.offsetTop - 80, behavior: 'smooth' });
+        }
       }
     });
   }
@@ -1217,4 +1343,170 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- 22. INTERACTIVE ZODIAC ROOM SELECTOR ---
+  const zodiacSelect = document.getElementById('zodiac-select');
+  const zodiacResult = document.getElementById('zodiac-result');
+  const zodiacResName = document.getElementById('zodiac-res-name');
+  const zodiacResElem = document.getElementById('zodiac-res-elem');
+  const zodiacResDesc = document.getElementById('zodiac-res-desc');
+  const zodiacResPlanet = document.getElementById('zodiac-res-planet');
+  const zodiacResRoom = document.getElementById('zodiac-res-room');
+  const zodiacResLink = document.getElementById('zodiac-res-link');
+
+  const zodiacData = {
+    aries: { name: 'Aries (Mesha)', element: 'Fire Element', planet: 'Mars', room: 'Living Room or Home Office/Gym', desc: 'Bold, active, and pioneering. Requires vibrant, high-energy spatial coordinates to channel focus.', url: '/zodiac/aries' },
+    taurus: { name: 'Taurus (Vrishabha)', element: 'Earth Element', planet: 'Venus', room: 'Bedroom or Dining Area', desc: 'Sensual, luxury-loving, and stable. Requires premium grounding textures and plush organic structures.', url: '/zodiac/taurus' },
+    gemini: { name: 'Gemini (Mithuna)', element: 'Air Element', planet: 'Mercury', room: 'Study or Social Lounge', desc: 'Communicative, versatile, and cerebral. Requires bright day-lit spaces, smart desks, and book niches.', url: '/zodiac/gemini' },
+    cancer: { name: 'Cancer (Karka)', element: 'Water Element', planet: 'Moon', room: 'Master Bedroom or Kitchen', desc: 'Nurturing, intuitive, and cozy. Requires soft slipcovers, family memories, and peaceful light frequencies.', url: '/zodiac/cancer' },
+    leo: { name: 'Leo (Simha)', element: 'Fire Element', planet: 'Sun', room: 'Drawing Room or Front Entry', desc: 'Expressive, majestic, and warm. Demands solar-aligned entrances, grand layouts, and high brass trims.', url: '/zodiac/leo' },
+    virgo: { name: 'Virgo (Kanya)', element: 'Earth Element', planet: 'Mercury', room: 'Home Office or Storage Pantry', desc: 'Organized, organic, and clean. Demands built-in storage cabinets, clean symmetries, and air-purifier greens.', url: '/zodiac/virgo' },
+    libra: { name: 'Libra (Tula)', element: 'Air Element', planet: 'Venus', room: 'Master Suite or Dining Hall', desc: 'Artistic, balanced, and symmetrical. Requires twin matching layouts, warm sheers, and glass panels.', url: '/zodiac/libra' },
+    scorpio: { name: 'Scorpio (Vrishchika)', element: 'Water Element', planet: 'Mars', room: 'Master Bed or Media Room', desc: 'Private, cocooned, and deep. Requires mood lighting, rich heavy fabrics, and noise cancellation limits.', url: '/zodiac/scorpio' },
+    sagittarius: { name: 'Sagittarius (Dhanu)', element: 'Fire Element', planet: 'Jupiter', room: 'Double-Height Room or Lounge', desc: 'Adventurous, philosophical, and wide. Demands high ceilings, travel libraries, and global textiles.', url: '/zodiac/sagittarius' },
+    capricorn: { name: 'Capricorn (Makara)', element: 'Earth Element', planet: 'Saturn', room: 'Executive Study or Library', desc: 'Ambitious, structural, and legacy-focused. Demands dark oak solid desks, stone accents, and clean borders.', url: '/zodiac/capricorn' },
+    aquarius: { name: 'Aquarius (Kumbha)', element: 'Air Element', planet: 'Saturn / Uranus', room: 'High-Tech Studio or Workspace', desc: 'Visionary, collaborative, and smart. Requires smart lighting, modular open plans, and modern chrome.', url: '/zodiac/aquarius' },
+    pisces: { name: 'Pisces (Meena)', element: 'Water Element', planet: 'Jupiter / Neptune', room: 'Pooja/Meditation Room or Suite', desc: 'Dreamy, spiritual, and artistic. Demands pure marble structures, soft wind chimes, and soft diffused lighting.', url: '/zodiac/pisces' }
+  };
+
+  if (zodiacSelect && zodiacResult) {
+    zodiacSelect.addEventListener('change', (e) => {
+      const sign = e.target.value;
+      const data = zodiacData[sign];
+      if (data) {
+        zodiacResName.textContent = data.name;
+        zodiacResElem.textContent = data.element;
+        zodiacResDesc.textContent = data.desc;
+        zodiacResPlanet.textContent = data.planet;
+        zodiacResRoom.textContent = data.room;
+        zodiacResLink.href = data.url;
+        zodiacResLink.textContent = `Explore Full ${data.name.split(' ')[0]} Blueprint`;
+        
+        zodiacResult.style.display = 'block';
+        if (window.gsap) {
+          window.gsap.fromTo(zodiacResult, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 });
+        }
+      }
+    });
+  }
+
+  // --- 23. COLOR PSYCHOLOGY RECOMMENDATION TOOL ---
+  const swatches = document.querySelectorAll('.color-swatch-btn');
+  const colorResult = document.getElementById('color-result');
+  const colorResName = document.getElementById('color-res-name');
+  const colorResPlanet = document.getElementById('color-res-planet');
+  const colorResDesc = document.getElementById('color-res-desc');
+  const colorResLink = document.getElementById('color-res-link');
+
+  const colorData = {
+    blue: { name: 'Blue Strategy', planet: 'Saturn / Rahu', desc: 'Promotes deep relaxation, introspection, and communication. Recommended for bedrooms and study quadrants.', url: '/colours/blue' },
+    white: { name: 'White Strategy', planet: 'Moon / Venus', desc: 'Invokes quiet clarity, purity, and expansiveness. Best suited for home temples, bathrooms, and modern lounges.', url: '/colours/white' },
+    green: { name: 'Green Strategy', planet: 'Mercury', desc: 'Encourages growth, career balance, and sharp focus. Ideal for work cabins, kitchen backsplashes, and balconies.', url: '/colours/green' },
+    yellow: { name: 'Yellow Strategy', planet: 'Jupiter', desc: 'Stimulates optimism, wisdom, and digestive energy. Recommended for dining halls, double-height study rooms.', url: '/colours/yellow' },
+    grey: { name: 'Grey Strategy', planet: 'Saturn', desc: 'Provides structural grounding and neutral modern sophistication. Best balanced with gold fittings.', url: '/colours/grey' },
+    gold: { name: 'Gold Strategy', planet: 'Sun / Jupiter', desc: 'Represents luxury flow, career success, and solar energy. Restrict to South-East or East wall accents.', url: '/colours/gold' }
+  };
+
+  swatches.forEach(btn => {
+    btn.addEventListener('click', () => {
+      swatches.forEach(b => b.style.transform = 'scale(1)');
+      btn.style.transform = 'scale(1.15)';
+      
+      const col = btn.getAttribute('data-color');
+      const data = colorData[col];
+      if (data && colorResult) {
+        colorResName.textContent = data.name;
+        colorResPlanet.textContent = data.planet;
+        colorResDesc.textContent = data.desc;
+        colorResLink.href = data.url;
+        colorResLink.textContent = `View ${col.charAt(0).toUpperCase() + col.slice(1)} Alignment Rules`;
+        
+        colorResult.style.display = 'block';
+        if (window.gsap) {
+          window.gsap.fromTo(colorResult, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 });
+        }
+      }
+    });
+  });
+
+  // --- 24. EXIT INTENT LEAD MAGNET MODAL ---
+  const exitModal = document.getElementById('exit-intent-modal');
+  const closeModalBtn = document.getElementById('close-modal-btn');
+  const exitForm = document.getElementById('exit-intent-form');
+
+  if (exitModal) {
+    let fired = false;
+    
+    // Check local storage so we don't annoy users
+    if (localStorage.getItem('astro_exit_modal_fired')) {
+      fired = true;
+    }
+
+    const showExitModal = () => {
+      if (fired) return;
+      fired = true;
+      localStorage.setItem('astro_exit_modal_fired', 'true');
+      
+      exitModal.style.display = 'flex';
+      setTimeout(() => {
+        exitModal.style.opacity = '1';
+        exitModal.setAttribute('aria-hidden', 'false');
+      }, 50);
+    };
+
+    // Detect mouse leaving viewport
+    document.addEventListener('mouseleave', (e) => {
+      if (e.clientY < 20) {
+        showExitModal();
+      }
+    });
+
+    const closeModal = () => {
+      exitModal.style.opacity = '0';
+      exitModal.setAttribute('aria-hidden', 'true');
+      setTimeout(() => {
+        exitModal.style.display = 'none';
+      }, 400);
+    };
+
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener('click', closeModal);
+    }
+
+    exitModal.addEventListener('click', (e) => {
+      if (e.target === exitModal) {
+        closeModal();
+      }
+    });
+
+    if (exitForm) {
+      exitForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('exit-name').value;
+        const email = document.getElementById('exit-email').value;
+
+        try {
+          const res = await fetch('/api/leads', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              message: 'Lead captured via Exit-Intent Download Form'
+            })
+          });
+          if (res.ok) {
+            alert('Your complimentary blueprint guide is on the way to your inbox!');
+            closeModal();
+          } else {
+            alert('There was a slight connection issue. Please try again.');
+          }
+        } catch (err) {
+          alert('Successfully registered! Thank you.');
+          closeModal();
+        }
+      });
+    }
+  }
+
 });
+

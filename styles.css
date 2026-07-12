@@ -6891,3 +6891,297 @@ textarea:focus-visible {
   }
 }
 
+
+/* =============================================================
+   BREADCRUMB NAVIGATION — SEO Component
+   ============================================================= */
+
+.breadcrumb-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--c-text-secondary);
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: '›';
+  display: inline-block;
+  margin: 0 0.6rem;
+  color: var(--c-accent);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.breadcrumb-item a {
+  color: var(--c-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 400;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--c-accent);
+}
+
+.breadcrumb-item.active {
+  color: var(--c-text-primary);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .breadcrumb-nav {
+    padding: 1rem 1rem 0;
+  }
+
+  .breadcrumb-list {
+    font-size: 0.75rem;
+  }
+}
+
+/* ==========================================================================
+   ✦ iOS-GRADE PREMIUM LUXURY EXPERIENCE OVERHAULS
+   ========================================================================== */
+
+/* 1. Translucent Apple Glass Effect */
+.ios-glass {
+  background: rgba(18, 19, 22, 0.8) !important;
+  backdrop-filter: blur(20px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* 2. Spring-based Active Compression Feedbacks */
+.btn-gold, .color-swatch-btn, .ba-tab, .onboarding-concern-card, .mobile-sticky-link, .nav-link, .lightbox-nav {
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease, background 0.25s ease !important;
+}
+.btn-gold:active, .color-swatch-btn:active, .ba-tab:active, .onboarding-concern-card:active, .mobile-sticky-link:active, .lightbox-nav:active {
+  transform: scale(0.96) !important;
+}
+
+/* 3. Fluid Section Padding Overrides */
+section {
+  padding: clamp(4rem, 7vw, 9rem) clamp(1rem, 4vw, 3rem) !important;
+}
+
+/* 4. Smooth Header Scroll Toggle Transition */
+#main-header {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, backdrop-filter 0.3s, border 0.3s !important;
+  will-change: transform;
+}
+#main-header.nav-hidden {
+  transform: translateY(-100%) !important;
+}
+
+/* 5. Onboarding 3-Step Wizard Styling */
+.wizard-step-panel {
+  display: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.wizard-step-panel.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Steps Progress Header */
+.wizard-progress-container {
+  max-width: 600px;
+  margin: 0 auto 3.5rem;
+  padding: 0 1rem;
+}
+.wizard-progress-bar {
+  height: 4px;
+  background: var(--c-accent-border);
+  border-radius: 2px;
+  position: relative;
+  margin-bottom: 1.2rem;
+  overflow: visible;
+}
+.wizard-progress-fill {
+  height: 100%;
+  background: var(--c-accent);
+  width: 33.33%;
+  border-radius: 2px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.wizard-step-dot-wrap {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  left: 0;
+  padding: 0;
+}
+.wizard-step-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c-bg-primary);
+  border: 2px solid var(--c-accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--c-text-secondary);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+.wizard-step-dot.active {
+  border-color: var(--c-accent);
+  background: var(--c-accent);
+  color: #121316;
+  box-shadow: 0 0 12px rgba(199, 161, 90, 0.4);
+}
+.wizard-step-dot.completed {
+  border-color: var(--c-accent);
+  background: var(--c-bg-primary);
+  color: var(--c-accent);
+}
+.wizard-steps-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--c-text-secondary);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+/* Grid Concern Option Cards */
+.concern-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+.onboarding-concern-card {
+  border: 1px solid var(--c-accent-border);
+  border-radius: 16px;
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  background: #FFF;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.01);
+}
+.onboarding-concern-card input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.onboarding-concern-card .card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: filter 0.3s, transform 0.3s, opacity 0.3s;
+}
+.onboarding-concern-card .card-label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--c-text-secondary);
+  display: block;
+}
+.onboarding-concern-card:hover {
+  border-color: var(--c-accent);
+  background: rgba(199, 161, 90, 0.02);
+}
+.onboarding-concern-card.selected {
+  border-color: var(--c-accent);
+  background: rgba(199, 161, 90, 0.05);
+  box-shadow: 0 0 0 1px var(--c-accent);
+}
+.onboarding-concern-card.selected .card-icon {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.1);
+}
+.onboarding-concern-card.selected .card-label {
+  color: var(--c-text-primary);
+  font-weight: 600;
+}
+
+/* Wizard Buttons panel */
+.wizard-footer-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--c-accent-border);
+}
+.wizard-footer-buttons .btn-gold {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+/* Onboarding Success View */
+.onboarding-success-card {
+  background: #FFF;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 24px;
+  padding: 5rem 3rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.02);
+  max-width: 620px;
+  margin: 2rem auto;
+  text-align: center;
+}
+.success-sparkle {
+  color: var(--c-accent);
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 1.5rem;
+  animation: pulseSparkle 2s infinite ease-in-out;
+}
+@keyframes pulseSparkle {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+/* 6. General Touch Target Minimums */
+button, select, input, a {
+  min-height: 48px;
+  box-sizing: border-box;
+}
+a.nav-link, a.mobile-sticky-link {
+  min-height: auto;
+}
+.mobile-sticky-link {
+  padding: 0.5rem 0.2rem;
+}
+.color-swatch-btn {
+  min-height: auto;
+}
+option {
+  padding: 10px;
+}
+

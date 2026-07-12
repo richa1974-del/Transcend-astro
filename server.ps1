@@ -551,9 +551,22 @@ try {
             $urlPath = "/index.html" 
         }
         
+        # Clean URLs: strip trailing slash
+        if ($urlPath.EndsWith('/') -and $urlPath.Length -gt 1) {
+            $urlPath = $urlPath.Substring(0, $urlPath.Length - 1)
+        }
+
         $relPath = $urlPath.TrimStart('/')
         $relPath = $relPath.Replace('/', [System.IO.Path]::DirectorySeparatorChar)
         $filePath = [System.IO.Path]::Combine($currentDirectory, $relPath)
+        
+        # Clean URL fallback: check if appending .html works
+        if (-not (Test-Path $filePath -PathType Leaf) -and -not [System.IO.Path]::HasExtension($filePath)) {
+            $htmlPath = $filePath + ".html"
+            if (Test-Path $htmlPath -PathType Leaf) {
+                $filePath = $htmlPath
+            }
+        }
         
         if (Test-Path $filePath -PathType Leaf) {
             $extension = [System.IO.Path]::GetExtension($filePath).ToLower()
