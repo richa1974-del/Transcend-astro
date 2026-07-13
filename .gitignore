@@ -1,3 +1,5 @@
 .env
+.env.local
+.next/
 leads.json
 scratch/
