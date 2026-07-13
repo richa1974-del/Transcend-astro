@@ -7185,3 +7185,333 @@ option {
   padding: 10px;
 }
 
+/* ==========================================================================
+   ✦ APPLE-LEVEL MOBILE EXPERIENCE REBUILD OVERRIDES
+   ========================================================================== */
+
+/* 1. Mobile Viewport Hero Limit */
+@media (max-width: 768px) {
+  .hero-wrapper {
+    height: 100dvh !important;
+    min-height: -webkit-fill-available !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: 2rem 1.5rem !important;
+    overflow: hidden !important;
+  }
+  .hero-wrapper .hero-slide-content {
+    padding-top: 4rem !important;
+  }
+  .hero-wrapper h1 {
+    font-size: clamp(2.0rem, 8vw, 3.0rem) !important;
+    line-height: 1.15 !important;
+  }
+  .hero-wrapper .hero-subheadline {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.5rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+}
+
+/* 2. Netflix-style Horizontal Swipe Rails */
+@media (max-width: 768px) {
+  .ios-swipe-rail {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 1.25rem !important;
+    padding: 1rem 0.5rem 2rem !important;
+    margin: 0 -1.5rem !important;
+    padding-left: 1.5rem !important;
+  }
+  .ios-swipe-rail::-webkit-scrollbar {
+    display: none !important;
+  }
+  .ios-swipe-card, .ios-swipe-rail > div {
+    scroll-snap-align: start !important;
+    flex: 0 0 82% !important;
+    width: 82% !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Desktop Fallback for Swipe Rails */
+@media (min-width: 769px) {
+  .ios-swipe-rail {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+    gap: 2rem !important;
+  }
+}
+
+/* 3. iOS Floating Sticky Bottom Navigation Bar */
+.mobile-bottom-nav {
+  position: fixed !important;
+  bottom: 1.5rem !important;
+  left: 50% !important;
+  transform: translate(-50%, 0) !important;
+  width: 90% !important;
+  max-width: 440px !important;
+  height: 64px !important;
+  background: rgba(18, 19, 22, 0.8) !important;
+  backdrop-filter: blur(20px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 32px !important;
+  display: none !important; /* Managed by Media Query below */
+  justify-content: space-around !important;
+  align-items: center !important;
+  z-index: 9999 !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+  padding: 0 0.8rem !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s !important;
+  will-change: transform, opacity;
+}
+.mobile-bottom-nav.nav-hidden {
+  transform: translate(-50%, 150%) !important;
+  opacity: 0 !important;
+}
+.mobile-bottom-link {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #999 !important;
+  text-decoration: none !important;
+  font-size: 0.65rem !important;
+  font-weight: 500 !important;
+  transition: color 0.25s, transform 0.2s !important;
+  flex: 1 !important;
+  height: 100% !important;
+}
+.mobile-bottom-link svg {
+  width: 22px !important;
+  height: 22px !important;
+  margin-bottom: 0.25rem !important;
+  stroke: currentColor !important;
+  fill: none !important;
+  transition: stroke 0.25s !important;
+}
+.mobile-bottom-link.active, .mobile-bottom-link:hover {
+  color: var(--c-accent) !important;
+}
+.mobile-bottom-link.active svg {
+  stroke: var(--c-accent) !important;
+}
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: flex !important;
+  }
+  .mobile-sticky-cta {
+    display: none !important;
+  }
+}
+
+/* 4. Global Frosted Glass Autocomplete Search Overlay */
+.search-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(12, 13, 15, 0.85) !important;
+  backdrop-filter: blur(25px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+  z-index: 100000 !important;
+  display: none;
+  flex-direction: column;
+  padding: 2.5rem 1.5rem;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.search-overlay.active {
+  display: flex !important;
+  opacity: 1 !important;
+}
+.search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1rem;
+}
+.search-input-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.search-input-field {
+  width: 100% !important;
+  height: 56px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 28px !important;
+  padding: 0 1.5rem 0 3.2rem !important;
+  color: #FFF !important;
+  font-size: 1.1rem !important;
+  outline: none !important;
+  transition: border-color 0.3s, box-shadow 0.3s !important;
+}
+.search-input-field:focus {
+  border-color: var(--c-accent) !important;
+  box-shadow: 0 0 15px rgba(199, 161, 90, 0.3) !important;
+}
+.search-icon-svg {
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.4);
+}
+.search-results-panel {
+  flex: 1;
+  overflow-y: auto;
+  max-width: 600px;
+  width: 100%;
+  margin: 2rem auto 0;
+  padding-right: 0.5rem;
+}
+.search-result-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  margin-bottom: 1rem;
+  text-decoration: none;
+  transition: background 0.25s, transform 0.2s;
+  text-align: left;
+}
+.search-result-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-2px);
+}
+.search-result-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--c-accent);
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+.search-result-desc {
+  font-size: 0.85rem;
+  color: #BBB;
+  line-height: 1.4;
+}
+.search-result-meta {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-top: 0.6rem;
+}
+
+/* 5. Inclusions Progressive Disclosure Collapse */
+.package-inclusions-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0 0.5rem;
+}
+.package-inclusions-wrapper.expanded {
+  max-height: 850px;
+}
+.inclusions-toggle-btn {
+  background: none;
+  border: 1px solid var(--c-accent-border);
+  color: var(--c-text-primary);
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  width: 100%;
+  transition: all 0.25s;
+  min-height: 48px;
+}
+.inclusions-toggle-btn:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}
+
+/* 6. Sample Report Preview Card & Fullpage Preview Modal */
+.report-preview-card {
+  background: #FFF;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.report-preview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+}
+.report-modal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(12, 13, 15, 0.85) !important;
+  backdrop-filter: blur(25px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+  z-index: 100000 !important;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.report-modal.active {
+  display: flex !important;
+  opacity: 1 !important;
+}
+.report-modal-content {
+  background: var(--c-bg-primary);
+  border: 1px solid var(--c-accent-border);
+  border-radius: 24px;
+  max-width: 800px;
+  width: 90%;
+  height: 80dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+.report-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.report-preview-page {
+  background: #FFF;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+  text-align: left;
+}
+
+

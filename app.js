@@ -1508,5 +1508,231 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // ==========================================================================
+  // ✦ APPLE-LEVEL MOBILE EXPERIENCE REBUILD INTERACTIVITY
+  // ==========================================================================
+
+  // 1. Interactive Report Preview Modal
+  const openReportBtn = document.getElementById('open-report-modal-btn');
+  const reportModal = document.getElementById('report-preview-modal');
+  const closeReportBtn = document.getElementById('close-report-modal-btn');
+  
+  if (openReportBtn && reportModal) {
+    openReportBtn.addEventListener('click', () => {
+      reportModal.style.display = 'flex';
+      setTimeout(() => reportModal.classList.add('active'), 10);
+      document.body.style.overflow = 'hidden';
+    });
+    
+    const closeReport = () => {
+      reportModal.classList.remove('active');
+      setTimeout(() => reportModal.style.display = 'none', 300);
+      document.body.style.overflow = '';
+    };
+    
+    if (closeReportBtn) closeReportBtn.addEventListener('click', closeReport);
+    reportModal.addEventListener('click', (e) => {
+      if (e.target === reportModal) closeReport();
+    });
+  }
+
+  // 2. Consultation Packages Details Collapse
+  const togglePackagesBtn = document.getElementById('toggle-packages-details-btn');
+  const packagesDetailsWrapper = document.getElementById('packages-details-wrapper');
+  
+  if (togglePackagesBtn && packagesDetailsWrapper) {
+    togglePackagesBtn.addEventListener('click', () => {
+      packagesDetailsWrapper.classList.toggle('expanded');
+      if (packagesDetailsWrapper.classList.contains('expanded')) {
+        togglePackagesBtn.textContent = 'Hide Detailed Comparison & Inclusions ▴';
+      } else {
+        togglePackagesBtn.textContent = 'Show Detailed Comparison & Inclusions ▾';
+      }
+    });
+  }
+
+  // 3. FAQ Accordion Collapse & Search Filter
+  const toggleFaqsBtn = document.getElementById('toggle-faqs-btn');
+  const faqsMoreWrapper = document.getElementById('faqs-more-wrapper');
+  const faqSearchInput = document.getElementById('faq-search-input');
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  if (toggleFaqsBtn && faqsMoreWrapper) {
+    toggleFaqsBtn.addEventListener('click', () => {
+      faqsMoreWrapper.classList.toggle('expanded');
+      if (faqsMoreWrapper.classList.contains('expanded')) {
+        toggleFaqsBtn.textContent = 'See Fewer Questions ▴';
+      } else {
+        toggleFaqsBtn.textContent = 'See More Questions ▾';
+      }
+    });
+  }
+  
+  if (faqSearchInput) {
+    faqSearchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      
+      if (query === '') {
+        // Reset to initial popular + toggle layout
+        faqItems.forEach(item => {
+          item.style.display = '';
+          item.classList.remove('active');
+          const panel = item.querySelector('.faq-panel');
+          if (panel) panel.style.maxHeight = null;
+          const header = item.querySelector('.faq-header');
+          if (header) header.setAttribute('aria-expanded', 'false');
+          const indicator = item.querySelector('.faq-icon-indicator');
+          if (indicator) indicator.textContent = '+';
+        });
+        if (toggleFaqsBtn) toggleFaqsBtn.style.display = '';
+      } else {
+        // Highlight matching FAQs across all panels
+        faqItems.forEach(item => {
+          const text = item.innerText.toLowerCase();
+          if (text.includes(query)) {
+            item.style.display = 'block';
+            item.classList.add('active');
+            const panel = item.querySelector('.faq-panel');
+            if (panel) panel.style.maxHeight = '500px';
+            const header = item.querySelector('.faq-header');
+            if (header) header.setAttribute('aria-expanded', 'true');
+            const indicator = item.querySelector('.faq-icon-indicator');
+            if (indicator) indicator.textContent = '−';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        if (toggleFaqsBtn) toggleFaqsBtn.style.display = 'none';
+      }
+    });
+  }
+
+  // 4. Global Autocomplete Search Overlay Logic & Index
+  const openSearchBtn = document.getElementById('nav-btn-search');
+  const searchOverlay = document.getElementById('search-overlay');
+  const closeSearchBtn = document.getElementById('close-search-btn');
+  const globalSearchInput = document.getElementById('global-search-input');
+  const searchResultsPanel = document.getElementById('search-results-panel');
+  
+  const siteSearchIndex = [
+    { title: 'Aries Spatial Planning Guide', desc: 'Fire element room coordinates & Mars configurations.', category: 'Zodiac Guide', url: '/zodiac/aries' },
+    { title: 'Taurus Luxury Bedroom Guide', desc: 'Earth element grounding textures & Venus rules.', category: 'Zodiac Guide', url: '/zodiac/taurus' },
+    { title: 'Gemini Creative Workspace Studio', desc: 'Air element desk settings & Mercury light grids.', category: 'Zodiac Guide', url: '/zodiac/gemini' },
+    { title: 'Cancer Nurturing Layouts', desc: 'Water element comfort trims & Lunar light balances.', category: 'Zodiac Guide', url: '/zodiac/cancer' },
+    { title: 'Leo Drawing Room Focus', desc: 'Fire element grand entry portals & Solar accents.', category: 'Zodiac Guide', url: '/zodiac/leo' },
+    { title: 'Virgo Organic Kitchen Symmetries', desc: 'Earth element custom cabinetry & Mercury purifiers.', category: 'Zodiac Guide', url: '/zodiac/virgo' },
+    { title: 'Libra Symmetrical Spaces', desc: 'Air element balance designs & Venus window sheers.', category: 'Zodiac Guide', url: '/zodiac/libra' },
+    { title: 'Scorpio Quiet Bed Remedies', desc: 'Water element noise buffers & Mars rich heavy fabrics.', category: 'Zodiac Guide', url: '/zodiac/scorpio' },
+    { title: 'Sagittarius High Ceiling Lounges', desc: 'Fire element library rooms & Jupiter travel textiles.', category: 'Zodiac Guide', url: '/zodiac/sagittarius' },
+    { title: 'Capricorn Exec Studies', desc: 'Earth element oak woods & Saturn dark stone walls.', category: 'Zodiac Guide', url: '/zodiac/capricorn' },
+    { title: 'Aquarius Modern Tech Rooms', desc: 'Air element open plans & Saturn chrome structures.', category: 'Zodiac Guide', url: '/zodiac/aquarius' },
+    { title: 'Pisces Meditation Temples', desc: 'Water element pure marble pillars & Jupiter soft chimes.', category: 'Zodiac Guide', url: '/zodiac/pisces' },
+    
+    { title: 'Vedic Kitchen Placements', desc: 'Southeast element balancing, cooking quadrant guides.', category: 'Room Blueprint', url: '/rooms/kitchen' },
+    { title: 'Vastu Master Bedroom Configurations', desc: 'Southwest sleeping angles, oak material rules.', category: 'Room Blueprint', url: '/rooms/bedroom' },
+    { title: 'Living Room Social Grids', desc: 'Seating setups, metal/earth balances, flow guidelines.', category: 'Room Blueprint', url: '/rooms/living-room' },
+    { title: 'Productive Work Studies', desc: 'Mercury desk directions, focus lighting audits.', category: 'Room Blueprint', url: '/rooms/office' },
+    { title: 'Meditation & Pooja sanctuaries', desc: 'Northeast clean marble temples, spiritual layouts.', category: 'Room Blueprint', url: '/rooms/temple' },
+    
+    { title: 'Gold Spectrum Frequencies', desc: 'Sun/Venus energy accents for luxury designs.', category: 'Color Blueprint', url: '/colours/gold' },
+    { title: 'Blue Sleep Resonances', desc: 'Saturn/Rahu calming hues to cure insomnia.', category: 'Color Blueprint', url: '/colours/blue' },
+    { title: 'Green Healing Elements', desc: 'Mercury focus green slates, textiles, and plants.', category: 'Color Blueprint', url: '/colours/green' },
+    
+    { title: 'Mumbai Luxury Design Studio', desc: 'BKC, Worli elite residences and commercial suites.', category: 'Locations', url: '/cities/mumbai' },
+    { title: 'Delhi Mansion Spatial Audits', desc: 'Vasant Vihar, Chanakyapuri horoscopes alignment.', category: 'Locations', url: '/cities/delhi' },
+    { title: 'Bangalore Tech Estates Layouts', desc: 'Smart cosmic layouts in Whitefield and Indiranagar.', category: 'Locations', url: '/cities/bangalore' }
+  ];
+  
+  if (openSearchBtn && searchOverlay) {
+    openSearchBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      searchOverlay.style.display = 'flex';
+      setTimeout(() => searchOverlay.classList.add('active'), 10);
+      if (globalSearchInput) {
+        globalSearchInput.value = '';
+        globalSearchInput.focus();
+      }
+      renderSearchResults('');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    const closeSearch = () => {
+      searchOverlay.classList.remove('active');
+      setTimeout(() => searchOverlay.style.display = 'none', 300);
+      document.body.style.overflow = '';
+    };
+    
+    if (closeSearchBtn) closeSearchBtn.addEventListener('click', closeSearch);
+    searchOverlay.addEventListener('click', (e) => {
+      if (e.target === searchOverlay || e.target.classList.contains('search-modal-content')) {
+        closeSearch();
+      }
+    });
+    
+    function renderSearchResults(query) {
+      if (!searchResultsPanel) return;
+      
+      if (query === '') {
+        searchResultsPanel.innerHTML = `
+          <div style="text-align: center; color: rgba(255, 255, 255, 0.4); margin-top: 4.5rem;">
+            <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Type to search Zodiac signs, rooms, colors, or cities instantly...</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; max-width: 450px; margin: 0 auto;">
+              <span class="search-tag-chip" style="padding: 0.4rem 0.9rem; background: rgba(255,255,255,0.06); border-radius: 14px; font-size: 0.8rem; cursor: pointer; color: var(--c-accent);" onclick="const input = document.getElementById('global-search-input'); input.value='kitchen'; input.focus(); input.dispatchEvent(new Event('input'))">#kitchen</span>
+              <span class="search-tag-chip" style="padding: 0.4rem 0.9rem; background: rgba(255,255,255,0.06); border-radius: 14px; font-size: 0.8rem; cursor: pointer; color: var(--c-accent);" onclick="const input = document.getElementById('global-search-input'); input.value='aries'; input.focus(); input.dispatchEvent(new Event('input'))">#aries</span>
+              <span class="search-tag-chip" style="padding: 0.4rem 0.9rem; background: rgba(255,255,255,0.06); border-radius: 14px; font-size: 0.8rem; cursor: pointer; color: var(--c-accent);" onclick="const input = document.getElementById('global-search-input'); input.value='mumbai'; input.focus(); input.dispatchEvent(new Event('input'))">#mumbai</span>
+              <span class="search-tag-chip" style="padding: 0.4rem 0.9rem; background: rgba(255,255,255,0.06); border-radius: 14px; font-size: 0.8rem; cursor: pointer; color: var(--c-accent);" onclick="const input = document.getElementById('global-search-input'); input.value='gold'; input.focus(); input.dispatchEvent(new Event('input'))">#gold</span>
+            </div>
+          </div>
+        `;
+        return;
+      }
+      
+      const filtered = siteSearchIndex.filter(item => {
+        return item.title.toLowerCase().includes(query) || 
+               item.desc.toLowerCase().includes(query) ||
+               item.category.toLowerCase().includes(query);
+      });
+      
+      if (filtered.length === 0) {
+        searchResultsPanel.innerHTML = `
+          <div style="text-align: center; color: rgba(255, 255, 255, 0.4); margin-top: 4.5rem;">
+            <p>No results matching "${query}". Try searching 'Vastu', 'bed', or zodiacs.</p>
+          </div>
+        `;
+        return;
+      }
+      
+      searchResultsPanel.innerHTML = filtered.map(item => `
+        <a href="${item.url}" class="search-result-item" style="text-decoration:none;">
+          <div class="search-result-title">${item.title}</div>
+          <div class="search-result-desc">${item.desc}</div>
+          <div class="search-result-meta">${item.category}</div>
+        </a>
+      `).join('');
+    }
+    
+    if (globalSearchInput) {
+      globalSearchInput.addEventListener('input', (e) => {
+        renderSearchResults(e.target.value.toLowerCase().trim());
+      });
+    }
+  }
+
+  // 5. Mobile Bottom Sticky Nav Scroll Hide/Show
+  const bottomNav = document.getElementById('mobile-bottom-nav');
+  if (bottomNav) {
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.scrollY;
+      
+      if (currentScroll > 150 && currentScroll > lastScrollTop) {
+        bottomNav.classList.add('nav-hidden');
+      } else {
+        bottomNav.classList.remove('nav-hidden');
+      }
+      lastScrollTop = currentScroll;
+    }, { passive: true });
+  }
+
 });
 
