@@ -49,7 +49,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
 
   <!-- GSAP Animation Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -484,11 +484,17 @@
             </a>
             <a href="#sample-report" class="btn-outline btn-outline-hero" id="hero-book-btn">View Sample Report</a>
           </div>
+
+          <!-- Scroll Indicator (mobile only) -->
+          <div class="hero-scroll-indicator">
+            <span>Scroll</span>
+            <svg class="scroll-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
         </div>
       </section>
 
-      <!-- Trust Section -->
-      <section id="trust-section" class="trust-section">
+      <!-- Trust Section (hidden on mobile — stats absorbed into hero badge) -->
+      <section id="trust-section" class="trust-section mobile-hidden">
         <div class="trust-container">
           <div class="trust-stat-card">
             <h3 class="stat-number" data-target="24">0</h3>
@@ -518,6 +524,7 @@
 
       <!-- Why Astro-Interiors Section -->
       <section id="discover" class="discover-section scroll-reveal">
+        <!-- Desktop layout (hidden on mobile via CSS) -->
         <div class="discover-container">
           <div class="discover-content">
             <span class="section-subtitle">The Missing Element in Spatial Wellness</span>
@@ -556,10 +563,43 @@
             </div>
           </div>
         </div>
+
+        <!-- Mobile-only: Why Different Swipe Cards -->
+        <div class="mobile-why-section">
+          <div class="section-header" style="text-align: center; margin-bottom: 1.5rem; padding: 0 1.5rem;">
+            <span class="section-subtitle">Why Astro Interior</span>
+            <h2 class="section-title">Design That Aligns With You</h2>
+          </div>
+          <div class="mobile-swipe-rail" id="why-swipe-rail">
+            <div class="why-card">
+              <div class="why-card-icon">🏠</div>
+              <h4>Beyond Beautiful</h4>
+              <p>Luxury interiors can still cause restless sleep, stalled careers, or domestic friction. We fix the invisible layer — your space's energy alignment.</p>
+              <a href="#contact" class="why-card-cta">Learn more →</a>
+            </div>
+            <div class="why-card">
+              <div class="why-card-icon">✦</div>
+              <h4>Birth Chart Intelligence</h4>
+              <p>Unlike generic Vastu, we overlay your personal natal chart onto your floorplan. Every color, material, and furniture position is calibrated to your cosmic blueprint.</p>
+              <a href="#contact" class="why-card-cta">Learn more →</a>
+            </div>
+            <div class="why-card">
+              <div class="why-card-icon">⚡</div>
+              <h4>Non-Destructive Remedies</h4>
+              <p>No demolition. No construction. We transform your space through strategic color shifts, furniture repositioning, and material upgrades that integrate seamlessly.</p>
+              <a href="#contact" class="why-card-cta">Learn more →</a>
+            </div>
+          </div>
+          <div class="swipe-dots" id="why-swipe-dots">
+            <button class="swipe-dot active" aria-label="Card 1"></button>
+            <button class="swipe-dot" aria-label="Card 2"></button>
+            <button class="swipe-dot" aria-label="Card 3"></button>
+          </div>
+        </div>
       </section>
 
-      <!-- Interactive Calibration Studio -->
-      <section id="calibration-studio" class="calibration-studio-section" style="padding: 8rem 2rem; background-color: var(--c-bg-secondary); border-top: 1px solid var(--c-accent-border); border-bottom: 1px solid var(--c-accent-border);">
+      <!-- Interactive Calibration Studio (hidden on mobile) -->
+      <section id="calibration-studio" class="calibration-studio-section mobile-hidden" style="padding: 8rem 2rem; background-color: var(--c-bg-secondary); border-top: 1px solid var(--c-accent-border); border-bottom: 1px solid var(--c-accent-border);">
         <div style="max-width: 1200px; margin: 0 auto;">
           <div class="section-header" style="text-align: center; margin-bottom: 4rem;">
             <div class="section-icon-wrap" style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
@@ -647,8 +687,8 @@
         </div>
       </section>
 
-      <!-- About AstroInterior (Benefits cards) -->
-      <section id="about" class="benefits-section">
+      <!-- About AstroInterior (Benefits cards — hidden on mobile, absorbed into Why Different) -->
+      <section id="about" class="benefits-section mobile-hidden">
         <div class="section-header">
           <div class="section-icon-wrap" style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
             <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--c-accent)" stroke-width="1">
@@ -714,6 +754,41 @@
           <h2 class="section-title">Astro-Interior Spatial Advisory</h2>
         </div>
         
+        <!-- Mobile Services Summary Cards -->
+        <div class="mobile-services-summary">
+          <div class="service-summary-card" data-sheet="services-residential">
+            <div class="service-summary-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div class="service-summary-text">
+              <h4>Residential Astro-Interiors</h4>
+              <p>Peace, prosperity &amp; personal growth</p>
+            </div>
+            <svg class="service-summary-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+          </div>
+          <div class="service-summary-card" data-sheet="services-corporate">
+            <div class="service-summary-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <div class="service-summary-text">
+              <h4>Corporate &amp; Workspaces</h4>
+              <p>Leadership clarity &amp; business growth</p>
+            </div>
+            <svg class="service-summary-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+          </div>
+          <div class="service-summary-card" data-sheet="services-hospitality">
+            <div class="service-summary-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v12M6 12h12"/></svg>
+            </div>
+            <div class="service-summary-text">
+              <h4>Hospitality &amp; Commercial</h4>
+              <p>Guest comfort &amp; brand resonance</p>
+            </div>
+            <svg class="service-summary-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+          </div>
+        </div>
+
+        <!-- Desktop Services Grid -->
         <div class="services-columns-grid">
           <!-- Card 1: Residential -->
           <div class="service-adv-card">
@@ -918,6 +993,54 @@
           <span class="section-subtitle">Our Methodology</span>
           <h2 class="section-title">Your Alignment Journey</h2>
           <p class="section-desc">Five deliberate, structured steps to align your space with your cosmic blueprint.</p>
+
+          <!-- Mobile Process Cards (visible only on mobile) -->
+          <div class="mobile-process-section">
+            <div class="mobile-swipe-rail" id="process-swipe-rail">
+              <div class="mobile-process-card">
+                <div class="step-num">01</div>
+                <h4>Strategic Consultation</h4>
+                <p>We map your spatial challenges, lifestyle priorities, and design preferences in a comprehensive initial session.</p>
+                <div class="process-chips">
+                  <span class="process-chip-tag">✓ Lifestyle Assessment</span>
+                  <span class="process-chip-tag">✓ Goal Mapping</span>
+                </div>
+              </div>
+              <div class="mobile-process-card">
+                <div class="step-num">02</div>
+                <h4>Astro-Natal Mapping</h4>
+                <p>We decode occupant birth charts and planetary cycles to map astrological alignments and energetic requirements.</p>
+                <div class="process-chips">
+                  <span class="process-chip-tag">✓ Birth Chart Casting</span>
+                  <span class="process-chip-tag">✓ Dasha Audits</span>
+                </div>
+              </div>
+              <div class="mobile-process-card">
+                <div class="step-num">03</div>
+                <h4>Spatial Energy Audit</h4>
+                <p>A deep-dive assessment measuring entrance doors, directional coordinates, room locations, and layout circulation.</p>
+                <div class="process-chips">
+                  <span class="process-chip-tag">✓ Grid Mapping</span>
+                  <span class="process-chip-tag">✓ Directional Axis</span>
+                </div>
+              </div>
+              <div class="mobile-process-card">
+                <div class="step-num">04</div>
+                <h4>Blueprint Delivery</h4>
+                <p>You receive a detailed room-by-room PDF blueprint with precise coordinates, color systems, and implementation actions.</p>
+                <div class="process-chips">
+                  <span class="process-chip-tag">✓ Spatial Blueprint PDF</span>
+                  <span class="process-chip-tag">✓ Action Plan</span>
+                </div>
+              </div>
+            </div>
+            <div class="swipe-dots" id="process-swipe-dots">
+              <button class="swipe-dot active" aria-label="Step 1"></button>
+              <button class="swipe-dot" aria-label="Step 2"></button>
+              <button class="swipe-dot" aria-label="Step 3"></button>
+              <button class="swipe-dot" aria-label="Step 4"></button>
+            </div>
+          </div>
         </div>
         
         <div class="process-showcase-container">
@@ -1192,8 +1315,8 @@
         </div>
       </section>
 
-      <!-- Editorial Section: Unique Homes -->
-      <section class="editorial-quote-section scroll-reveal" style="background-color: var(--c-bg-secondary); padding: 10rem 2rem; border-top: 1px solid var(--c-accent-border); border-bottom: 1px solid var(--c-accent-border);">
+      <!-- Editorial Section: Unique Homes (hidden on mobile) -->
+      <section class="editorial-quote-section scroll-reveal mobile-hidden" style="background-color: var(--c-bg-secondary); padding: 10rem 2rem; border-top: 1px solid var(--c-accent-border); border-bottom: 1px solid var(--c-accent-border);">
         <div class="editorial-container" style="max-width: 900px; margin: 0 auto; text-align: center;">
           <h3 class="editorial-heading" style="font-family: var(--font-heading); font-size: 2.8rem; color: var(--c-text-primary); margin-bottom: 2.5rem; line-height: 1.25;">
             Every Home Should Be as Unique as the People Living in It
@@ -1320,9 +1443,12 @@
             </div>
           </div>
         </div>
+        <div style="text-align: center; padding: 0 1.5rem;">
+          <a href="gallery.html" class="portfolio-see-all-btn">See All Projects →</a>
+        </div>
 
-        <!-- Transformation Thinking Case Studies -->
-        <div class="transformation-case-studies" style="max-width: 1200px; margin: 6rem auto 2rem; padding: 0 1rem;">
+        <!-- Transformation Thinking Case Studies (hidden on mobile) -->
+        <div class="transformation-case-studies mobile-hidden" style="max-width: 1200px; margin: 6rem auto 2rem; padding: 0 1rem;">
           <div class="section-header" style="max-width: 800px; margin: 0 auto 3rem; text-align: center;">
             <span class="section-subtitle">Case Studies</span>
             <h3 class="section-title" style="font-family: var(--font-heading); font-size: 2.2rem; color: var(--c-text-primary); margin-bottom: 1.2rem;">Transformation Case Studies</h3>
@@ -1386,8 +1512,8 @@
       </section>
 
 
-      <!-- Before & After Comparison Slider -->
-      <section id="before-after" class="before-after-section">
+      <!-- Before & After Comparison Slider (hidden on mobile) -->
+      <section id="before-after" class="before-after-section mobile-hidden">
         <div class="section-header">
           <span class="section-subtitle">Visual Proof</span>
           <h2 class="section-title">The Impact of Alignment</h2>
@@ -1424,8 +1550,8 @@
         </div>
       </section>
 
-      <!-- About the Founder -->
-      <section id="founder" class="founder-section">
+      <!-- About the Founder (hidden on mobile — available via bottom sheet) -->
+      <section id="founder" class="founder-section mobile-hidden">
         <div class="founder-editorial-grid">
           <div class="founder-visual-wrap">
             <img src="assets/founder_richa.png" alt="Richa Agarwal, Lead Astro-Interior Consultant">
@@ -1614,6 +1740,7 @@
         <div class="testimonials-slider-grid ios-swipe-rail">
           <!-- Card 1 -->
           <div class="testimonial-lux-card">
+            <div class="test-stars">★★★★★</div>
             <p class="test-quote">"After shifting our bed to the recommended Southwest coordinates and switching to warm earth tones, the restless sleeping patterns my husband suffered from for years disappeared within a week. The design is elegant, and the Vastu solutions are integrated invisibly."</p>
             <div class="test-user">
               <img src="assets/room_after.png" alt="Testimonial Room" class="test-user-img">
@@ -1625,6 +1752,7 @@
           </div>
           <!-- Card 2 -->
           <div class="testimonial-lux-card">
+            <div class="test-stars">★★★★★</div>
             <p class="test-quote">"Richa aligned our corporate offices in Mumbai. Her desk positions, element-based zoning, and light fixtures transformed our workspace energy. Not only did office morale improve, but our quarterly acquisitions grew by 35%. Astounding and luxury design at its best!"</p>
             <div class="test-user">
               <img src="assets/gallery_office.png" alt="Testimonial Room" class="test-user-img">
@@ -2162,7 +2290,78 @@
 
   </main>
 
-  <!-- Floating Sample Report Button -->
+  <!-- ✦ Mobile Expandable FAB (replaces scattered floating buttons on mobile) -->
+  <div class="mobile-fab" id="mobile-fab">
+    <div class="mobile-fab-actions">
+      <a href="#contact" class="fab-action">
+        <div class="fab-action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <span class="fab-action-label">Book Consultation</span>
+      </a>
+      <a href="https://wa.me/917838048195?text=Hello%20AstroInterior%2C%20I%20would%20like%20to%20book%20an%20Astro%20Interior%20Consultation." target="_blank" rel="noopener" class="fab-action">
+        <div class="fab-action-btn" style="color: #25D366;">
+          <svg viewBox="0 0 16 16" fill="currentColor" width="20" height="20"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326z"/></svg>
+        </div>
+        <span class="fab-action-label">WhatsApp</span>
+      </a>
+      <a href="tel:+917838048195" class="fab-action">
+        <div class="fab-action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <span class="fab-action-label">Call Now</span>
+      </a>
+      <a href="assets/Transcend_Astro_Sample_Report.pdf" download="AstroInterior Sample Report.pdf" class="fab-action">
+        <div class="fab-action-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+        </div>
+        <span class="fab-action-label">Sample Report</span>
+      </a>
+    </div>
+    <button class="mobile-fab-trigger" id="mobile-fab-trigger" aria-label="Quick actions">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    </button>
+  </div>
+
+  <!-- Bottom Sheet Backdrop -->
+  <div class="bottom-sheet-backdrop" id="bottom-sheet-backdrop"></div>
+
+  <!-- Services Detail Bottom Sheet -->
+  <div class="bottom-sheet" id="services-bottom-sheet">
+    <div class="bottom-sheet-handle"></div>
+    <div class="bottom-sheet-header">
+      <h3 id="services-sheet-title">Service Details</h3>
+      <button class="bottom-sheet-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="bottom-sheet-body" id="services-sheet-body">
+      <!-- Content injected dynamically by JS -->
+    </div>
+  </div>
+
+  <!-- Founder Bottom Sheet -->
+  <div class="bottom-sheet" id="founder-bottom-sheet">
+    <div class="bottom-sheet-handle"></div>
+    <div class="bottom-sheet-header">
+      <h3>Meet the Founder</h3>
+      <button class="bottom-sheet-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="bottom-sheet-body">
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <img src="assets/founder_richa.png" alt="Richa Agarwal" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--c-accent-border);">
+      </div>
+      <h4 style="font-family: var(--font-heading); font-size: 1.3rem; text-align: center; margin-bottom: 0.25rem;">Richa Agarwal</h4>
+      <p style="text-align: center; font-size: 0.82rem; color: var(--c-accent); margin-bottom: 1.5rem;">Pioneer of Astro-Interior Advisory</p>
+      <p style="font-size: 0.9rem; line-height: 1.7; color: var(--c-text-secondary); margin-bottom: 1rem;">With over 24 years of experience delivering award-winning interiors, Richa founded AstroInterior to bridge architectural layout and cosmic energy.</p>
+      <p style="font-size: 0.9rem; line-height: 1.7; color: var(--c-text-secondary); margin-bottom: 1.5rem;">By integrating modern architecture, environmental psychology, and Vedic astrological calculations, she provides a sophisticated design approach that supports your life trajectory.</p>
+      <div style="display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 1.5rem;">
+        <div style="text-align: center;"><strong style="font-size: 1.2rem; color: var(--c-text-primary);">24+</strong><br><span style="font-size: 0.78rem; color: var(--c-text-secondary);">Years</span></div>
+        <div style="text-align: center;"><strong style="font-size: 1.2rem; color: var(--c-text-primary);">500+</strong><br><span style="font-size: 0.78rem; color: var(--c-text-secondary);">Spaces Aligned</span></div>
+      </div>
+      <a href="#contact" class="btn-gold" style="width: 100%; text-align: center; display: block; padding: 0.9rem; font-size: 0.88rem; border-radius: 8px;">Book Consultation</a>
+    </div>
+  </div>
+
+
   <a href="assets/Transcend_Astro_Sample_Report.pdf" download="AstroInterior Sample Report.pdf" class="floating-sample-report" id="floating-sample-report" aria-label="Download Sample Report">
     <span class="sample-report-glow"></span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -2278,21 +2477,21 @@
       <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       <span>Home</span>
     </a>
+    <a href="#services" class="mobile-bottom-link" id="nav-btn-services">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Services</span>
+    </a>
     <a href="#portfolio" class="mobile-bottom-link" id="nav-btn-portfolio">
       <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
       <span>Projects</span>
     </a>
+    <a href="#sample-report" class="mobile-bottom-link" id="nav-btn-report">
+      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span>Report</span>
+    </a>
     <a href="#contact" class="mobile-bottom-link" id="nav-btn-consult">
       <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       <span>Consult</span>
-    </a>
-    <a href="https://wa.me/919999999999" class="mobile-bottom-link" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-      <span>WhatsApp</span>
-    </a>
-    <a href="#" class="mobile-bottom-link" id="nav-btn-search">
-      <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <span>Search</span>
     </a>
   </div>
 

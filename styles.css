@@ -7514,4 +7514,878 @@ option {
   text-align: left;
 }
 
+/* ==========================================================================
+   ✦ APPLE-LEVEL MOBILE PRODUCT ARCHITECTURE — COMPLETE REBUILD
+   All rules scoped to mobile via @media. Desktop experience is preserved.
+   ========================================================================== */
+
+/* ── 1. SECTION HIDING SYSTEM ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+}
+
+/* ── 2. HERO — SINGLE VIEWPORT LOCK ──────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-wrapper {
+    height: 100dvh !important;
+    min-height: -webkit-fill-available !important;
+    max-height: 100dvh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    padding: 0 1.5rem !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  .hero-wrapper .hero-content {
+    padding-top: env(safe-area-inset-top, 3.5rem) !important;
+    max-width: 100% !important;
+  }
+  .hero-wrapper h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem) !important;
+    line-height: 1.12 !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .hero-wrapper .hero-subheadline {
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 1.25rem !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+  .hero-wrapper .hero-ctas {
+    gap: 0.75rem !important;
+    flex-wrap: wrap !important;
+  }
+  .hero-wrapper .hero-ctas .btn-gold-hero,
+  .hero-wrapper .hero-ctas .btn-outline-hero {
+    padding: 0.9rem 1.8rem !important;
+    font-size: 0.88rem !important;
+    min-height: 52px !important;
+  }
+  .hero-wrapper .hero-badge {
+    margin-bottom: 1rem !important;
+  }
+}
+
+/* Scroll Indicator */
+.hero-scroll-indicator {
+  display: none;
+}
+@media (max-width: 768px) {
+  .hero-scroll-indicator {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    bottom: calc(env(safe-area-inset-bottom, 1rem) + 1.5rem);
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    gap: 0.4rem;
+    z-index: 5;
+  }
+  .hero-scroll-indicator .scroll-chevron {
+    width: 20px;
+    height: 20px;
+    animation: scrollBounce 2s ease-in-out infinite;
+  }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(6px); opacity: 1; }
+  }
+}
+
+/* ── 3. BOTTOM SHEET COMPONENT ────────────────────────────────────────────── */
+.bottom-sheet-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.bottom-sheet-backdrop.active {
+  display: block;
+  opacity: 1;
+}
+
+.bottom-sheet {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: var(--c-bg-primary);
+  border-radius: 24px 24px 0 0;
+  max-height: 85dvh;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  will-change: transform;
+}
+.bottom-sheet.active {
+  transform: translateY(0);
+}
+
+.bottom-sheet-handle {
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 0 0.5rem;
+  cursor: grab;
+  flex-shrink: 0;
+}
+.bottom-sheet-handle::after {
+  content: '';
+  width: 36px;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--c-accent-border);
+}
+
+.bottom-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--c-accent-border);
+  flex-shrink: 0;
+}
+.bottom-sheet-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--c-text-primary);
+  margin: 0;
+  font-weight: 500;
+}
+.bottom-sheet-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--c-text-secondary);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.bottom-sheet-close:hover {
+  background: var(--c-accent-glow);
+}
+.bottom-sheet-body {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 1.5rem;
+  overscroll-behavior: contain;
+}
+
+/* ── 4. SWIPE CAROUSEL RAIL ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .mobile-swipe-rail {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 1rem !important;
+    padding: 0.5rem 1.5rem 1.5rem !important;
+    margin: 0 -1.5rem !important;
+    scrollbar-width: none !important;
+  }
+  .mobile-swipe-rail::-webkit-scrollbar {
+    display: none !important;
+  }
+  .mobile-swipe-rail > * {
+    scroll-snap-align: center !important;
+    flex: 0 0 85% !important;
+    max-width: 85% !important;
+  }
+}
+/* Desktop fallback */
+@media (min-width: 769px) {
+  .mobile-swipe-rail {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+}
+
+/* Swipe Dot Indicators */
+.swipe-dots {
+  display: none;
+}
+@media (max-width: 768px) {
+  .swipe-dots {
+    display: flex !important;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0 1rem;
+  }
+  .swipe-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--c-accent-border);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+  }
+  .swipe-dot.active {
+    background: var(--c-accent);
+    width: 20px;
+    border-radius: 4px;
+  }
+}
+
+/* ── 5. EXPANDABLE FAB (Floating Action Button) ──────────────────────────── */
+.mobile-fab {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-fab {
+    display: flex;
+    position: fixed;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.5rem);
+    right: 1.25rem;
+    z-index: 9990;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+  }
+  .mobile-fab-trigger {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--c-accent);
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(200, 161, 90, 0.4);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+    position: relative;
+    z-index: 2;
+  }
+  .mobile-fab-trigger:active {
+    transform: scale(0.92);
+  }
+  .mobile-fab-trigger svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+  }
+  .mobile-fab.expanded .mobile-fab-trigger svg {
+    transform: rotate(45deg);
+  }
+  
+  .mobile-fab-actions {
+    position: absolute;
+    bottom: 100%;
+    right: 4px;
+    margin-bottom: 0.75rem;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+    align-items: flex-end;
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+  }
+  .mobile-fab.expanded .mobile-fab-actions {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  
+  .fab-action {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-direction: row-reverse;
+    text-decoration: none;
+  }
+  .fab-action-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #FFF;
+    border: 1px solid var(--c-accent-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    color: var(--c-text-primary);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .fab-action-btn:active {
+    transform: scale(0.9);
+  }
+  .fab-action-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  .fab-action-label {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--c-text-primary);
+    background: #FFF;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    white-space: nowrap;
+  }
+
+  /* Hide old floating elements on mobile */
+  .whatsapp-fab,
+  .floating-sample-report,
+  .back-to-top-btn,
+  .mobile-sticky-cta,
+  .floating-book-consult-btn-desktop {
+    display: none !important;
+  }
+}
+
+/* ── 6. UPDATED BOTTOM NAVIGATION BAR ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(24px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+    border-radius: 0 !important;
+    z-index: 9995 !important;
+    display: flex !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    padding: 0.5rem 0 calc(env(safe-area-inset-bottom, 0.25rem) + 0.25rem) !important;
+    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1) !important;
+  }
+  .mobile-bottom-nav.nav-hidden {
+    transform: translateY(100%) !important;
+  }
+  .mobile-bottom-link {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.15rem !important;
+    text-decoration: none !important;
+    color: var(--c-text-secondary) !important;
+    font-size: 0.62rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.02em !important;
+    min-width: 56px !important;
+    min-height: 44px !important;
+    justify-content: center !important;
+    -webkit-tap-highlight-color: transparent !important;
+    transition: color 0.2s ease !important;
+    position: relative !important;
+  }
+  .mobile-bottom-link.active {
+    color: var(--c-accent) !important;
+  }
+  .mobile-bottom-link svg {
+    width: 22px !important;
+    height: 22px !important;
+    stroke-width: 1.8 !important;
+  }
+}
+
+/* ── 7. WHY DIFFERENT — MOBILE SWIPE CARDS ────────────────────────────────── */
+@media (max-width: 768px) {
+  .why-card {
+    background: #FFF;
+    border: 1px solid var(--c-accent-border);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .why-card-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+  .why-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--c-text-primary);
+    margin: 0;
+    font-weight: 500;
+  }
+  .why-card p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--c-text-secondary);
+    margin: 0;
+  }
+  .why-card .why-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--c-accent);
+    text-decoration: none;
+    margin-top: 0.5rem;
+  }
+}
+
+/* ── 8. SERVICES SUMMARY CARDS (mobile) ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .service-summary-card {
+    background: #FFF;
+    border: 1px solid var(--c-accent-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--card-shadow);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .service-summary-card:active {
+    transform: scale(0.97);
+  }
+  .service-summary-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--c-accent-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--c-accent);
+  }
+  .service-summary-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  .service-summary-text h4 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--c-text-primary);
+    margin: 0 0 0.2rem;
+    font-weight: 500;
+  }
+  .service-summary-text p {
+    font-size: 0.82rem;
+    color: var(--c-text-secondary);
+    margin: 0;
+    line-height: 1.4;
+  }
+  .service-summary-arrow {
+    margin-left: auto;
+    color: var(--c-accent-border);
+    flex-shrink: 0;
+  }
+}
+
+/* ── 9. PROCESS — MOBILE HORIZONTAL STEPS ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .mobile-process-card {
+    background: #FFF;
+    border: 1px solid var(--c-accent-border);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    box-shadow: var(--card-shadow);
+    text-align: left;
+  }
+  .mobile-process-card .step-num {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: var(--c-accent);
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .mobile-process-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--c-text-primary);
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+  }
+  .mobile-process-card p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--c-text-secondary);
+    margin: 0;
+  }
+  .mobile-process-card .process-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+  .mobile-process-card .process-chip-tag {
+    font-size: 0.72rem;
+    padding: 0.3rem 0.6rem;
+    background: var(--c-accent-glow);
+    border: 1px solid var(--c-accent-border);
+    border-radius: 6px;
+    color: var(--c-text-secondary);
+  }
+}
+
+/* ── 10. PORTFOLIO — MOBILE GALLERY ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .portfolio-filters-container {
+    display: none !important;
+  }
+  .portfolio-masonry-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 1rem !important;
+    padding: 0.5rem 1.5rem 1rem !important;
+    margin: 0 -1.5rem !important;
+    scrollbar-width: none !important;
+  }
+  .portfolio-masonry-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+  .portfolio-masonry-grid .portfolio-item {
+    scroll-snap-align: center !important;
+    flex: 0 0 80% !important;
+    max-width: 80% !important;
+    aspect-ratio: 4/3 !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+  .portfolio-masonry-grid .portfolio-item img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  /* Hide items beyond 6 on mobile */
+  .portfolio-masonry-grid .portfolio-item:nth-child(n+7) {
+    display: none !important;
+  }
+  .portfolio-see-all-btn {
+    display: block !important;
+  }
+}
+@media (min-width: 769px) {
+  .portfolio-see-all-btn {
+    display: none !important;
+  }
+}
+.portfolio-see-all-btn {
+  display: none;
+  text-align: center;
+  margin: 1rem auto 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--c-accent);
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--c-accent-border);
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+/* ── 11. PACKAGES — MOBILE SWIPE ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .packages-grid-pricing {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 1rem !important;
+    padding: 0.5rem 1.5rem 1.5rem !important;
+    margin: 0 -1.5rem !important;
+    scrollbar-width: none !important;
+  }
+  .packages-grid-pricing::-webkit-scrollbar {
+    display: none !important;
+  }
+  .packages-grid-pricing .package-pricing-card {
+    scroll-snap-align: center !important;
+    flex: 0 0 82% !important;
+    max-width: 82% !important;
+    margin: 0 !important;
+  }
+}
+
+/* ── 12. TESTIMONIALS — SWIPE CAROUSEL ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .testimonials-slider-grid {
+    display: flex !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 1rem !important;
+    padding: 0.5rem 1.5rem 1rem !important;
+    margin: 0 -1.5rem !important;
+    scrollbar-width: none !important;
+  }
+  .testimonials-slider-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+  .testimonials-slider-grid .testimonial-lux-card {
+    scroll-snap-align: center !important;
+    flex: 0 0 88% !important;
+    max-width: 88% !important;
+  }
+  .test-stars {
+    color: #F5A623;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* ── 13. MOBILE SECTIONS — VISUAL RHYTHM ──────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Consistent section spacing */
+  .discover-section,
+  .process-section,
+  .portfolio-section,
+  .sample-report-section,
+  .testimonials-section-home,
+  .faq-section-home,
+  .contact-split-section,
+  .packages-pricing-section {
+    padding: 3.5rem 1.5rem !important;
+  }
+
+  /* Smaller section titles on mobile */
+  .section-title {
+    font-size: 1.8rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .section-desc {
+    font-size: 0.88rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Body text max 3 mobile lines */
+  .service-adv-text,
+  .discover-desc,
+  .editorial-body p,
+  .founder-story-body p {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* ── 14. MICRO-INTERACTIONS ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Button press */
+  .btn-gold,
+  .btn-outline,
+  .pkg-btn,
+  .portfolio-filter-btn {
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  .btn-gold:active,
+  .btn-outline:active,
+  .pkg-btn:active {
+    transform: scale(0.96) !important;
+  }
+  
+  /* Card lift */
+  .benefit-card,
+  .package-pricing-card,
+  .testimonial-lux-card,
+  .why-card,
+  .mobile-process-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+
+  /* Touch targets */
+  .btn-gold,
+  .btn-outline,
+  .faq-header,
+  .portfolio-filter-btn,
+  .mobile-bottom-link,
+  .fab-action-btn,
+  .bottom-sheet-close {
+    min-height: 48px !important;
+    min-width: 48px !important;
+  }
+}
+
+/* ── 15. COMPACT MOBILE FOOTER ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .minimal-footer {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5rem) !important;
+  }
+  .footer-grid-layout {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    padding: 2rem 1.5rem !important;
+  }
+  .footer-brand-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.6 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .footer-links-column ul {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.4rem 1rem !important;
+  }
+  .footer-links-column ul li a {
+    font-size: 0.82rem !important;
+    padding: 0.35rem 0 !important;
+  }
+}
+
+/* ── 16. CONTACT FORM — MOBILE COMPACT ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .contact-split-container {
+    grid-template-columns: 1fr !important;
+  }
+  .contact-split-visual {
+    display: none !important;
+  }
+  .contact-split-form-wrap {
+    padding: 2rem 1.5rem !important;
+  }
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+}
+
+/* ── 17. MOBILE "EXPLORE MORE" LINK STYLE ─────────────────────────────────── */
+.mobile-explore-link {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-explore-link {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--c-accent);
+    text-decoration: none;
+    padding: 0.6rem 0;
+    -webkit-tap-highlight-color: transparent;
+    font-family: var(--font-body);
+  }
+  .mobile-explore-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+  .mobile-explore-link:active svg {
+    transform: translateX(3px);
+  }
+}
+
+/* ── 18. BODY SCROLL LOCK ─────────────────────────────────────────────────── */
+body.scroll-locked {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ── 19. MOBILE SERVICES SUMMARY SECTION ──────────────────────────────────── */
+.mobile-services-summary {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-services-summary {
+    display: flex !important;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0 1.5rem;
+  }
+  .services-columns-grid {
+    display: none !important;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-services-summary {
+    display: none !important;
+  }
+}
+
+/* ── 20. MOBILE WHY-DIFFERENT SECTION ─────────────────────────────────────── */
+.mobile-why-section {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-why-section {
+    display: block !important;
+  }
+  /* Hide the desktop discover layout on mobile */
+  .discover-container {
+    display: none !important;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-why-section {
+    display: none !important;
+  }
+}
+
+/* ── 21. MOBILE PROCESS SECTION ───────────────────────────────────────────── */
+.mobile-process-section {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-process-section {
+    display: block !important;
+  }
+  .process-showcase-container {
+    display: none !important;
+  }
+}
+@media (min-width: 769px) {
+  .mobile-process-section {
+    display: none !important;
+  }
+}
+
 

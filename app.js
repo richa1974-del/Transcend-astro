@@ -1734,5 +1734,244 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-});
+  // ==========================================================================
+  // ✦ APPLE-LEVEL MOBILE PRODUCT ARCHITECTURE — INTERACTION MODULE
+  // ==========================================================================
 
+  const isMobile = () => window.innerWidth <= 768;
+
+  // ── FAB Controller ──────────────────────────────────────────────────────
+  const fab = document.getElementById('mobile-fab');
+  const fabTrigger = document.getElementById('mobile-fab-trigger');
+  
+  if (fabTrigger && fab) {
+    fabTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fab.classList.toggle('expanded');
+    });
+    
+    // Close FAB on outside tap
+    document.addEventListener('click', (e) => {
+      if (fab.classList.contains('expanded') && !fab.contains(e.target)) {
+        fab.classList.remove('expanded');
+      }
+    });
+    
+    // Close FAB on action click
+    fab.querySelectorAll('.fab-action').forEach(action => {
+      action.addEventListener('click', () => {
+        fab.classList.remove('expanded');
+      });
+    });
+
+    // Auto-hide FAB on scroll down, show on scroll up
+    let fabLastScroll = 0;
+    window.addEventListener('scroll', () => {
+      if (!isMobile()) return;
+      const currentScroll = window.scrollY;
+      if (currentScroll > 200 && currentScroll > fabLastScroll) {
+        fab.style.transform = 'translateY(120px)';
+        fab.style.opacity = '0';
+        fab.style.pointerEvents = 'none';
+      } else {
+        fab.style.transform = '';
+        fab.style.opacity = '';
+        fab.style.pointerEvents = '';
+      }
+      fabLastScroll = currentScroll;
+    }, { passive: true });
+  }
+
+  // ── Bottom Sheet Engine ─────────────────────────────────────────────────
+  const sheetBackdrop = document.getElementById('bottom-sheet-backdrop');
+  let activeSheet = null;
+  let scrollPos = 0;
+  
+  window.openBottomSheet = function openBottomSheet(sheetId) {
+    const sheet = document.getElementById(sheetId);
+    if (!sheet) return;
+    
+    scrollPos = window.scrollY;
+    activeSheet = sheet;
+    
+    document.body.classList.add('scroll-locked');
+    document.body.style.top = `-${scrollPos}px`;
+    
+    if (sheetBackdrop) {
+      sheetBackdrop.style.display = 'block';
+      requestAnimationFrame(() => sheetBackdrop.classList.add('active'));
+    }
+    requestAnimationFrame(() => sheet.classList.add('active'));
+  }
+  
+  window.closeBottomSheet = function closeBottomSheet() {
+    if (!activeSheet) return;
+    
+    activeSheet.classList.remove('active');
+    if (sheetBackdrop) {
+      sheetBackdrop.classList.remove('active');
+      setTimeout(() => { sheetBackdrop.style.display = 'none'; }, 300);
+    }
+    
+    document.body.classList.remove('scroll-locked');
+    document.body.style.top = '';
+    window.scrollTo(0, scrollPos);
+    
+    activeSheet = null;
+  }
+  
+  // Close sheet on backdrop click
+  if (sheetBackdrop) {
+    sheetBackdrop.addEventListener('click', closeBottomSheet);
+  }
+  
+  // Close sheet on X button
+  document.querySelectorAll('.bottom-sheet-close').forEach(btn => {
+    btn.addEventListener('click', closeBottomSheet);
+  });
+  
+  // ── Service Summary Card → Bottom Sheet ─────────────────────────────────
+  const servicesSheetBody = document.getElementById('services-sheet-body');
+  const servicesSheetTitle = document.getElementById('services-sheet-title');
+  
+  const serviceDetails = {
+    'services-residential': {
+      title: 'Residential Astro-Interiors',
+      html: `
+        <p style="font-size: 0.9rem; line-height: 1.7; color: var(--c-text-secondary); margin-bottom: 1.25rem;">Create a home designed to support peace, prosperity, health, and personal growth — tailored to your unique birth chart.</p>
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--c-text-primary);">Client Challenges</h4>
+        <p style="font-size: 0.88rem; line-height: 1.6; color: var(--c-text-secondary); margin-bottom: 1.25rem;">Emotional stagnation in living areas, chronic fatigue in bedrooms, or communication blockages in shared family zones.</p>
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--c-text-primary);">Our Approach</h4>
+        <ul style="font-size: 0.88rem; line-height: 1.8; color: var(--c-text-secondary); padding-left: 1.2rem; margin-bottom: 1.25rem;">
+          <li>Align home layout to natal chart elemental grid</li>
+          <li>Stabilize Earth/Water zones for grounded relationships</li>
+          <li>Activate Fire zones for health and vitality</li>
+        </ul>
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--c-text-primary);">Key Deliverables</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem;">
+          <span style="font-size: 0.75rem; padding: 0.3rem 0.7rem; background: var(--c-accent-glow); border: 1px solid var(--c-accent-border); border-radius: 6px; color: var(--c-text-secondary);">✓ Room Directional Map</span>
+          <span style="font-size: 0.75rem; padding: 0.3rem 0.7rem; background: var(--c-accent-glow); border: 1px solid var(--c-accent-border); border-radius: 6px; color: var(--c-text-secondary);">✓ Elements Palette Guide</span>
+          <span style="font-size: 0.75rem; padding: 0.3rem 0.7rem; background: var(--c-accent-glow); border: 1px solid var(--c-accent-border); border-radius: 6px; color: var(--c-text-secondary);">✓ Layout Adjustments</span>
+        </div>
+        <a href="#contact" class="btn-gold" style="width: 100%; text-align: center; display: block; padding: 0.9rem; font-size: 0.88rem; border-radius: 8px;" onclick="closeBottomSheet()">Book Residential Consultation</a>
+      `
+    },
+    'services-corporate': {
+      title: 'Corporate & Workspaces',
+      html: `
+        <p style="font-size: 0.9rem; line-height: 1.7; color: var(--c-text-secondary); margin-bottom: 1.25rem;">Unlock professional flow, leadership clarity, and strategic business growth through cosmic alignment.</p>
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--c-text-primary);">Client Challenges</h4>
+        <p style="font-size: 0.88rem; line-height: 1.6; color: var(--c-text-secondary); margin-bottom: 1.25rem;">High employee friction, decision-making delays, or recurring financial blockages despite market opportunities.</p>
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--c-text-primary);">Our Approach</h4>
+        <ul style="font-size: 0.88rem; line-height: 1.8; color: var(--c-text-secondary); padding-left: 1.2rem; margin-bottom: 1.25rem;">
+          <li>Align executive desks to Mercury/Jupiter command coordinates</li>
+          <li>Calibrate lighting frequency and color notes for mental sharpness</li>
+          <li>Optimize seating positions for strategic flow</li>
+        </ul>
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--c-text-primary);">Key Deliverables</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem;">
+          <span style="font-size: 0.75rem; padding: 0.3rem 0.7rem; background: var(--c-accent-glow); border: 1px solid var(--c-accent-border); border-radius: 6px; color: var(--c-text-secondary);">✓ Desk Layout Plan</span>
+          <span style="font-size: 0.75rem; padding: 0.3rem 0.7rem; background: var(--c-accent-glow); border: 1px solid var(--c-accent-border); border-radius: 6px; color: var(--c-text-secondary);">✓ Energy Alignments</span>
+          <span style="font-size: 0.75rem; padding: 0.3rem 0.7rem; background: var(--c-accent-glow); border: 1px solid var(--c-accent-border); border-radius: 6px; color: var(--c-text-secondary);">✓ Boardroom Command Map</span>
+        </div>
+        <a href="#contact" class="btn-gold" style="width: 100%; text-align: center; display: block; padding: 0.9rem; font-size: 0.88rem; border-radius: 8px;" onclick="closeBottomSheet()">Optimize My Workspace</a>
+      `
+    },
+    'services-hospitality': {
+      title: 'Hospitality & Commercial',
+      html: `
+        <p style="font-size: 0.9rem; line-height: 1.7; color: var(--c-text-secondary); margin-bottom: 1.25rem;">Elevate guest comfort, customer retention, and brand resonance through energy-aligned spatial design.</p>
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--c-text-primary);">Client Challenges</h4>
+        <p style="font-size: 0.88rem; line-height: 1.6; color: var(--c-text-secondary); margin-bottom: 1.25rem;">Low retention rates, inconsistent reviews, or sluggish revenue cycles in hotels, spas, or retail.</p>
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--c-text-primary);">Our Approach</h4>
+        <ul style="font-size: 0.88rem; line-height: 1.8; color: var(--c-text-secondary); padding-left: 1.2rem; margin-bottom: 1.25rem;">
+          <li>Design spatial traffic patterns for immediate comfort</li>
+          <li>Audit entrance portals and reception zones for sensory delight</li>
+          <li>Optimize material choices for brand resonance</li>
+        </ul>
+        <h4 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--c-text-primary);">Key Deliverables</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem;">
+          <span style="font-size: 0.75rem; padding: 0.3rem 0.7rem; background: var(--c-accent-glow); border: 1px solid var(--c-accent-border); border-radius: 6px; color: var(--c-text-secondary);">✓ Circulation Blueprint</span>
+          <span style="font-size: 0.75rem; padding: 0.3rem 0.7rem; background: var(--c-accent-glow); border: 1px solid var(--c-accent-border); border-radius: 6px; color: var(--c-text-secondary);">✓ Material Palette Guide</span>
+          <span style="font-size: 0.75rem; padding: 0.3rem 0.7rem; background: var(--c-accent-glow); border: 1px solid var(--c-accent-border); border-radius: 6px; color: var(--c-text-secondary);">✓ Entrance Optimization</span>
+        </div>
+        <a href="#contact" class="btn-gold" style="width: 100%; text-align: center; display: block; padding: 0.9rem; font-size: 0.88rem; border-radius: 8px;" onclick="closeBottomSheet()">Improve Commercial Space</a>
+      `
+    }
+  };
+  
+  document.querySelectorAll('.service-summary-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const sheetKey = card.dataset.sheet;
+      const detail = serviceDetails[sheetKey];
+      if (detail && servicesSheetBody && servicesSheetTitle) {
+        servicesSheetTitle.textContent = detail.title;
+        servicesSheetBody.innerHTML = detail.html;
+        openBottomSheet('services-bottom-sheet');
+      }
+    });
+  });
+
+  // ── Swipe Carousel Dot Sync ─────────────────────────────────────────────
+  function initSwipeDots(railId, dotsId) {
+    const rail = document.getElementById(railId);
+    const dotsContainer = document.getElementById(dotsId);
+    if (!rail || !dotsContainer) return;
+    
+    const dots = dotsContainer.querySelectorAll('.swipe-dot');
+    if (!dots.length) return;
+    
+    const updateDots = () => {
+      const children = Array.from(rail.children);
+      if (!children.length) return;
+      
+      const railRect = rail.getBoundingClientRect();
+      const railCenter = railRect.left + railRect.width / 2;
+      
+      let closestIdx = 0;
+      let closestDist = Infinity;
+      children.forEach((child, i) => {
+        const childRect = child.getBoundingClientRect();
+        const childCenter = childRect.left + childRect.width / 2;
+        const dist = Math.abs(childCenter - railCenter);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closestIdx = i;
+        }
+      });
+      
+      dots.forEach((d, i) => d.classList.toggle('active', i === closestIdx));
+    };
+    
+    rail.addEventListener('scroll', updateDots, { passive: true });
+    
+    // Allow dot clicks to scroll to card
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        const children = Array.from(rail.children);
+        if (children[i]) {
+          children[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
+    });
+  }
+  
+  // Initialize all swipe dot indicators
+  if (isMobile()) {
+    initSwipeDots('why-swipe-rail', 'why-swipe-dots');
+    initSwipeDots('process-swipe-rail', 'process-swipe-dots');
+  }
+
+  // Re-init on resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (isMobile()) {
+        initSwipeDots('why-swipe-rail', 'why-swipe-dots');
+        initSwipeDots('process-swipe-rail', 'process-swipe-dots');
+      }
+    }, 250);
+  });
+
+});
