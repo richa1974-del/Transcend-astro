@@ -1,24 +1,36 @@
 {
   "name": "transcend-astro",
-  "version": "2.0.0",
-  "description": "Transcend Astro Consultant Website — Premium Edition",
+  "version": "3.0.0",
+  "description": "AstroInterior Headless Business Operating System (BOS)",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "legacy": "powershell -ExecutionPolicy Bypass -File server.ps1"
   },
-  "keywords": ["astro", "interior", "design", "vastu", "consultation"],
+  "keywords": ["astro", "interior", "design", "vastu", "consultation", "crm", "cms"],
   "author": "Richa Agarwal",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "better-sqlite3": "^9.4.3",
-    "nodemailer": "^6.9.8",
-    "jsonwebtoken": "^9.0.2",
-    "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.1",
-    "multer": "^1.4.5-lts.1"
+    "@dnd-kit/core": "^6.1.0",
+    "@dnd-kit/sortable": "^8.0.0",
+    "@supabase/supabase-js": "^2.39.7",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.8",
+    "lucide-react": "^0.344.0",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
   }
 }
