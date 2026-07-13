@@ -1,6 +1,7 @@
 import React from 'react';
 import { createServerClient } from '@/lib/supabase/server';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 // Dynamic client components for animations / FAB / Sheets
 const MobileFAB = dynamic(() => import('@/components/marketing/ExpandableFAB'), { ssr: false });
@@ -77,7 +78,7 @@ export default async function HomePage({ searchParams }: PageProps) {
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-c-text-secondary">
             <a href="#about" className="hover:text-c-accent transition-colors">About</a>
             <a href="#services" className="hover:text-c-accent transition-colors">Services</a>
-            <a href="#portfolio" className="hover:text-c-accent transition-colors">Portfolio</a>
+            <Link href="/gallery" className="hover:text-c-accent transition-colors">Portfolio</Link>
             <a href="#packages" className="hover:text-c-accent transition-colors">Packages</a>
             <a href="#faq" className="hover:text-c-accent transition-colors">FAQs</a>
           </nav>
@@ -107,7 +108,7 @@ export default async function HomePage({ searchParams }: PageProps) {
           
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <a href="#contact" className="px-8 py-4 bg-c-accent text-white font-medium rounded-lg hover:bg-c-accent/90 transition-all shadow-lg shadow-c-accent/20">Book Spatial Calibration</a>
-            <a href="#portfolio" className="px-8 py-4 bg-white/10 text-white font-medium rounded-lg hover:bg-white/25 transition-all border border-white/30 backdrop-blur-md">Explore Portfolio</a>
+            <Link href="/gallery" className="px-8 py-4 bg-white/10 text-white font-medium rounded-lg hover:bg-white/25 transition-all border border-white/30 backdrop-blur-md">Explore Portfolio</Link>
           </div>
         </div>
       </section>

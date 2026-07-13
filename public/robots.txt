@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /api/
+Disallow: /leads.json
+Disallow: /db.js
+Disallow: /email-service.js
+Disallow: /server.js
+Disallow: /scratch/
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+Sitemap: https://www.astrointerior.in/sitemap.xml

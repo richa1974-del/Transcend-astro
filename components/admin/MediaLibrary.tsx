@@ -23,6 +23,11 @@ export default function MediaLibrary({ initialItems }: MediaLibraryProps) {
   const [items, setItems] = useState<GalleryItem[]>(initialItems);
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<'all' | 'residential' | 'commercial' | 'hospitality' | 'astro'>('all');
+
+  const filteredItems = activeFilter === 'all'
+    ? items
+    : items.filter(item => item.category === activeFilter);
 
   // File Upload Helper
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,9 +146,33 @@ export default function MediaLibrary({ initialItems }: MediaLibraryProps) {
           <input type="file" onChange={handleUpload} disabled={uploading} className="hidden" accept="image/*" />
         </label>
 
+        {/* Category Tabs Filter */}
+        <div className="flex gap-2 border-b border-slate-100 pb-3 flex-wrap">
+          {(['all', 'residential', 'commercial', 'hospitality', 'astro'] as const).map(tab => {
+            const label = tab === 'all' ? 'All Assets' :
+                          tab === 'residential' ? 'Residences' :
+                          tab === 'commercial' ? 'Offices' :
+                          tab === 'hospitality' ? 'Hospitality' : 'Astro Remedies';
+            return (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveFilter(tab)}
+                className={`text-xs px-3 py-1.5 rounded-lg font-medium transition-all ${
+                  activeFilter === tab
+                    ? 'bg-slate-900 text-white shadow-sm'
+                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50 border border-slate-100'
+                }`}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+
         {/* Workspace grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {items.map(item => (
+          {filteredItems.map(item => (
             <div
               key={item.id}
               onClick={() => setSelectedItem(item)}

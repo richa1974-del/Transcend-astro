@@ -1,0 +1,333 @@
+﻿[
+    {
+        "id":  "anshul-renovation",
+        "title":  "Anshul \u0026 Rajan House Renovation",
+        "category":  "residences",
+        "cover":  "assets/gallery/anshul-renovation/proposed back yard.jpg",
+        "images":  [
+                       "assets/gallery/anshul-renovation/acknowledgment.jpg",
+                       "assets/gallery/anshul-renovation/existing back yard.jpg",
+                       "assets/gallery/anshul-renovation/existing drawing room.jpg",
+                       "assets/gallery/anshul-renovation/existing entry.jpg",
+                       "assets/gallery/anshul-renovation/existing guest room.jpg",
+                       "assets/gallery/anshul-renovation/existing kid.jpg",
+                       "assets/gallery/anshul-renovation/existing kitchen.jpg",
+                       "assets/gallery/anshul-renovation/existing kitchen1.jpg",
+                       "assets/gallery/anshul-renovation/existing living.jpg",
+                       "assets/gallery/anshul-renovation/existing master bedroom.jpg",
+                       "assets/gallery/anshul-renovation/existing master dresser.jpg",
+                       "assets/gallery/anshul-renovation/opening.jpg",
+                       "assets/gallery/anshul-renovation/porposed living.jpg",
+                       "assets/gallery/anshul-renovation/proposed back yard.jpg",
+                       "assets/gallery/anshul-renovation/proposed drawing room.jpg",
+                       "assets/gallery/anshul-renovation/proposed dresser.jpg",
+                       "assets/gallery/anshul-renovation/proposed entery.jpg",
+                       "assets/gallery/anshul-renovation/proposed guest.jpg",
+                       "assets/gallery/anshul-renovation/proposed kids.jpg",
+                       "assets/gallery/anshul-renovation/proposed kitchen.jpg",
+                       "assets/gallery/anshul-renovation/proposed master.jpg",
+                       "assets/gallery/anshul-renovation/verandha.jpg",
+                       "assets/gallery/anshul-renovation/verandhaproposed.jpg"
+                   ]
+    },
+    {
+        "id":  "club7-spa",
+        "title":  "Club 7 Spa (Ahmedabad)",
+        "category":  "hospitality",
+        "cover":  "assets/gallery/club7-spa/club 7 spa ahemdabad (1).jpg",
+        "images":  [
+                       "assets/gallery/club7-spa/club 7 spa ahemdabad (1).jpg",
+                       "assets/gallery/club7-spa/club 7 spa ahemdabad (2).jpg",
+                       "assets/gallery/club7-spa/club 7 spa ahemdabad (3).jpg",
+                       "assets/gallery/club7-spa/club 7 spa ahemdabad (4).jpg",
+                       "assets/gallery/club7-spa/club 7 spa ahemdabad (5).jpg",
+                       "assets/gallery/club7-spa/club 7 spa ahemdabad (6).jpg",
+                       "assets/gallery/club7-spa/club 7 spa ahemdabad (7).jpg",
+                       "assets/gallery/club7-spa/club 7 spa ahemdabad (8).jpg"
+                   ]
+    },
+    {
+        "id":  "cym-bangalore",
+        "title":  "CYM Restaurant (Bangalore)",
+        "category":  "hospitality",
+        "cover":  "assets/gallery/cym-bangalore/cym bangalore restaurent (1).jpg",
+        "images":  [
+                       "assets/gallery/cym-bangalore/cym bangalore restaurent (1).jpg",
+                       "assets/gallery/cym-bangalore/cym bangalore restaurent (2).jpg",
+                       "assets/gallery/cym-bangalore/cym bangalore restaurent (3).jpg"
+                   ]
+    },
+    {
+        "id":  "gk2-apartment",
+        "title":  "GK-2 Luxury Apartment (New Delhi)",
+        "category":  "residences",
+        "cover":  "assets/gallery/gk2-apartment/GK2-1066.jpg",
+        "images":  [
+                       "assets/gallery/gk2-apartment/GK2-0798.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1045.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1066.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1108.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1123.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1161.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1219.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1229.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1242-2.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1273.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1276.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1290-2.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1311.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1317.jpg",
+                       "assets/gallery/gk2-apartment/GK2-1319.jpg"
+                   ]
+    },
+    {
+        "id":  "hotel-lobby-jaipur",
+        "title":  "Hotel Lobby Concepts (Jaipur)",
+        "category":  "hospitality",
+        "cover":  "assets/gallery/hotel-lobby-jaipur/hotel lobby jaipur (1).jpg",
+        "images":  [
+                       "assets/gallery/hotel-lobby-jaipur/hotel lobby jaipur (1).jpg",
+                       "assets/gallery/hotel-lobby-jaipur/hotel lobby jaipur (2).jpg",
+                       "assets/gallery/hotel-lobby-jaipur/hotel lobby jaipur (3).jpg"
+                   ]
+    },
+    {
+        "id":  "lalit-chandigarh",
+        "title":  "The Lalit Hotel (Chandigarh)",
+        "category":  "hospitality",
+        "cover":  "assets/gallery/lalit-chandigarh/lalit chandingarh (1).jpg",
+        "images":  [
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (1).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (10).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (11).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (12).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (13).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (14).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (15).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (16).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (17).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (18).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (19).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (2).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (20).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (21).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (22).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (23).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (24).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (25).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (26).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (27).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (28).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (29).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (3).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (30).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (31).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (32).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (33).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (34).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (35).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (36).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (37).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (38).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (39).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (4).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (40).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (41).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (42).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (43).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (44).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (45).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (46).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (47).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (48).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (49).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (5).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (50).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (51).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (52).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (53).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (54).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (55).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (56).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (57).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (6).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (7).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (8).jpg",
+                       "assets/gallery/lalit-chandigarh/lalit chandingarh (9).jpg"
+                   ]
+    },
+    {
+        "id":  "marriott-mockup",
+        "title":  "Marriott Interior Concept",
+        "category":  "hospitality",
+        "cover":  "assets/gallery/marriott-mockup/marriot mockup (1).jpg",
+        "images":  [
+                       "assets/gallery/marriott-mockup/marriot mockup (1).jpg",
+                       "assets/gallery/marriott-mockup/marriot mockup (2).jpg",
+                       "assets/gallery/marriott-mockup/marriot mockup (3).jpg",
+                       "assets/gallery/marriott-mockup/marriot mockup (4).jpg",
+                       "assets/gallery/marriott-mockup/marriot mockup (5).jpg",
+                       "assets/gallery/marriott-mockup/marriot mockup (6).jpg",
+                       "assets/gallery/marriott-mockup/marriot mockup (7).jpg"
+                   ]
+    },
+    {
+        "id":  "nsci-club-delhi",
+        "title":  "NSCI Club Interiors (New Delhi)",
+        "category":  "hospitality",
+        "cover":  "assets/gallery/nsci-club-delhi/nsci club delhi (1).jpg",
+        "images":  [
+                       "assets/gallery/nsci-club-delhi/nsci club delhi (1).jpg",
+                       "assets/gallery/nsci-club-delhi/nsci club delhi (2).jpg",
+                       "assets/gallery/nsci-club-delhi/nsci club delhi (3).jpg",
+                       "assets/gallery/nsci-club-delhi/nsci club delhi (4).jpg",
+                       "assets/gallery/nsci-club-delhi/nsci club delhi (5).jpg"
+                   ]
+    },
+    {
+        "id":  "offices-arbitration",
+        "title":  "Corporate Arbitration Rooms",
+        "category":  "offices",
+        "cover":  "assets/gallery/offices-arbitration/arbitration  (1).jpg",
+        "images":  [
+                       "assets/gallery/offices-arbitration/arbitration  (1).jpg",
+                       "assets/gallery/offices-arbitration/arbitration  (2).jpg",
+                       "assets/gallery/offices-arbitration/arbitration  (3).jpg",
+                       "assets/gallery/offices-arbitration/arbitration  (4).jpg",
+                       "assets/gallery/offices-arbitration/arbitration  (5).jpg",
+                       "assets/gallery/offices-arbitration/arbitration  (6).jpg",
+                       "assets/gallery/offices-arbitration/arbitration  (7).jpg"
+                   ]
+    },
+    {
+        "id":  "offices-mahaveer",
+        "title":  "Mahaveer Constructions Head Office",
+        "category":  "offices",
+        "cover":  "assets/gallery/offices-mahaveer/mahaveer constructions (1).jpg",
+        "images":  [
+                       "assets/gallery/offices-mahaveer/mahaveer constructions (1).jpg",
+                       "assets/gallery/offices-mahaveer/mahaveer constructions (2).jpg",
+                       "assets/gallery/offices-mahaveer/mahaveer constructions (3).jpg",
+                       "assets/gallery/offices-mahaveer/mahaveer constructions (4).jpg"
+                   ]
+    },
+    {
+        "id":  "offices-md-cabin",
+        "title":  "Executive MD Cabin Office",
+        "category":  "offices",
+        "cover":  "assets/gallery/offices-md-cabin/md cabin (1).jpg",
+        "images":  [
+                       "assets/gallery/offices-md-cabin/md cabin (1).jpg",
+                       "assets/gallery/offices-md-cabin/md cabin (2).jpg",
+                       "assets/gallery/offices-md-cabin/md cabin.jpg"
+                   ]
+    },
+    {
+        "id":  "offices-modern-school",
+        "title":  "Conference Room (Modern School)",
+        "category":  "offices",
+        "cover":  "assets/gallery/offices-modern-school/confrence modern school (1).jpg",
+        "images":  [
+                       "assets/gallery/offices-modern-school/confrence modern school (1).jpg",
+                       "assets/gallery/offices-modern-school/confrence modern school (2).jpg"
+                   ]
+    },
+    {
+        "id":  "offices-neeraj-bhagat",
+        "title":  "Neeraj Bhagat Office Space",
+        "category":  "offices",
+        "cover":  "assets/gallery/offices-neeraj-bhagat/neeraj bhagat (15).jpg",
+        "images":  [
+                       "assets/gallery/offices-neeraj-bhagat/neeraj bhagat (15).jpg",
+                       "assets/gallery/offices-neeraj-bhagat/neeraj bhagat (16).jpg",
+                       "assets/gallery/offices-neeraj-bhagat/neeraj bhagat (3).jpg",
+                       "assets/gallery/offices-neeraj-bhagat/neeraj bhagat (4).jpg",
+                       "assets/gallery/offices-neeraj-bhagat/neeraj bhagat office (1).jpg"
+                   ]
+    },
+    {
+        "id":  "offices-special-steel",
+        "title":  "Special Steel Workstations \u0026 Labs",
+        "category":  "offices",
+        "cover":  "assets/gallery/offices-special-steel/special steel.jpg",
+        "images":  [
+                       "assets/gallery/offices-special-steel/special steel.jpg",
+                       "assets/gallery/offices-special-steel/special steel2.jpg",
+                       "assets/gallery/offices-special-steel/work station.jpg"
+                   ]
+    },
+    {
+        "id":  "rohtak-residence",
+        "title":  "Rohtak Residence Layouts",
+        "category":  "residences",
+        "cover":  "assets/gallery/rohtak-residence/IMG20200723140305.jpg",
+        "images":  [
+                       "assets/gallery/rohtak-residence/drawing1.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723135058.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723135135.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723135922.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723135935.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723140035.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723140305.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723140309.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723140403.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723141710.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723141733.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723143549.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723144044.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723144049.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723144744.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723145445.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723145743.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723150333.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723150607.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723150631.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723150709.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723151530.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723151758.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723153029.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723153050.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723153221.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723153439.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723153542.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723154133.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723154147.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723160430.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723160457.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723160805.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723170559.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723170604.jpg",
+                       "assets/gallery/rohtak-residence/IMG20200723170609.jpg"
+                   ]
+    },
+    {
+        "id":  "shangri-la",
+        "title":  "Shangri-La Resort",
+        "category":  "hospitality",
+        "cover":  "assets/gallery/shangri-la/corridor.jpg",
+        "images":  [
+                       "assets/gallery/shangri-la/c22603c9-7c39-408e-aa59-8a0baed188a4.jpg",
+                       "assets/gallery/shangri-la/c8ec4937-aba9-4635-af30-bbde0b047454.jpg",
+                       "assets/gallery/shangri-la/corridor.jpg",
+                       "assets/gallery/shangri-la/IMG20250414141333.jpg",
+                       "assets/gallery/shangri-la/IMG20250414141348.jpg",
+                       "assets/gallery/shangri-la/IMG20250414141457.jpg",
+                       "assets/gallery/shangri-la/IMG20250414143156.jpg",
+                       "assets/gallery/shangri-la/IMG20250414143221.jpg",
+                       "assets/gallery/shangri-la/IMG20250414143303.jpg",
+                       "assets/gallery/shangri-la/IMG20250414143313.jpg",
+                       "assets/gallery/shangri-la/IMG20250414143333.jpg"
+                   ]
+    },
+    {
+        "id":  "surana-jaipur",
+        "title":  "Surana Restaurant (Jaipur)",
+        "category":  "hospitality",
+        "cover":  "assets/gallery/surana-jaipur/surana restaurent jaipur (1).jpg",
+        "images":  [
+                       "assets/gallery/surana-jaipur/surana restaurent jaipur (1).jpg",
+                       "assets/gallery/surana-jaipur/surana restaurent jaipur (2).jpg",
+                       "assets/gallery/surana-jaipur/surana restaurent jaipur (3).jpg"
+                   ]
+    }
+]
