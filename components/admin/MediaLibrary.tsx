@@ -37,23 +37,21 @@ export default function MediaLibrary({ initialItems }: MediaLibraryProps) {
       if (!files || files.length === 0) return;
 
       const file = files[0];
-      const fileExt = file.name.split('.').pop();
-      const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
-      const filePath = `gallery/${fileName}`;
+      // Upload file via backend proxy
+      const formData = new FormData();
+      formData.append('file', file);
 
-      // Upload file to Supabase Storage Bucket
-      const { error: uploadError } = await supabase.storage
-        .from('media')
-        .upload(filePath, file);
+      const uploadRes = await fetch('/api/media/upload', {
+        method: 'POST',
+        body: formData,
+      });
 
-      if (uploadError) throw uploadError;
+      if (!uploadRes.ok) {
+        const errData = await uploadRes.json();
+        throw new Error(errData.error || 'Upload failed');
+      }
 
-      // Get public URL
-      const { data } = supabase.storage
-        .from('media')
-        .getPublicUrl(filePath);
-
-      const publicUrl = data.publicUrl;
+      const { url: publicUrl } = await uploadRes.json();
 
       // Save new gallery item in Supabase Database
       const newItem = {

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -22,6 +23,17 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        
+        {/* Google Analytics (gtag.js) */}
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-R7JYHYCJG4" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-R7JYHYCJG4');
+          `}
+        </Script>
       </head>
       <body className="antialiased bg-c-bg-primary text-c-text-primary">
         {children}
@@ -29,3 +41,4 @@ export default function RootLayout({
     </html>
   );
 }
+
