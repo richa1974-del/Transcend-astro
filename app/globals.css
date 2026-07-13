@@ -3,4 +3,4 @@
 @tailwind utilities;
 
 /* Import legacy spatial styles and Apple mobile experience overrides */
-@import "../styles.css?v=2";
+@import "../styles.css";
