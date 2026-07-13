@@ -3,3 +3,4 @@
 .next/
 leads.json
 scratch/
+node_modules

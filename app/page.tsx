@@ -11,7 +11,13 @@ interface StaticData {
   colours: Array<{ id: string; name: string; element: string; planet: string; impact: string }>;
 }
 
-export default async function HomePage() {
+interface PageProps {
+  searchParams?: {
+    success?: string;
+  };
+}
+
+export default async function HomePage({ searchParams }: PageProps) {
   const supabase = createServerClient();
 
   // Asynchronous fetches directly from Supabase
@@ -163,6 +169,16 @@ export default async function HomePage() {
           <h2 className="text-3xl md:text-5xl font-heading text-c-text-primary mb-4 font-light">Schedule Spatial Calibrations</h2>
           <p className="text-c-text-secondary">Provide your coordinates to initialize a natal spatial design audit.</p>
         </div>
+
+        {searchParams?.success === 'true' && (
+          <div className="mb-8 p-6 bg-amber-50/50 border border-c-accent rounded-xl text-center shadow-sm max-w-2xl mx-auto">
+            <span className="text-xl mb-2 block text-c-accent">✦</span>
+            <h3 className="font-heading text-lg text-c-accent font-semibold mb-1">Calibration Initialized Successfully</h3>
+            <p className="text-c-text-secondary text-xs leading-relaxed">
+              Thank you! Your natal details have been securely logged. A verification email has been dispatched, and our lead design officer will contact you within 24 hours.
+            </p>
+          </div>
+        )}
 
         <form action="/api/leads" method="POST" className="bg-white border border-c-accent-border rounded-2xl p-8 md:p-12 shadow-sm space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
